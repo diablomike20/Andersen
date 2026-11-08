@@ -1,36 +1,36 @@
-# Andersen Launcher for Windows
+# Andersen – magyar Windows-indító
 
-A lightweight Windows launcher styled after the Andersen README identity: midnight navy, antique gold, bookish typography and restrained ornamental framing.
+A Windowsos indító az Andersen arculatát követi: éjkék háttér, antik arany részletek, könyvszerű tipográfia és visszafogott díszítés.
 
-## Start
+## Indítás
 
-Double-click **Start-Andersen.bat** in the repository root.
+A tárház gyökérmappájában kattints duplán a **Start-Andersen.bat** fájlra.
 
-The launcher is separate from the application runtime. It does not modify application source, configuration, credentials, or project data.
+Az indító különálló segédprogram: nem módosítja az alkalmazás forráskódját, beállításait, hitelesítő adatait vagy projektadatait.
 
-## Actions
+## Elérhető műveletek
 
-- **Webes fejlesztői mód** — runs `pnpm run dev`.
-- **Asztali alkalmazás** — runs `pnpm run tauri:dev`.
-- **Függőségek telepítése** — runs `pnpm install`.
-- **Webes build készítése** — runs `pnpm run build`.
-- **Repository megnyitása** — opens the GitHub repository.
+- **Webes fejlesztői mód** – elindítja a `pnpm run dev` parancsot.
+- **Asztali alkalmazás** – elindítja a `pnpm run tauri:dev` parancsot.
+- **Függőségek telepítése** – elindítja a `pnpm install` parancsot.
+- **Webes build készítése** – elindítja a `pnpm run build` parancsot.
+- **GitHub-tárház megnyitása** – megnyitja az Andersen GitHub-oldalát.
 
-Each task runs in its own PowerShell window so logs remain visible.
+Minden művelet külön PowerShell-ablakban fut, így a folyamat naplója és az esetleges hibaüzenetek láthatók maradnak.
 
-## Requirements
+## Követelmények
 
-- Windows PowerShell 5.1 or newer.
-- Node.js **22.19.0 or newer**.
-- Corepack / pnpm. The repository pins **pnpm 12.13.0** in `package.json`.
-- For the desktop target, install the platform prerequisites documented by Tauri.
+- Windows PowerShell 5.1 vagy újabb.
+- Node.js **22.19.0 vagy újabb**.
+- Corepack és/vagy pnpm. A tárház a **pnpm 12.13.0** verziót rögzíti a `package.json` fájlban.
+- Az asztali változat fordításához a Tauri dokumentációjában felsorolt Windowsos előfeltételek is szükségesek.
 
-The launcher checks the local toolchain and reports detected versions. It does not silently install runtimes or change machine-wide settings.
+Az indító ellenőrzi a helyi fejlesztői eszközöket és kijelzi az észlelt verziókat. Nem telepít észrevétlenül futtatókörnyezeteket, és nem módosít rendszerszintű beállításokat.
 
-## Files
+## Fájlok
 
-- `Start-Andersen.bat` — double-click entry point.
-- `tools/launcher/Andersen-Launcher.ps1` — graphical launcher.
-- `tools/launcher/README.md` — this guide.
+- `Start-Andersen.bat` – a dupla kattintással indítható belépési pont.
+- `tools/launcher/Andersen-Launcher.ps1` – a grafikus, magyar nyelvű indítófelület.
+- `tools/launcher/README.md` – ez az útmutató.
 
-The first run may offer to install project dependencies when `node_modules` is missing. The app's own predev/build scripts remain responsible for normal preparation steps.
+Ha első indításkor hiányzik a `node_modules` mappa, az indító felajánlja a projektfüggőségek telepítését. Az alkalmazás saját előkészítő és build-parancsai továbbra is a megszokott módon futnak.
