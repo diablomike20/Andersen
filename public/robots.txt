@@ -1,5 +1,0 @@
-# WorldScript Studio - robots.txt
-User-agent: *
-Allow: /
-
-Sitemap: https://qnbs.github.io/WorldScript-Studio/sitemap.xml

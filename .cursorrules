@@ -1,5 +1,0 @@
-# Legacy Cursor compatibility adapter
-
-Use `AGENTS.md` as the canonical repository guidance. Use the relevant files in
-`.cursor/rules/` for path-scoped details; do not apply a cross-repository persona, historical
-product manifest, broad exploration ritual, or duplicate review procedure.
