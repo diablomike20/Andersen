@@ -3,10 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/diablomike20/Andersen"><img src="https://img.shields.io/badge/GitHub-Andersen-181717?logo=github" alt="Andersen a GitHubon"></a>
-  <img src="https://img.shields.io/badge/Nyelv-Magyar%20(alapértelmezett)-white?labelColor=555" alt="Magyar alapértelmezett nyelv">
-  <img src="https://img.shields.io/badge/Platform-Web%20%7C%20PWA%20%7C%20Asztali-8B6B35" alt="Web, PWA és asztali alkalmazás">
-  <img src="https://img.shields.io/badge/Licenc-MIT-2E8B57" alt="MIT licenc">
+  <a href="https://github.com/diablomike20/Andersen"><img src="https://img.shields.io/badge/ANDERSEN-OPEN%20SOURCE-172A42?style=for-the-badge&labelColor=0A1220" alt="Andersen nyílt forráskód"></a>
+  <img src="https://img.shields.io/badge/DEFAULT%20LANGUAGE-MAGYAR-D6B36D?style=for-the-badge&labelColor=0A1220" alt="Magyar alapértelmezett nyelv">
+  <img src="https://img.shields.io/badge/WEB-PWA-D6B36D?style=for-the-badge&labelColor=0A1220" alt="Web és PWA">
+  <img src="https://img.shields.io/badge/DESKTOP-TAURI-172A42?style=for-the-badge&labelColor=0A1220" alt="Tauri asztali alkalmazás">
+</p>
+
+<p align="center">
+  <em>Your world. Your story. Your creation.</em>
 </p>
 
 ---
@@ -18,37 +22,68 @@ Minden nagy történet egyetlen gondolattal kezdődik. Egy karakterrel. Egy hell
 **A történet a tiéd. Az irányítás is.**
 
 <p align="center">
-  <img src="docs/branding/andersen-workflow.svg" alt="Az Andersen öt összekapcsolt alkotói területe" width="100%">
+  <img src="docs/branding/andersen-creative-journey.svg" alt="Az Andersen alkotói folyamata az ötlettől a történet megosztásáig" width="100%">
 </p>
+
+<p align="center">
+  <sub>ÖTLET → FELFEDEZÉS → ÉPÍTÉS → FINOMÍTÁS → MEGOSZTÁS</sub>
+</p>
+
+## A történet műhelye
+
+<p align="center">
+  <img src="docs/branding/andersen-manuscript.svg" alt="Prémium grafikai illusztráció az Andersen kéziratíró műhelyéről" width="100%">
+</p>
+
+A kézirat nem elszigetelt dokumentum. A fejezetek, jelenetek, karakterek, helyszínek és jegyzetek ugyanahhoz a történethez tartoznak. Az Andersen célja, hogy ezek között természetes legyen az átjárás, miközben az alkotói döntés végig nálad marad.
+
+## Építs fel egy saját univerzumot
+
+<p align="center">
+  <img src="docs/branding/andersen-world-atlas.svg" alt="Fantáziatérkép az Andersen világépítési eszközeinek szemléltetésére" width="100%">
+</p>
+
+A hiteles történet mögött következetes világ áll. Helyszínek, kultúrák, szabályok, történelmi rétegek és apró részletek, amelyek egymással összefüggnek. Az Andersen világépítő eszközei segítenek rendszerezni mindazt, amit az olvasó talán soha nem lát közvetlenül – de amitől a világ élőnek hat.
+
+## Akik életre keltik a történetet
+
+<p align="center">
+  <img src="docs/branding/andersen-character-atlas.svg" alt="Karakterprofilok és kapcsolati hálózat grafikai illusztrációja" width="100%">
+</p>
+
+A szereplők többek egyszerű neveknél. Motivációk, célok, konfliktusok, kapcsolatok és változások formálják őket. Az Andersen karakter- és kapcsolatkezelési területe segít egyben látni a történet emberi – vagy éppen nem emberi – hálózatát.
+
+## A cselekmény mögötti szerkezet
+
+<p align="center">
+  <img src="docs/branding/andersen-story-architecture.svg" alt="Háromfelvonásos történetív és jelenettervezési grafika" width="100%">
+</p>
+
+A történet ritmusát a fordulópontok, a jelenetek és az egymásra épülő események adják. Tervezd meg a nagy ívet, bontsd részekre a cselekményt, és tartsd szem előtt, hogyan kapcsolódnak össze a részletek.
+
+## Egy alkotói tér. Egy teljes ökoszisztéma.
 
 <p align="center">
   <img src="docs/branding/andersen-ecosystem.svg" alt="Az Andersen teljes alkotói ökoszisztémája" width="100%">
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/WRITE-Kézirat-1B2A41?style=for-the-badge&labelColor=0B1220" alt="Kéziratírás">
-  <img src="https://img.shields.io/badge/BUILD-Világépítés-9B7540?style=for-the-badge&labelColor=0B1220" alt="Világépítés">
-  <img src="https://img.shields.io/badge/CREATE-Karakterek-9B7540?style=for-the-badge&labelColor=0B1220" alt="Karakteralkotás">
-  <img src="https://img.shields.io/badge/IMAGINE-Történettervezés-1B2A41?style=for-the-badge&labelColor=0B1220" alt="Történettervezés">
+  <img src="docs/branding/andersen-workflow.svg" alt="Az Andersen öt összekapcsolt alkotói területe" width="100%">
 </p>
 
-Az Andersenben a mesterséges intelligencia lehet alkotótárs, ötletadó vagy szerkesztési segítség, de soha nem kötelező főszereplő. Használhatod a támogatott szolgáltatókkal, helyi vagy böngészőben futó modellekkel, de akár teljesen MI nélkül is.
-
-## ✨ Egy alkotói tér. Egy teljes univerzum.
-
-- **Kéziratírás** – dolgozz fejezetekre és részekre tagolt kéziraton, dedikált írófelületen.
-- **Világépítés** – rendszerezd a szereplőket, helyszíneket, háttérinformációkat és a világod szabályait.
-- **Karakterek és kapcsolatok** – építs összetett szereplőket, motivációkat és kapcsolatrendszereket.
-- **Cselekménytervezés** – alakíts történetvázlatokat, cselekményszerkezeteket, gondolattérképeket és idővonalakat.
-- **Kutatás és szerkesztés** – tartsd kéznél a háttéranyagokat, és finomítsd a szöveget a projekten belül.
-- **Választható mesterséges intelligencia** – dolgozz támogatott szolgáltatókkal, helyi vagy böngészőben futó modellekkel, vagy MI nélkül.
-- **Haladáskövetés** – kövesd az alkotói célokat és a projekt állapotát.
-- **Exportálás és publikálás** – készítsd elő a munkádat a támogatott exportfolyamatokhoz.
-- **Szabad munkakörnyezet** – használd böngészőből, telepíthető PWA-ként vagy Tauri-alapú asztali alkalmazásként.
+| Alkotói terület | Mire használhatod? |
+|---|---|
+| **Kéziratírás** | Fejezetekre és részekre tagolt kézirat, dedikált írófelületen |
+| **Világépítés** | Szereplők, helyszínek, háttérinformációk és világszabályok rendszerezése |
+| **Karakterek és kapcsolatok** | Motivációk, szereplői ívek és kapcsolatrendszerek |
+| **Cselekménytervezés** | Történetvázlatok, cselekményszerkezetek, gondolattérképek és idővonalak |
+| **Kutatás és szerkesztés** | Háttéranyagok kezelése és a szöveg finomítása a projekten belül |
+| **Haladáskövetés** | Alkotói célok és a projekt állapotának követése |
+| **Exportálás és publikálás** | A munka előkészítése a támogatott exportfolyamatokhoz |
 
 Az egyes funkciók elérhetősége platformonként és beállításonként eltérhet. A hálózati szolgáltatások internetkapcsolatot igényelnek.
 
-## 🧭 Alapelveink
+## Alkotói szabadság. Tudatos alapok.
 
 <p align="center">
   <img src="docs/branding/andersen-principles.svg" alt="Az Andersen négy alapelve: alkotói kontroll, adattulajdonlás, választható MI és nyílt közösség" width="100%">
@@ -66,11 +101,21 @@ Az alapvető projektmunkafolyamatok a helyi adattulajdonlásra épülnek. Bizony
 
 Az Andersen akkor is használható írói környezet marad, ha nincs beállított API-kulcsod, nem érhető el egyetlen szolgáltató sem, vagy egyszerűen kikapcsolod az MI-funkciókat.
 
+A támogatott szolgáltatókkal, helyi vagy böngészőben futó modellekkel is dolgozhatsz – de az MI nem kötelező főszereplő.
+
 ### Nyílt fejlesztés, valódi közreműködés
 
 A projekt célja, hogy a működése megismerhető, továbbfejleszthető és a közreműködők számára is hozzáférhető legyen. A pontos dokumentáció, az ellenőrizhető tesztek és a funkciók érettségének őszinte bemutatása fontosabb a hangzatos ígéreteknél.
 
-## 🚀 Első lépések
+## A te munkakörnyezeted
+
+<p align="center">
+  <img src="docs/branding/andersen-platforms.svg" alt="Andersen webes, PWA és asztali platformokon, választható MI-vel" width="100%">
+</p>
+
+Az Andersen webes környezetben, telepíthető PWA-ként és Tauri-alapú asztali alkalmazásként is fejlesztett projekt. A pontos platformtámogatás és az egyes funkciók elérhetősége kiadásonként eltérhet.
+
+## Első lépések
 
 ### Az alkalmazás használata
 
@@ -100,17 +145,13 @@ pnpm run tauri:dev
 
 Egyes natív célplatformokhoz a Tauri platformfüggő fejlesztői eszközei is szükségesek. A fenti parancsok a forráskód futtatásához adnak kiindulópontot; nem garantálják, hogy minden célplatform külön konfiguráció nélkül buildelhető.
 
-## 🌍 Nyelvek
+## Nyelvek
 
 - Alapértelmezett kezelőfelületi nyelv: **magyar**
 - Az angol és további fordítások is részei a projektnek.
 - A fordítási kulcsok teljessége önmagában nem garantálja a szakmailag és nyelvileg kifogástalan szöveget. Szívesen fogadunk javaslatokat a terminológia, az egységesség és a nyelvi minőség javítására.
 
-<p align="center">
-  <img src="docs/branding/andersen-platforms.svg" alt="Andersen webes, PWA és asztali platformokon, választható MI-vel" width="100%">
-</p>
-
-## 🛠️ Technológiai háttér
+## Technológiai háttér
 
 A jelenlegi kódbázis főbb technológiái:
 
@@ -122,7 +163,7 @@ A jelenlegi kódbázis főbb technológiái:
 
 A pontos függőségverziókat és az elérhető parancsokat a `package.json` tartalmazza.
 
-## 🤝 Közreműködés
+## Közreműködés
 
 Az Andersen nyílt projekt: örömmel fogadjuk az ötleteket, hibajelentéseket és a közösség érdemi hozzájárulását.
 
@@ -137,20 +178,26 @@ Pull request beküldése előtt:
 
 Nagyobb változtatás előtt nyiss egy issue-t, hogy egyeztethessük az irányt.
 
-## 🔐 Biztonság és adatvédelem
+## Biztonság és adatvédelem
 
 Biztonsági sérülékenységet ne nyilvános issue-ban jelents. Használd a repository privát sérülékenység-bejelentési lehetőségét, amikor elérhető. Hibajelentésben soha ne szerepeljen valódi API-kulcs, token, személyes adat vagy bizalmas kéziratrészlet.
 
 Az Andersen nem tünteti el a hálózati adatforgalmat: ha felhőszolgáltatót vagy online integrációt választasz, az adott szolgáltatás működéséhez szükséges információ elhagyhatja az eszközödet. Az integráció használata előtt ismerd meg a szolgáltató adatvédelmi feltételeit és a projekt biztonsági dokumentációját.
 
-## 📜 Licenc
+## Licenc
 
 A projekt megtartja a forráskódban szereplő licencet. A teljes feltételeket a [LICENSE](LICENSE) fájl tartalmazza.
 
 ---
 
 <p align="center">
-  <strong>ANDERSEN</strong><br>
-  <em>Give your imagination a universe.</em><br><br>
-  <sub>Adj teret a történetnek.</sub>
+  <img src="docs/branding/andersen-hero.svg" alt="Andersen — Give your imagination a universe." width="100%">
+</p>
+
+<p align="center">
+  <sub>ANDERSEN · ADJ TERET A TÖRTÉNETNEK.</sub>
+</p>
+
+<p align="center">
+  <sub>A README-ben szereplő grafikai illusztrációk önállóan, az Andersen márkához készültek. Koncepcionális bemutatóképek, nem az alkalmazás képernyőképei.</sub>
 </p>
