@@ -29,6 +29,10 @@ Minden nagy történet egyetlen gondolattal kezdődik. Egy karakterrel. Egy hell
   <sub>ÖTLET → FELFEDEZÉS → ÉPÍTÉS → FINOMÍTÁS → MEGOSZTÁS</sub>
 </p>
 
+<p align="center">
+  <img src="docs/branding/andersen-feature-mosaic.svg" alt="Az Andersen hat alkotói eszköztára: kéziratírás, világépítés, karakterek, cselekmény, kutatás és publikálás" width="100%">
+</p>
+
 ## A történet műhelye
 
 <p align="center">
@@ -89,6 +93,10 @@ Az egyes funkciók elérhetősége platformonként és beállításonként elté
   <img src="docs/branding/andersen-principles.svg" alt="Az Andersen négy alapelve: alkotói kontroll, adattulajdonlás, választható MI és nyílt közösség" width="100%">
 </p>
 
+<p align="center">
+  <img src="docs/branding/andersen-creative-control.svg" alt="Az alkotó irányít, a projektadatok és a választható eszközök támogatják a munkát" width="100%">
+</p>
+
 ### Az alkotóé az utolsó szó
 
 A kézirat és a projekt adatai jelentik a munka alapját. Az MI által készített tartalom javaslat, nem pedig olyan tekintély, amely észrevétlenül felülírhatja a szerző munkáját.
@@ -114,6 +122,10 @@ A projekt célja, hogy a működése megismerhető, továbbfejleszthető és a k
 </p>
 
 Az Andersen webes környezetben, telepíthető PWA-ként és Tauri-alapú asztali alkalmazásként is fejlesztett projekt. A pontos platformtámogatás és az egyes funkciók elérhetősége kiadásonként eltérhet.
+
+<p align="center">
+  <img src="docs/branding/andersen-start-here.svg" alt="Négy lépés az Andersen megismerésétől a fejlesztéshez való csatlakozásig" width="100%">
+</p>
 
 ## Első lépések
 
@@ -162,6 +174,10 @@ A jelenlegi kódbázis főbb technológiái:
 - Választható MI-szolgáltatói és helyi modellintegrációk
 
 A pontos függőségverziókat és az elérhető parancsokat a `package.json` tartalmazza.
+
+<p align="center">
+  <img src="docs/branding/andersen-community.svg" alt="Az Andersen nyílt alkotói közösségét jelképező absztrakt kapcsolati hálózat" width="100%">
+</p>
 
 ## Közreműködés
 
