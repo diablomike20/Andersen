@@ -145,7 +145,9 @@ class Config:
 
     @classmethod
     def load(cls) -> "Config":
-        cfg = cls(repo_path=Path.home() / "Andersen")
+        # A launcher mellett lévő Andersen mappa az alapértelmezés, így a
+        # pendrive-on és más gépeken is működik gépspecifikus beállítás nélkül.
+        cfg = cls(repo_path=APP_DIR.parent / "Andersen")
         try:
             raw = json.loads(CONFIG_FILE.read_text(encoding="utf-8"))
             if raw.get("repo_path"):

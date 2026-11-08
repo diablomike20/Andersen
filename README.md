@@ -84,15 +84,27 @@ A launcher egyetlen felületen fogja össze a mindennapi fejlesztői műveleteke
 
 </div>
 
-**01 — Legyen meg a teljes Andersen projekt**
+**01 — Hozd létre a közös munkamappát**
 
-A launcher önmagában nem tartalmazza az alkalmazás forráskódját. Először klónozd vagy töltsd le a teljes [Andersen repositoryt](https://github.com/diablomike20/Andersen):
+A launcher és az Andersen forrása egy közös `Andersen - Studio` mappában él, egymás mellett:
 
-```bash
-git clone https://github.com/diablomike20/Andersen.git
+```text
+Andersen - Studio/
+├─ Andersen/
+└─ AndersenLauncher/
 ```
 
-**02 — Klónozd a launchert külön mappába**
+**02 — Klónozd az alkalmazást**
+
+A közös mappa létrehozása után klónozd bele az Andersen forrását:
+
+```bash
+mkdir "Andersen - Studio"
+cd "Andersen - Studio"
+git clone https://github.com/diablomike20/Andersen.git Andersen
+```
+
+**03 — Klónozd a launchert**
 
 A launcher szándékosan külön mappában él, hogy a `git pull` ne írja felül:
 
@@ -100,26 +112,28 @@ A launcher szándékosan külön mappában él, hogy a `git pull` ne írja felü
 git clone --branch Launcher --single-branch https://github.com/diablomike20/Andersen.git AndersenLauncher
 ```
 
-**03 — Indítsd el**
+**04 — Indítsd el**
 
-Nyisd meg az `AndersenLauncher` mappában a `Start-Andersen.bat` fájlt (látható konzollal), vagy az `Inditas.vbs` fájlt (konzolablak nélkül).
+Nyisd meg az `AndersenLauncher` mappában az `inditas.bat` fájlt (látható konzollal), vagy az `Inditas.vbs` fájlt (konzolablak nélkül).
 
-Az első indításkor a launcher megkeresi az Andersen forrásmappáját. Alapértelmezésben a `%USERPROFILE%\Andersen` mappát használja; ha máshol van, a **Módosítás** gombbal választhatod ki. Ha a függőségek még hiányoznak, a launcher felajánlja a telepítést.
+Az első indításkor a launcher az `AndersenLauncher` mellett lévő `Andersen` mappát használja. Ha máshol van, a **Módosítás** gombbal választhatod ki. Ha a függőségek még hiányoznak, a launcher felajánlja a telepítést.
 
 ### A launcher mappája így nézzen ki
 
 ```text
-AndersenLauncher/
-├── Start-Andersen.bat        ← indítás látható konzollal (hibakereséshez)
-├── Inditas.vbs               ← indítás konzolablak nélkül
-├── andersen_launcher.py      ← a grafikus launcher
-├── create_shortcut.ps1       ← asztali parancsikon készítése
-├── assets/
-│   ├── andersen-icon.ico
-│   ├── andersen-icon.png
-│   └── andersen-emblem.png
-└── tools/
-    └── make_assets.py
+Andersen - Studio/
+├── Andersen/                 ← az alkalmazás forrása (main branch)
+└── AndersenLauncher/
+    ├── inditas.bat           ← indítás látható konzollal (hibakereséshez)
+    ├── Inditas.vbs           ← indítás konzolablak nélkül
+    ├── andersen_launcher.py  ← a grafikus launcher
+    ├── create_shortcut.ps1   ← asztali parancsikon készítése
+    ├── assets/
+    │   ├── andersen-icon.ico
+    │   ├── andersen-icon.png
+    │   └── andersen-emblem.png
+    └── tools/
+        └── make_assets.py
 ```
 
 <p align="center">
@@ -147,13 +161,13 @@ A launcher a `corepack pnpm` parancsot használja, így nem kell globálisan tel
 - Az első betöltésnél a Vite előkészíti a modulokat, ilyenkor néhány másodpercig csak az **Andersen** betöltőképernyő látszik.
 - Az upstream projekt `predev` lépése megköveteli az `AGENTS.md` fájlt, amely a repóban nem található. A launcher szükség esetén létrehoz egy megjelölt placeholdert, és frissítés előtt eltávolítja azt.
 - A `predev` a `public/locales/*/bundle.json` fájlokat is újragenerálja; a launcher frissítés előtt visszaállítja ezeket, hogy a `git pull` ne akadjon el.
-- A `launcher_config.json` helyi beállításokat tartalmaz, ezért nincs a repóban. A launcher első indításkor hozza létre.
+- A `launcher_config.json` helyi beállításokat tartalmaz, ezért nincs a repóban. Alapértelmezésben nem is jön létre: a launcher a mellette lévő `Andersen` mappát használja; csak akkor írja ki, ha másik forrásmappát választasz.
 
 ## Egy fontos különbség
 
 Ez a repository-ág **launcher-only csomag**. Nem az Andersen teljes alkalmazása, nem tartalmazza annak forráskódját, és nem telepíti automatikusan a Node.js-t vagy a Tauri rendszerkövetelményeit.
 
-A launcher a fejlesztői parancsok indítására szolgál. A parancsok kimenete a launcher naplójában követhető; a `Start-Andersen.bat` használatakor külön konzolablakban is látható.
+A launcher a fejlesztői parancsok indítására szolgál. A parancsok kimenete a launcher naplójában követhető; az `inditas.bat` használatakor külön konzolablakban is látható.
 
 ## Közreműködés
 
