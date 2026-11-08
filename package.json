@@ -2,12 +2,14 @@
   "name": "worldscript-studio",
   "private": true,
   "version": "1.29.2",
-  "description": "WorldScript Studio — offline-first, AI-powered creative writing application.",
+  "description": "Andersen — Hungarian-first, offline-capable, AI-assisted creative writing studio.",
   "author": "QNBS",
   "keywords": [
-    "worldscript",
-    "worldscript-studio",
+    "andersen",
     "creative-writing",
+    "novel-writing",
+    "worldbuilding",
+    "story-planning",
     "ai-writing",
     "pwa",
     "tauri"
