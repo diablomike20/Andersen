@@ -151,12 +151,6 @@ A használatra az Andersen repository licencfeltételei vonatkoznak: [LICENSE](h
   <img src="https://raw.githubusercontent.com/diablomike20/Andersen/main/branding/andersen-ornamental-divider.svg" alt="" width="100%">
 </p>
 
-<div align="center">
-
-<img src="https://raw.githubusercontent.com/diablomike20/Andersen/main/branding/andersen-emblem.svg" alt="Andersen embléma" width="88">
-
-## ANDERSEN
-
 ### Ne csak történeteket írj. Teremts világokat.
 
 <em>Nyisd ki a műhelyt. A történetet te írod.</em>
