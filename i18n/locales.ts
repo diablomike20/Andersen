@@ -127,9 +127,7 @@ export const LOCALES = [
     // QNBS-v3: Hebrew is not in LanguageTool's supported languages → grammar feature absent.
     languageToolSupport: 'none',
   },
-  // QNBS-v3: Near-Production (PR4) — ≥96% UI string coverage with 0 placeholder-integrity issues
-  // (per `pnpm run i18n:report`); help.json still falls back to English (helpFallback: true), which is
-  // the one gap keeping them out of full Production. Promoted from Beta on this data basis.
+  // Hungarian help content has been translated; the overall locale remains Beta pending full UI-string review.
   {
     code: 'ja',
     nativeName: '日本語',
@@ -215,7 +213,7 @@ export const LOCALES = [
     dir: 'ltr',
     status: 'beta',
     script: 'latin',
-    helpFallback: true,
+    helpFallback: false,
     // QNBS-v3: Hungarian is not in LanguageTool's supported languages → grammar feature absent.
     languageToolSupport: 'none',
   },
