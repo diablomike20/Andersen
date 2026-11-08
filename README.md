@@ -1,84 +1,99 @@
 <div align="center">
 
-# ANDERSEN / LAUNCHER
+<p>
+  <img src="https://raw.githubusercontent.com/diablomike20/Andersen/main/branding/andersen-emblem.svg" alt="Andersen embléma" width="112">
+</p>
+
+# ANDERSEN
+## LAUNCHER
 
 ### A műhely kapuja. Nem maga a műhely.
 
-**Egyetlen indítófelület az Andersen fejlesztői munkafolyamataihoz.**
+**A fejlesztői környezeted egyetlen, áttekinthető indítófelületen.**
 
-<sub>WINDOWS · POWERSHELL · MAGYAR UI</sub>
+<sub>WINDOWS&nbsp; · &nbsp;POWERSHELL&nbsp; · &nbsp;MAGYAR FELÜLET</sub>
 
 <br>
 
 <a href="https://github.com/diablomike20/Andersen/tree/Launcher_Design_V1"><img src="https://img.shields.io/badge/BRANCH-Launcher_Design_V1-172A42?style=for-the-badge&labelColor=0A1220" alt="Launcher Design V1"></a>
-<img src="https://img.shields.io/badge/SHELL-Windows%20PowerShell-D6B36D?style=for-the-badge&labelColor=0A1220" alt="Windows PowerShell">
-<img src="https://img.shields.io/badge/LANGUAGE-MAGYAR-D6B36D?style=for-the-badge&labelColor=0A1220" alt="Magyar">
+<img src="https://img.shields.io/badge/PLATFORM-WINDOWS-172A42?style=for-the-badge&labelColor=0A1220" alt="Windows">
+<img src="https://img.shields.io/badge/INTERFACE-MAGYAR-D6B36D?style=for-the-badge&labelColor=0A1220" alt="Magyar felület">
 
 <br><br>
 
 <table>
-<tr>
-<td align="center" width="25%"><strong>01</strong><br>ELŐKÉSZÍTÉS</td>
-<td align="center" width="25%"><strong>02</strong><br>INDÍTÁS</td>
-<td align="center" width="25%"><strong>03</strong><br>MUNKA</td>
-<td align="center" width="25%"><strong>04</strong><br>BUILD</td>
-</tr>
-<tr>
-<td align="center">Környezet<br>ellenőrzése</td>
-<td align="center">Mód<br>kiválasztása</td>
-<td align="center">Fejlesztés<br>külön ablakban</td>
-<td align="center">Webes<br>csomagolás</td>
-</tr>
+  <tr>
+    <td align="center" width="25%"><strong>01</strong><br><sub>ELŐKÉSZÍTÉS</sub></td>
+    <td align="center" width="25%"><strong>02</strong><br><sub>INDÍTÁS</sub></td>
+    <td align="center" width="25%"><strong>03</strong><br><sub>FEJLESZTÉS</sub></td>
+    <td align="center" width="25%"><strong>04</strong><br><sub>BUILD</sub></td>
+  </tr>
 </table>
+
+<sub>AZ ÖTLETTŐL A FUTTATHATÓ FEJLESZTŐI KÖRNYEZETIG</sub>
 
 </div>
 
----
+<p align="center"><img src="https://raw.githubusercontent.com/diablomike20/Andersen/main/branding/andersen-ornamental-divider.svg" alt="" width="100%"></p>
 
-## A koncepció
+## A launcher szerepe
 
-Az Andersen egy alkotói műhely. A launcher ennek a műhelynek a **vezérlőpultja**: nem próbálja eljátszani az alkalmazást, hanem rövid és egyértelmű utat ad a legfontosabb fejlesztői műveletekhez.
+Az Andersen egy alkotói műhely. Ez a launcher a fejlesztői műhely bejárata: nem maga az alkalmazás, hanem egy célzott vezérlőfelület, ahonnan a legfontosabb fejlesztői műveletek indíthatók.
 
-A README ezért nem az alkalmazás bemutatóoldalának másolata. Saját, műveletközpontú felépítést kapott: áttekintés, indítási útvonal, műveleti térkép és technikai feltételek.
+A felület feladata egyszerű: ellenőrizni az alapvető környezetet, jelezni, ha valami hiányzik, és egyértelművé tenni, melyik munkafolyamatot szeretnéd elindítani.
 
-## Műveleti térkép
+<p align="center">
+  <img src="https://raw.githubusercontent.com/diablomike20/Andersen/main/branding/andersen-start-here.svg" alt="Az Andersen projekt elindításának vizuális útmutatója" width="100%">
+</p>
 
-| Parancs | Mit indít? | Mikor használd? |
+<p align="center"><sub>ELŐKÉSZÍTÉS → INDÍTÁS → ALKOTÁS → ELLENŐRZÉS</sub></p>
+
+<p align="center"><img src="https://raw.githubusercontent.com/diablomike20/Andersen/main/branding/andersen-ornamental-divider.svg" alt="" width="100%"></p>
+
+## Műveleti központ
+
+| Művelet | Parancs / cél | Mire való? |
 |:--|:--|:--|
-| **WEBES FEJLESZTŐI MÓD** | `pnpm run dev` | Amikor a webes felületen dolgozol. |
-| **ASZTALI ALKALMAZÁS** | `pnpm run tauri:dev` | Amikor a Tauri asztali környezetet fejleszted. |
-| **FÜGGŐSÉGEK TELEPÍTÉSE** | `pnpm install` | Első beállításkor vagy függőségváltozás után. |
-| **WEBES BUILD KÉSZÍTÉSE** | `pnpm run build` | Amikor ellenőrizni vagy előállítani szeretnéd a webes buildet. |
-| **GITHUB-TÁRHÁZ MEGNYITÁSA** | Andersen repository | A forráskód és a projekt dokumentációjának megnyitásához. |
+| **WEBES FEJLESZTŐI MÓD** | `pnpm run dev` | A webes felület fejlesztése és helyi futtatása. |
+| **ASZTALI ALKALMAZÁS** | `pnpm run tauri:dev` | A Tauri-alapú asztali alkalmazás fejlesztői indítása. |
+| **FÜGGŐSÉGEK TELEPÍTÉSE** | `pnpm install` | A projekt függőségeinek telepítése. |
+| **WEBES BUILD KÉSZÍTÉSE** | `pnpm run build` | A webes build előállítása. |
+| **GITHUB-TÁRHÁZ MEGNYITÁSA** | Andersen repository | A forráskód és a fejlesztési anyagok megnyitása. |
 
-A launcher ellenőrzi a Node.js- és pnpm-környezetet, megjeleníti az észlelt verziókat, és hiányzó `node_modules` esetén felajánlja a függőségek telepítését. A fejlesztői parancsokat külön PowerShell-ablakban indítja, így a kimenet és a hibák láthatók maradnak.
+### Környezetellenőrzés
 
-## Indítás három lépésben
+A launcher ellenőrzi a Node.js- és pnpm-környezetet, megjeleníti az észlelt verziókat, és hiányzó `node_modules` könyvtár esetén felajánlja a függőségek telepítését. A fejlesztői parancsokat külön PowerShell-ablakban indítja, így a futási kimenet és az esetleges hibák láthatók maradnak.
 
-### 1 — Tedd a megfelelő helyre
+<p align="center"><img src="https://raw.githubusercontent.com/diablomike20/Andersen/main/branding/andersen-ornamental-divider.svg" alt="" width="100%"></p>
 
-Ez a branch szándékosan **launcher-only**: nem tartalmazza az Andersen alkalmazás forráskódját. A teljes Andersen repositoryra szükséged lesz.
+## Indítás — három lépésben
 
-A branch három fájlját másold át a teljes Andersen repository gyökerébe. A meglévő projektfájlokat ne írd felül.
+<div align="center">
+
+| <sub>01 · HELYEZD EL</sub> | <sub>02 · INDÍTSD EL</sub> | <sub>03 · VÁLASSZ</sub> |
+|:--:|:--:|:--:|
+| Másold a launcher fájljait a teljes Andersen projekt gyökerébe. | Kattints duplán a `Start-Andersen.bat` fájlra. | Válaszd ki a kívánt fejlesztői műveletet. |
+
+</div>
+
+### A szükséges mappaszerkezet
+
+Ez a branch szándékosan **launcher-only**: nem tartalmazza az Andersen alkalmazás forráskódját. A teljes Andersen repositoryra szükséged van.
 
 ```text
-Andersen/                         ← a teljes projekt
-├── package.json                  ← az alkalmazás saját fájlja
-├── Start-Andersen.bat            ← innen indul a launcher
+Andersen/                         ← a teljes projekt mappája
+├── package.json                  ← az alkalmazás projektbeállításai
+├── Start-Andersen.bat            ← launcher belépési pont
 └── tools/
     └── launcher/
         └── Andersen-Launcher.ps1 ← grafikus felület
 ```
 
-### 2 — Indítsd el
+A három launcherfájlt a teljes projekt megfelelő helyére másold át. A meglévő projektfájlokat ne írd felül.
 
-A teljes Andersen mappájában kattints duplán a `Start-Andersen.bat` fájlra.
+<p align="center"><img src="https://raw.githubusercontent.com/diablomike20/Andersen/main/branding/andersen-ornamental-divider.svg" alt="" width="100%"></p>
 
-### 3 — Válassz munkamódot
-
-A magyar nyelvű ablakban válaszd ki a kívánt műveletet. A launcher a parancsot külön PowerShell-ablakban futtatja.
-
-## Technikai feltételek
+## Rendszerkövetelmények
 
 | Összetevő | Elvárás |
 |:--|:--|
@@ -93,15 +108,14 @@ A projekt pontos parancsait és verzióit a teljes Andersen repository `package.
 
 ## A launcher határai
 
-A launcher egy kényelmi belépési pont, nem önálló alkalmazás.
+- **Nem önálló Andersen-alkalmazás:** a teljes projekt megléte szükséges.
+- **Nem helyettesíti a projektet:** a `package.json` és az alkalmazás forráskódja a teljes repository része.
+- **Nem rejti el a parancsok kimenetét:** a fejlesztői műveletek külön PowerShell-ablakban futnak.
+- **Nem módosítja a fő alkalmazást:** a launcher a fejlesztői parancsok indítására szolgál.
 
-- Nem tartalmazza az Andersen forráskódját.
-- Nem helyettesíti a projekt `package.json` fájlját.
-- Nem telepít észrevétlenül rendszerszintű futtatókörnyezeteket.
-- Nem módosítja az Andersen alkalmazás forráskódját, beállításait vagy projektadatait.
-- A build és a fejlesztői parancsok a teljes projekt környezetében futnak.
+<p align="center"><img src="https://raw.githubusercontent.com/diablomike20/Andersen/main/branding/andersen-ornamental-divider.svg" alt="" width="100%"></p>
 
-## Repository-térkép
+## A branch tartalma
 
 ```text
 Launcher_Design_V1/
@@ -118,6 +132,8 @@ Launcher_Design_V1/
             └── Magyar nyelvű grafikus launcher
 ```
 
+A branch célja, hogy a launcher önállóan áttekinthető és a teljes Andersen projekthez egyszerűen hozzáadható legyen.
+
 ## Közreműködés és licenc
 
 A launcher módosításait tartsd elkülönítve az Andersen alkalmazás többi részétől. Hibajelentésben ne szerepeljen API-kulcs, token vagy más bizalmas adat.
@@ -128,12 +144,16 @@ A használatra az Andersen repository licencfeltételei vonatkoznak: [LICENSE](h
 
 <div align="center">
 
+<img src="https://raw.githubusercontent.com/diablomike20/Andersen/main/branding/andersen-emblem.svg" alt="Andersen embléma" width="64">
+
 **ANDERSEN LAUNCHER**
 
-<sub>Nyisd ki a műhelyt. A történetet te írod.</sub>
+<em>Nyisd ki a műhelyt. A történetet te írod.</em>
+
+<br>
 
 <a href="https://github.com/diablomike20/Andersen">Fő repository</a>
-&nbsp;·&nbsp;
+&nbsp; · &nbsp;
 <a href="https://github.com/diablomike20/Andersen/tree/Launcher_Design_V1">Launcher branch</a>
 
 </div>
