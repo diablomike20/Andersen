@@ -10,6 +10,10 @@
 </p>
 
 <p align="center">
+  <img src="docs/branding/andersen-emblem.svg" alt="Andersen saját nyitott könyv emblémája" width="112">
+</p>
+
+<p align="center">
   <em>Your world. Your story. Your creation.</em>
 </p>
 
