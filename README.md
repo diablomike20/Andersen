@@ -1,76 +1,76 @@
 <p align="center">
-  <img src="public/icon-512.png" width="128" height="128" alt="Andersen emblem">
+  <img src="public/icon-512.png" width="128" height="128" alt="Andersen embléma">
 </p>
 
 <h1 align="center">Andersen</h1>
 
 <p align="center">
-  <strong>Creative Writing Studio</strong><br>
-  <em>A home for stories worth telling.</em>
+  <strong>Kreatív írói műhely</strong><br>
+  <em>Adj teret a történetnek!</em>
 </p>
 
 <p align="center">
-  <a href="https://github.com/diablomike20/Andersen"><img src="https://img.shields.io/badge/GitHub-Andersen-181717?logo=github" alt="Andersen on GitHub"></a>
-  <img src="https://img.shields.io/badge/Language-Hungarian%20(default)-white?labelColor=555" alt="Hungarian default">
-  <img src="https://img.shields.io/badge/Platform-Web%20%7C%20PWA%20%7C%20Desktop-8B6B35" alt="Web, PWA and desktop">
-  <img src="https://img.shields.io/badge/License-MIT-2E8B57" alt="MIT License">
+  <a href="https://github.com/diablomike20/Andersen"><img src="https://img.shields.io/badge/GitHub-Andersen-181717?logo=github" alt="Andersen a GitHubon"></a>
+  <img src="https://img.shields.io/badge/Nyelv-Magyar%20(alapértelmezett)-white?labelColor=555" alt="Magyar alapértelmezett nyelv">
+  <img src="https://img.shields.io/badge/Platform-Web%20%7C%20PWA%20%7C%20Asztali-8B6B35" alt="Web, PWA és asztali alkalmazás">
+  <img src="https://img.shields.io/badge/Licenc-MIT-2E8B57" alt="MIT licenc">
 </p>
 
 ---
 
-**Andersen** is an open-source creative-writing environment for authors, storytellers and worldbuilders. It brings the pieces of a long-form creative project into one focused workspace: manuscript, characters, fictional worlds, plot structure, research, revision, and publishing.
+**Az Andersen** egy nyílt forráskódú alkotói környezet regényíróknak, történetmesélőknek és világépítőknek. Egyetlen, átlátható munkaterületen fogja össze mindazt, amire egy összetett kreatív projekthez szükség lehet: a kéziratot, a szereplőket, a kitalált világokat, a cselekmény felépítését, a kutatást, a szerkesztést és a publikálás előkészítését.
 
-The interface starts in **Hungarian**. English and the other supported languages remain available.
+A kezelőfelület alapértelmezett nyelve **magyar**. Az angol és a további támogatott nyelvek szintén elérhetők.
 
 > [!NOTE]
-> Andersen is the independent product identity of a continuation of the WorldScript Studio codebase. This repository preserves upstream technical identifiers where changing them would create unnecessary compatibility risks. The product name and user-facing experience are Andersen.
+> Az Andersen a WorldScript Studio kódbázisára épülő, önálló termékidentitással rendelkező folytatás. A kompatibilitás megőrzése érdekében egyes belső technikai azonosítók változatlanok maradnak; a felhasználók által látható terméknév és arculat az Andersené.
 
-## The idea
+## Az elképzelés
 
-Writing a book is more than filling pages. It means keeping track of people, places, timelines, motivations, plot threads, research, drafts and revisions—without losing sight of the story itself.
+Egy könyv megírása jóval több, mint mondatok egymás után rendezése. Szereplőket, helyszíneket, idővonalakat, motivációkat, cselekményszálakat, kutatási anyagokat, változatokat és javításokat kell összefogni úgy, hogy közben maga a történet maradjon a középpontban.
 
-Andersen is built around the project as the author's source of truth. AI can assist, but it does not own the manuscript and is not required to use the core writing workspace.
+Az Andersen alapja maga az alkotói projekt. A kézirat és a hozzá tartozó adatok az alkotó tulajdonában és irányítása alatt maradnak. A mesterséges intelligencia segítséget nyújthat, de nem veszi át az irányítást a történet vagy a szerző munkája felett.
 
-## What you can do
+## Mire használhatod?
 
-- **Write and organize manuscripts** — work with structured sections and a dedicated writing surface.
-- **Build story worlds** — maintain character dossiers, locations, world details and story-bible material.
-- **Plan narratives** — develop plot structures, outlines, mind maps and character relationships.
-- **Research and revise** — keep supporting material close to the project and work through revisions.
-- **Use AI on your terms** — connect supported providers, use local/browser-based inference where available, or write without AI.
-- **Track creative progress** — use project goals, progress views and planning tools.
-- **Export and publish** — prepare work for supported export workflows.
-- **Choose your workspace** — use the web application, installable PWA or Tauri desktop application.
+- **Kéziratírás és rendszerezés** – dolgozz fejezetekre és részekre tagolt kéziraton, dedikált írófelületen.
+- **Világépítés** – tartsd egy helyen a szereplők adatlapjait, helyszíneket, háttérinformációkat és a történet világának szabályait.
+- **Cselekménytervezés** – építs történetvázlatokat, cselekményszerkezeteket, gondolattérképeket és szereplői kapcsolatokat.
+- **Kutatás és szerkesztés** – rendszerezd a háttéranyagokat, és dolgozd át a szöveget a projekten belül.
+- **MI a saját feltételeid szerint** – használhatsz támogatott szolgáltatókat, ahol elérhető, helyi vagy böngészőben futó modelleket, de akár teljesen MI nélkül is alkothatsz.
+- **Haladáskövetés** – kövesd a célokat, a projekt állapotát és az alkotói folyamatot.
+- **Exportálás és publikálás** – készítsd elő a munkádat a támogatott exportfolyamatokhoz.
+- **Szabad munkakörnyezet-választás** – használd böngészőből, telepíthető PWA-ként vagy Tauri-alapú asztali alkalmazásként.
 
-Feature availability can vary by platform, configuration and maturity. Optional networked services require connectivity.
+Az egyes funkciók elérhetősége platformonként és beállításonként eltérhet. A hálózati szolgáltatások internetkapcsolatot igényelnek.
 
-## Principles
+## Alapelveink
 
-### Your project comes first
+### A projekt és az alkotó az első
 
-The manuscript and project data are the central assets. AI output is assistance—not an authority that silently replaces the author's work.
+A kézirat és a projekt adatai jelentik a munka alapját. A mesterséges intelligencia által készített tartalom javaslat, nem pedig olyan tekintély, amely észrevétlenül felülírhatja a szerző munkáját.
 
-### Local-first, with honest network boundaries
+### Helyi működés, őszinte adatkezelési határokkal
 
-Core project workflows are designed around local project ownership. Some optional capabilities—such as cloud AI providers, collaboration services, language tools, model downloads and update checks—use the network. Review each integration before enabling it.
+Az alapvető projektmunkafolyamatok a helyi adattulajdonlásra épülnek. Bizonyos választható funkciók – például a felhőalapú MI-szolgáltatók, az együttműködési szolgáltatások, a nyelvi ellenőrzők, a modellletöltések és a frissítés-ellenőrzések – hálózati kapcsolatot használnak. Minden integrációt csak a működésének megismerése után engedélyezz.
 
-### AI is optional
+### A mesterséges intelligencia választható
 
-Andersen remains a writing environment when no API key is configured, no provider is reachable, or AI features are turned off.
+Az Andersen akkor is használható írói környezet marad, ha nincs beállított API-kulcsod, nem érhető el egyetlen szolgáltató sem, vagy egyszerűen kikapcsolod az MI-funkciókat.
 
-### Open development
+### Nyílt és átlátható fejlesztés
 
-The project is intended to be inspectable, extensible and welcoming to contributors. Clear documentation, reproducible checks and honest statements about feature maturity matter more than inflated claims.
+A projekt célja, hogy a működése megismerhető, továbbfejleszthető és a közreműködők számára is hozzáférhető legyen. A pontos dokumentáció, az ellenőrizhető tesztek és a funkciók érettségének őszinte bemutatása fontosabb a hangzatos ígéreteknél.
 
-## Getting started
+## Első lépések
 
-### Use the application
+### Az alkalmazás használata
 
-The public standalone Andersen deployment and release downloads will be listed here when the new repository and its distribution channels are ready.
+Az önálló Andersen-webes kiadás és a letölthető telepítők hivatkozásai az új repository és a terjesztési csatornák elkészülte után jelennek meg itt.
 
-### Run from source
+### Futtatás forráskódból
 
-The project uses Node.js and pnpm. Check the exact versions in `package.json` before starting.
+A projekt Node.js-t és pnpm-et használ. A pontos verziókat indulás előtt ellenőrizd a `package.json` fájlban.
 
 ```bash
 corepack enable
@@ -78,64 +78,64 @@ pnpm install
 pnpm run dev
 ```
 
-For a production web build:
+Éles webes build készítése:
 
 ```bash
 pnpm run build
 ```
 
-For the desktop development shell:
+Asztali fejlesztői környezet indítása:
 
 ```bash
 pnpm run tauri:dev
 ```
 
-Some native build targets require the platform-specific Tauri toolchain. Installing dependencies or building the project is not performed by this README.
+Egyes natív célplatformokhoz a Tauri platformfüggő fejlesztői eszközei is szükségesek. Ez a leírás nem telepít függőségeket és nem indít buildfolyamatot.
 
-## Language
+## Nyelvek
 
-- Default interface language: **Hungarian**
-- English and additional translations are included.
-- Translation completeness does not automatically guarantee native-speaker editorial quality. Contributions to terminology, consistency and proofreading are welcome.
+- Alapértelmezett kezelőfelületi nyelv: **magyar**
+- Az angol és további fordítások is részei a projektnek.
+- A fordítási kulcsok teljessége önmagában nem garantálja a szakmailag és nyelvileg kifogástalan szöveget. Szívesen fogadunk javaslatokat a terminológia, az egységesség és a nyelvi minőség javítására.
 
-## Technology
+## Technológiai háttér
 
-The current codebase includes:
+A jelenlegi kódbázis főbb technológiái:
 
-- React and TypeScript
+- React és TypeScript
 - Vite
-- Tauri 2 for the desktop shell
-- A modular internationalization system
-- Optional AI provider and local inference integrations
+- Tauri 2 az asztali alkalmazáshoz
+- Moduláris többnyelvűségi rendszer
+- Választható MI-szolgáltatói és helyi modellintegrációk
 
-The exact dependency versions and available scripts are maintained in `package.json`.
+A pontos függőségverziókat és az elérhető parancsokat a `package.json` tartalmazza.
 
-## Contributing
+## Közreműködés
 
-Contributions are welcome. Before opening a pull request:
+Örömmel fogadjuk a közösség hozzájárulását. Pull request beküldése előtt:
 
-1. Read the repository's contribution and security guidance.
-2. Explain the problem being solved and the intended user impact.
-3. Keep changes focused and avoid unrelated refactors.
-4. Include or update tests for behavior changes.
-5. Do not commit API keys, credentials, private manuscripts or personal data.
-6. Clearly identify any feature that is experimental, platform-limited or dependent on an external service.
+1. Olvasd el a repository közreműködési és biztonsági útmutatóját.
+2. Írd le, milyen problémát old meg a módosítás, és hogyan segíti a felhasználókat.
+3. Tartsd a változtatásokat célzottan, kerüld a témához nem kapcsolódó átalakításokat.
+4. Viselkedésváltozás esetén egészítsd ki vagy frissítsd a teszteket.
+5. Soha ne tölts fel API-kulcsokat, hitelesítő adatokat, személyes kéziratokat vagy más bizalmas adatokat.
+6. Jelezd egyértelműen, ha egy funkció kísérleti, platformfüggő vagy külső szolgáltatástól függ.
 
-For substantial changes, open an issue first so the direction can be discussed.
+Nagyobb változtatás előtt nyiss egy issue-t, hogy egyeztethessük az irányt.
 
-## Security and privacy
+## Biztonság és adatvédelem
 
-Do not report security vulnerabilities in public issues. Use the repository's private vulnerability reporting channel when available. Never include real API keys, tokens, personal information or private manuscript content in bug reports.
+Biztonsági sérülékenységet ne nyilvános issue-ban jelents. Használd a repository privát sérülékenység-bejelentési lehetőségét, amikor elérhető. Hibajelentésben soha ne szerepeljen valódi API-kulcs, token, személyes adat vagy bizalmas kéziratrészlet.
 
-Andersen does not make the network disappear: when you choose a cloud provider or online integration, the information required by that service may leave your device. Consult the relevant provider's privacy terms and the project's security documentation.
+Az Andersen nem tünteti el a hálózati adatforgalmat: ha felhőszolgáltatót vagy online integrációt választasz, az adott szolgáltatás működéséhez szükséges információ elhagyhatja az eszközödet. Az integráció használata előtt ismerd meg a szolgáltató adatvédelmi feltételeit és a projekt biztonsági dokumentációját.
 
-## License
+## Licenc
 
-This project retains the license included in the source repository. See [LICENSE](LICENSE) for the complete terms.
+A projekt megtartja a forráskódban szereplő licencet. A teljes feltételeket a [LICENSE](LICENSE) fájl tartalmazza.
 
 ---
 
 <p align="center">
   <strong>Andersen</strong><br>
-  <sub>Make room for the story.</sub>
+  <sub>Adj teret a történetnek.</sub>
 </p>
