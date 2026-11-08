@@ -22,6 +22,13 @@ Minden nagy történet egyetlen gondolattal kezdődik. Egy karakterrel. Egy hell
 </p>
 
 <p align="center">
+  <img src="docs/branding/andersen-ecosystem.svg" alt="Az Andersen teljes alkotói ökoszisztémája" width="100%">
+</p>
+
+<p align="center">
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/WRITE-Kézirat-1B2A41?style=for-the-badge&labelColor=0B1220" alt="Kéziratírás">
   <img src="https://img.shields.io/badge/BUILD-Világépítés-9B7540?style=for-the-badge&labelColor=0B1220" alt="Világépítés">
   <img src="https://img.shields.io/badge/CREATE-Karakterek-9B7540?style=for-the-badge&labelColor=0B1220" alt="Karakteralkotás">
@@ -45,9 +52,30 @@ Az Andersenben a mesterséges intelligencia lehet alkotótárs, ötletadó vagy 
 - **Exportálás és publikálás** – készítsd elő a munkádat a támogatott exportfolyamatokhoz.
 - **Szabad munkakörnyezet** – használd böngészőből, telepíthető PWA-ként vagy Tauri-alapú asztali alkalmazásként.
 
+## 🖼️ Pillants be az alkotói térbe
+
+Az alábbi képek a repository vizuális regressziós tesztjeinek tényleges, 1280 × 720-as alkalmazásképernyőképei.
+
+<table>
+  <tr>
+    <td width="50%"><strong>Áttekintés és kezdőfelület</strong><br><img src="tests/e2e/visual-regression.spec.ts-snapshots/home-chromium.png" alt="Andersen kezdőfelület" width="100%"></td>
+    <td width="50%"><strong>Írói munkafelület</strong><br><img src="tests/e2e/visual-regression.spec.ts-snapshots/writer-chromium.png" alt="Andersen írói nézet" width="100%"></td>
+  </tr>
+  <tr>
+    <td width="50%"><strong>Karakteralkotás</strong><br><img src="tests/e2e/visual-regression.spec.ts-snapshots/characters-chromium.png" alt="Andersen karakterek nézet" width="100%"></td>
+    <td width="50%"><strong>Beállítások</strong><br><img src="tests/e2e/visual-regression.spec.ts-snapshots/settings-chromium.png" alt="Andersen beállítások nézet" width="100%"></td>
+  </tr>
+</table>
+
+<p align="center"><sub>A képernyőképek a jelenlegi teszt-bázisállapotot mutatják; a felület és a funkciók fejlesztés közben változhatnak.</sub></p>
+
 Az egyes funkciók elérhetősége platformonként és beállításonként eltérhet. A hálózati szolgáltatások internetkapcsolatot igényelnek.
 
 ## 🧭 Alapelveink
+
+<p align="center">
+  <img src="docs/branding/andersen-principles.svg" alt="Az Andersen négy alapelve: alkotói kontroll, adattulajdonlás, választható MI és nyílt közösség" width="100%">
+</p>
 
 ### Az alkotóé az utolsó szó
 
@@ -100,6 +128,10 @@ Egyes natív célplatformokhoz a Tauri platformfüggő fejlesztői eszközei is 
 - Alapértelmezett kezelőfelületi nyelv: **magyar**
 - Az angol és további fordítások is részei a projektnek.
 - A fordítási kulcsok teljessége önmagában nem garantálja a szakmailag és nyelvileg kifogástalan szöveget. Szívesen fogadunk javaslatokat a terminológia, az egységesség és a nyelvi minőség javítására.
+
+<p align="center">
+  <img src="docs/branding/andersen-platforms.svg" alt="Andersen webes, PWA és asztali platformokon, választható MI-vel" width="100%">
+</p>
 
 ## 🛠️ Technológiai háttér
 
