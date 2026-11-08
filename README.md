@@ -46,6 +46,8 @@ Az Andersen egy alkotói műhely. Ez a kis segédprogram a fejlesztői környeze
   <sub>ELŐKÉSZÍTÉS → INDÍTÁS → ALKOTÁS → ELLENŐRZÉS</sub>
 </p>
 
+<p align="center"><img src="https://raw.githubusercontent.com/diablomike20/Andersen/main/branding/andersen-ornamental-divider.svg" alt="" width="100%"></p>
+
 ## Műveleti központ
 
 | Művelet | Futtatott parancs | Mire szolgál? |
@@ -82,6 +84,8 @@ Andersen/
 ```
 
 **Fontos:** a három launcherfájlt másold át a teljes projekt megfelelő helyére. A projekt meglévő fájljait ne írd felül.
+
+<p align="center"><img src="https://raw.githubusercontent.com/diablomike20/Andersen/main/branding/andersen-ornamental-divider.svg" alt="" width="100%"></p>
 
 ## Rendszerkövetelmények
 
