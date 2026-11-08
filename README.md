@@ -1,12 +1,5 @@
 <p align="center">
-  <img src="public/icon-512.png" width="128" height="128" alt="Andersen embléma">
-</p>
-
-<h1 align="center">ANDERSEN</h1>
-
-<p align="center">
-  <strong>Ne csak történeteket írj. Teremts világokat.</strong><br>
-  <em>Your world. Your story. Your creation.</em>
+  <img src="docs/branding/andersen-hero.svg" alt="Andersen — Ne csak történeteket írj. Teremts világokat." width="100%">
 </p>
 
 <p align="center">
@@ -23,6 +16,17 @@ Minden nagy történet egyetlen gondolattal kezdődik. Egy karakterrel. Egy hell
 **Az Andersen egy nyílt forráskódú kreatív alkotóműhely íróknak, történetmesélőknek és világépítőknek.** Egyetlen összefüggő munkakörnyezetben kapcsolja össze a kéziratírást, a karakteralkotást, a világépítést, a cselekménytervezést, a kutatást és a szerkesztést – hogy ne a szétszórt eszközökkel, hanem az alkotással foglalkozhass.
 
 **A történet a tiéd. Az irányítás is.**
+
+<p align="center">
+  <img src="docs/branding/andersen-workflow.svg" alt="Az Andersen öt összekapcsolt alkotói területe" width="100%">
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/WRITE-Kézirat-1B2A41?style=for-the-badge&labelColor=0B1220" alt="Kéziratírás">
+  <img src="https://img.shields.io/badge/BUILD-Világépítés-9B7540?style=for-the-badge&labelColor=0B1220" alt="Világépítés">
+  <img src="https://img.shields.io/badge/CREATE-Karakterek-9B7540?style=for-the-badge&labelColor=0B1220" alt="Karakteralkotás">
+  <img src="https://img.shields.io/badge/IMAGINE-Történettervezés-1B2A41?style=for-the-badge&labelColor=0B1220" alt="Történettervezés">
+</p>
 
 Az Andersenben a mesterséges intelligencia lehet alkotótárs, ötletadó vagy szerkesztési segítség, de soha nem kötelező főszereplő. Használhatod a támogatott szolgáltatókkal, helyi vagy böngészőben futó modellekkel, de akár teljesen MI nélkül is.
 
