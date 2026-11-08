@@ -2,11 +2,11 @@
   <img src="public/icon-512.png" width="128" height="128" alt="Andersen embléma">
 </p>
 
-<h1 align="center">Andersen</h1>
+<h1 align="center">ANDERSEN</h1>
 
 <p align="center">
-  <strong>Kreatív írói műhely</strong><br>
-  <em>Adj teret a történetnek!</em>
+  <strong>Ne csak történeteket írj. Teremts világokat.</strong><br>
+  <em>Your world. Your story. Your creation.</em>
 </p>
 
 <p align="center">
@@ -18,59 +18,58 @@
 
 ---
 
-**Az Andersen** egy nyílt forráskódú alkotói környezet regényíróknak, történetmesélőknek és világépítőknek. Egyetlen, átlátható munkaterületen fogja össze mindazt, amire egy összetett kreatív projekthez szükség lehet: a kéziratot, a szereplőket, a kitalált világokat, a cselekmény felépítését, a kutatást, a szerkesztést és a publikálás előkészítését.
+Minden nagy történet egyetlen gondolattal kezdődik. Egy karakterrel. Egy hellyel. Egy lehetetlennel, ami egyszer csak valósággá válik.
 
-A kezelőfelület alapértelmezett nyelve **magyar**. Az angol és a további támogatott nyelvek szintén elérhetők.
+**Az Andersen egy nyílt forráskódú kreatív alkotóműhely íróknak, történetmesélőknek és világépítőknek.** Egyetlen összefüggő munkakörnyezetben kapcsolja össze a kéziratírást, a karakteralkotást, a világépítést, a cselekménytervezést, a kutatást és a szerkesztést – hogy ne a szétszórt eszközökkel, hanem az alkotással foglalkozhass.
+
+**A történet a tiéd. Az irányítás is.**
+
+Az Andersenben a mesterséges intelligencia lehet alkotótárs, ötletadó vagy szerkesztési segítség, de soha nem kötelező főszereplő. Használhatod a támogatott szolgáltatókkal, helyi vagy böngészőben futó modellekkel, de akár teljesen MI nélkül is.
 
 > [!NOTE]
 > Az Andersen a WorldScript Studio kódbázisára épülő, önálló termékidentitással rendelkező folytatás. A kompatibilitás megőrzése érdekében egyes belső technikai azonosítók változatlanok maradnak; a felhasználók által látható terméknév és arculat az Andersené.
 
-## Az elképzelés
+## ✨ Egy alkotói tér. Egy teljes univerzum.
 
-Egy könyv megírása jóval több, mint mondatok egymás után rendezése. Szereplőket, helyszíneket, idővonalakat, motivációkat, cselekményszálakat, kutatási anyagokat, változatokat és javításokat kell összefogni úgy, hogy közben maga a történet maradjon a középpontban.
-
-Az Andersen alapja maga az alkotói projekt. A kézirat és a hozzá tartozó adatok az alkotó tulajdonában és irányítása alatt maradnak. A mesterséges intelligencia segítséget nyújthat, de nem veszi át az irányítást a történet vagy a szerző munkája felett.
-
-## Mire használhatod?
-
-- **Kéziratírás és rendszerezés** – dolgozz fejezetekre és részekre tagolt kéziraton, dedikált írófelületen.
-- **Világépítés** – tartsd egy helyen a szereplők adatlapjait, helyszíneket, háttérinformációkat és a történet világának szabályait.
-- **Cselekménytervezés** – építs történetvázlatokat, cselekményszerkezeteket, gondolattérképeket és szereplői kapcsolatokat.
-- **Kutatás és szerkesztés** – rendszerezd a háttéranyagokat, és dolgozd át a szöveget a projekten belül.
-- **MI a saját feltételeid szerint** – használhatsz támogatott szolgáltatókat, ahol elérhető, helyi vagy böngészőben futó modelleket, de akár teljesen MI nélkül is alkothatsz.
-- **Haladáskövetés** – kövesd a célokat, a projekt állapotát és az alkotói folyamatot.
+- **Kéziratírás** – dolgozz fejezetekre és részekre tagolt kéziraton, dedikált írófelületen.
+- **Világépítés** – rendszerezd a szereplőket, helyszíneket, háttérinformációkat és a világod szabályait.
+- **Karakterek és kapcsolatok** – építs összetett szereplőket, motivációkat és kapcsolatrendszereket.
+- **Cselekménytervezés** – alakíts történetvázlatokat, cselekményszerkezeteket, gondolattérképeket és idővonalakat.
+- **Kutatás és szerkesztés** – tartsd kéznél a háttéranyagokat, és finomítsd a szöveget a projekten belül.
+- **Választható mesterséges intelligencia** – dolgozz támogatott szolgáltatókkal, helyi vagy böngészőben futó modellekkel, vagy MI nélkül.
+- **Haladáskövetés** – kövesd az alkotói célokat és a projekt állapotát.
 - **Exportálás és publikálás** – készítsd elő a munkádat a támogatott exportfolyamatokhoz.
-- **Szabad munkakörnyezet-választás** – használd böngészőből, telepíthető PWA-ként vagy Tauri-alapú asztali alkalmazásként.
+- **Szabad munkakörnyezet** – használd böngészőből, telepíthető PWA-ként vagy Tauri-alapú asztali alkalmazásként.
 
 Az egyes funkciók elérhetősége platformonként és beállításonként eltérhet. A hálózati szolgáltatások internetkapcsolatot igényelnek.
 
-## Alapelveink
+## 🧭 Alapelveink
 
-### A projekt és az alkotó az első
+### Az alkotóé az utolsó szó
 
-A kézirat és a projekt adatai jelentik a munka alapját. A mesterséges intelligencia által készített tartalom javaslat, nem pedig olyan tekintély, amely észrevétlenül felülírhatja a szerző munkáját.
+A kézirat és a projekt adatai jelentik a munka alapját. Az MI által készített tartalom javaslat, nem pedig olyan tekintély, amely észrevétlenül felülírhatja a szerző munkáját.
 
-### Helyi működés, őszinte adatkezelési határokkal
+### Helyi működés, átlátható adatkezelés
 
 Az alapvető projektmunkafolyamatok a helyi adattulajdonlásra épülnek. Bizonyos választható funkciók – például a felhőalapú MI-szolgáltatók, az együttműködési szolgáltatások, a nyelvi ellenőrzők, a modellletöltések és a frissítés-ellenőrzések – hálózati kapcsolatot használnak. Minden integrációt csak a működésének megismerése után engedélyezz.
 
-### A mesterséges intelligencia választható
+### MI, amikor szeretnéd. Szabadság, mindig.
 
 Az Andersen akkor is használható írói környezet marad, ha nincs beállított API-kulcsod, nem érhető el egyetlen szolgáltató sem, vagy egyszerűen kikapcsolod az MI-funkciókat.
 
-### Nyílt és átlátható fejlesztés
+### Nyílt fejlesztés, valódi közreműködés
 
 A projekt célja, hogy a működése megismerhető, továbbfejleszthető és a közreműködők számára is hozzáférhető legyen. A pontos dokumentáció, az ellenőrizhető tesztek és a funkciók érettségének őszinte bemutatása fontosabb a hangzatos ígéreteknél.
 
-## Első lépések
+## 🚀 Első lépések
 
 ### Az alkalmazás használata
 
-Az önálló Andersen-webes kiadás és a letölthető telepítők hivatkozásai az új repository és a terjesztési csatornák elkészülte után jelennek meg itt.
+Ez a repository az Andersen forráskódját és fejlesztési anyagait tartalmazza. A kiadott, futtatható webes változatok és telepítők a projekt GitHub Releases oldalán jelennek meg, amint közzétételre kerülnek.
 
 ### Futtatás forráskódból
 
-A projekt Node.js-t és pnpm-et használ. A pontos verziókat indulás előtt ellenőrizd a `package.json` fájlban.
+A projekt Node.js-t és pnpm-et használ. A pontos verziókat és parancsokat indulás előtt ellenőrizd a `package.json` fájlban.
 
 ```bash
 corepack enable
@@ -90,15 +89,15 @@ Asztali fejlesztői környezet indítása:
 pnpm run tauri:dev
 ```
 
-Egyes natív célplatformokhoz a Tauri platformfüggő fejlesztői eszközei is szükségesek. Ez a leírás nem telepít függőségeket és nem indít buildfolyamatot.
+Egyes natív célplatformokhoz a Tauri platformfüggő fejlesztői eszközei is szükségesek. A fenti parancsok a forráskód futtatásához adnak kiindulópontot; nem garantálják, hogy minden célplatform külön konfiguráció nélkül buildelhető.
 
-## Nyelvek
+## 🌍 Nyelvek
 
 - Alapértelmezett kezelőfelületi nyelv: **magyar**
 - Az angol és további fordítások is részei a projektnek.
 - A fordítási kulcsok teljessége önmagában nem garantálja a szakmailag és nyelvileg kifogástalan szöveget. Szívesen fogadunk javaslatokat a terminológia, az egységesség és a nyelvi minőség javítására.
 
-## Technológiai háttér
+## 🛠️ Technológiai háttér
 
 A jelenlegi kódbázis főbb technológiái:
 
@@ -110,9 +109,11 @@ A jelenlegi kódbázis főbb technológiái:
 
 A pontos függőségverziókat és az elérhető parancsokat a `package.json` tartalmazza.
 
-## Közreműködés
+## 🤝 Közreműködés
 
-Örömmel fogadjuk a közösség hozzájárulását. Pull request beküldése előtt:
+Az Andersen nyílt projekt: örömmel fogadjuk az ötleteket, hibajelentéseket és a közösség érdemi hozzájárulását.
+
+Pull request beküldése előtt:
 
 1. Olvasd el a repository közreműködési és biztonsági útmutatóját.
 2. Írd le, milyen problémát old meg a módosítás, és hogyan segíti a felhasználókat.
@@ -123,19 +124,20 @@ A pontos függőségverziókat és az elérhető parancsokat a `package.json` ta
 
 Nagyobb változtatás előtt nyiss egy issue-t, hogy egyeztethessük az irányt.
 
-## Biztonság és adatvédelem
+## 🔐 Biztonság és adatvédelem
 
 Biztonsági sérülékenységet ne nyilvános issue-ban jelents. Használd a repository privát sérülékenység-bejelentési lehetőségét, amikor elérhető. Hibajelentésben soha ne szerepeljen valódi API-kulcs, token, személyes adat vagy bizalmas kéziratrészlet.
 
 Az Andersen nem tünteti el a hálózati adatforgalmat: ha felhőszolgáltatót vagy online integrációt választasz, az adott szolgáltatás működéséhez szükséges információ elhagyhatja az eszközödet. Az integráció használata előtt ismerd meg a szolgáltató adatvédelmi feltételeit és a projekt biztonsági dokumentációját.
 
-## Licenc
+## 📜 Licenc
 
 A projekt megtartja a forráskódban szereplő licencet. A teljes feltételeket a [LICENSE](LICENSE) fájl tartalmazza.
 
 ---
 
 <p align="center">
-  <strong>Andersen</strong><br>
+  <strong>ANDERSEN</strong><br>
+  <em>Give your imagination a universe.</em><br><br>
   <sub>Adj teret a történetnek.</sub>
 </p>
