@@ -1,6 +1,6 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "WorldScript Studio",
+  "productName": "Andersen",
   "version": "1.29.2",
   "identifier": "com.worldscript.studio",
   "build": {
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "WorldScript Studio",
+        "title": "Andersen",
         "width": 1280,
         "height": 800,
         "minWidth": 800,
@@ -34,8 +34,8 @@
     "category": "Productivity",
     "publisher": "QNBS",
     "copyright": "© 2026 QNBS. Licensed under MIT.",
-    "shortDescription": "AI-powered creative writing and world-building application",
-    "longDescription": "WorldScript Studio is an offline-first, AI-powered creative writing application with local LLM inference, plot boards, character management, and manuscript export.",
+    "shortDescription": "Magyar nyelvű novella- és regényíró alkalmazás mesterséges intelligencia támogatással",
+    "longDescription": "Az Andersen magyar nyelvű, offline-központú novella- és regényíró alkalmazás. Támogatja a történet- és világépítést, a karakterkezelést, a helyi MI-modelleket és a kéziratok exportálását.",
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
@@ -45,15 +45,15 @@
     "fileAssociations": [
       {
         "ext": ["worldscript"],
-        "name": "WorldScript Project",
-        "description": "WorldScript Studio creative writing project",
+        "name": "Andersen-projekt",
+        "description": "Andersen történetíró projektfájl",
         "mimeType": "application/x-worldscript-project",
         "role": "Editor"
       },
       {
         "ext": ["wsst"],
-        "name": "WorldScript Project",
-        "description": "WorldScript Studio creative writing project (short extension)",
+        "name": "Andersen-projekt",
+        "description": "Andersen történetíró projektfájl (rövid kiterjesztés)",
         "mimeType": "application/x-worldscript-project",
         "role": "Editor"
       }
