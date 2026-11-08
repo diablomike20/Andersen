@@ -9,7 +9,7 @@
   "portal.demo.outline2Title": "Konfliktus",
   "portal.demo.title": "Bemutató: A lepecsételt torony",
   "portal.features.ai.description": "Vázolj, ötletelj és törd át az alkotói válságot felhő- vagy teljesen helyi modellekkel.",
-  "portal.features.ai.title": "AI másodpilóta",
+  "portal.features.ai.title": "MI-alkotótárs",
   "portal.features.export.description": "Fordítsd DOCX, PDF, EPUB és Markdown formátumba — teljesen offline.",
   "portal.features.export.title": "Profi exportálás",
   "portal.features.plot.description": "Tervezd meg a szerkezetet egy vásznon feszültséggörbékkel és beat sheetekkel.",
@@ -55,7 +55,7 @@
   "portal.welcome.newProject": "Új projekt indítása",
   "portal.welcome.openProject": "Projekt megnyitása",
   "portal.welcome.privacyBadge": "100%-ban offline-első — a történeted ezen az eszközön marad; az API-kulcsok nyugalmi állapotban titkosítottak.",
-  "portal.welcome.subtitle": "AI-alapú kreatív írópartnered.",
-  "portal.welcome.title": "Üdvözli a Andersen",
+  "portal.welcome.subtitle": "Mesterséges intelligenciával támogatott alkotótársad.",
+  "portal.welcome.title": "Üdvözöl az Andersen",
   "portal.welcome.tryDemo": "Bemutató projekt betöltése"
 }
