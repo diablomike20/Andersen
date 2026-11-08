@@ -4,10 +4,6 @@
   <img src="https://raw.githubusercontent.com/diablomike20/Andersen/main/branding/andersen-hero.svg" alt="Andersen — Ne csak történeteket írj. Teremts világokat." width="100%">
 </a>
 
-<br>
-
-<img src="https://raw.githubusercontent.com/diablomike20/Andersen/main/branding/andersen-emblem.svg" alt="Andersen embléma" width="76">
-
 # ANDERSEN LAUNCHER
 
 ### A műhely kapuja. Nem maga a műhely.
