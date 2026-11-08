@@ -191,11 +191,9 @@ A projekt megtartja a forráskódban szereplő licencet. A teljes feltételeket 
 ---
 
 <p align="center">
-  <img src="docs/branding/andersen-hero.svg" alt="Andersen — Give your imagination a universe." width="100%">
-</p>
-
-<p align="center">
-  <sub>ANDERSEN · ADJ TERET A TÖRTÉNETNEK.</sub>
+  <strong>ANDERSEN</strong><br>
+  <em>Give your imagination a universe.</em><br>
+  <sub>Adj teret a történetnek.</sub>
 </p>
 
 <p align="center">
