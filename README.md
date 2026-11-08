@@ -163,9 +163,9 @@ A használatra az Andersen repository licencfeltételei vonatkoznak: [LICENSE](h
 
 <br>
 
-[**Andersen — fő repository**](https://github.com/diablomike20/Andersen)
+[**Andersen**](https://github.com/diablomike20/Andersen)
 &nbsp; · &nbsp;
-[**Launcher branch**](https://github.com/diablomike20/Andersen/tree/Launcher_Design_V1)
+[**Launcher**](https://github.com/diablomike20/Andersen/tree/Launcher_Design_V1)
 
 <sub>MADE FOR THE LOVE OF STORIES, BOOKS & CREATION</sub>
 
