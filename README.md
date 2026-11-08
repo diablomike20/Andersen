@@ -34,9 +34,6 @@ Minden nagy történet egyetlen gondolattal kezdődik. Egy karakterrel. Egy hell
 
 Az Andersenben a mesterséges intelligencia lehet alkotótárs, ötletadó vagy szerkesztési segítség, de soha nem kötelező főszereplő. Használhatod a támogatott szolgáltatókkal, helyi vagy böngészőben futó modellekkel, de akár teljesen MI nélkül is.
 
-> [!NOTE]
-> Az Andersen a WorldScript Studio kódbázisára épülő, önálló termékidentitással rendelkező folytatás. A kompatibilitás megőrzése érdekében egyes belső technikai azonosítók változatlanok maradnak; a felhasználók által látható terméknév és arculat az Andersené.
-
 ## ✨ Egy alkotói tér. Egy teljes univerzum.
 
 - **Kéziratírás** – dolgozz fejezetekre és részekre tagolt kéziraton, dedikált írófelületen.
@@ -48,23 +45,6 @@ Az Andersenben a mesterséges intelligencia lehet alkotótárs, ötletadó vagy 
 - **Haladáskövetés** – kövesd az alkotói célokat és a projekt állapotát.
 - **Exportálás és publikálás** – készítsd elő a munkádat a támogatott exportfolyamatokhoz.
 - **Szabad munkakörnyezet** – használd böngészőből, telepíthető PWA-ként vagy Tauri-alapú asztali alkalmazásként.
-
-## 🖼️ Pillants be az alkotói térbe
-
-Az alábbi képek a repository vizuális regressziós tesztjeinek tényleges, 1280 × 720-as alkalmazásképernyőképei.
-
-<table>
-  <tr>
-    <td width="50%"><strong>Áttekintés és kezdőfelület</strong><br><img src="tests/e2e/visual-regression.spec.ts-snapshots/home-chromium.png" alt="Andersen kezdőfelület" width="100%"></td>
-    <td width="50%"><strong>Írói munkafelület</strong><br><img src="tests/e2e/visual-regression.spec.ts-snapshots/writer-chromium.png" alt="Andersen írói nézet" width="100%"></td>
-  </tr>
-  <tr>
-    <td width="50%"><strong>Karakteralkotás</strong><br><img src="tests/e2e/visual-regression.spec.ts-snapshots/characters-chromium.png" alt="Andersen karakterek nézet" width="100%"></td>
-    <td width="50%"><strong>Beállítások</strong><br><img src="tests/e2e/visual-regression.spec.ts-snapshots/settings-chromium.png" alt="Andersen beállítások nézet" width="100%"></td>
-  </tr>
-</table>
-
-<p align="center"><sub>A képernyőképek a jelenlegi teszt-bázisállapotot mutatják; a felület és a funkciók fejlesztés közben változhatnak.</sub></p>
 
 Az egyes funkciók elérhetősége platformonként és beállításonként eltérhet. A hálózati szolgáltatások internetkapcsolatot igényelnek.
 
