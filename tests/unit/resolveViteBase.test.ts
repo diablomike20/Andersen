@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { GITHUB_PAGES_BASE, isTauriBuild, resolveViteBase } from '../../config/resolveViteBase';
+import {
+  GITHUB_PAGES_BASE,
+  LOCAL_DEV_BASE,
+  isTauriBuild,
+  resolveViteBase,
+} from '../../config/resolveViteBase';
 
 // QNBS-v3: Guards the desktop discovery regression — a Tauri build that externalized
 // @tauri-apps/* left an unresolvable bare module specifier in the shipped bundle (services/
@@ -39,7 +44,7 @@ describe('resolveViteBase', () => {
   });
 
   it('does not treat an empty-string TAURI_ENV_PLATFORM as a Tauri build', () => {
-    expect(resolveViteBase({ TAURI_ENV_PLATFORM: '' })).toBe(GITHUB_PAGES_BASE);
+    expect(resolveViteBase({ TAURI_ENV_PLATFORM: '' })).toBe(LOCAL_DEV_BASE);
   });
 
   it('lets Tauri detection win over VITE_BASE and DEPLOY_TARGET', () => {
@@ -58,8 +63,14 @@ describe('resolveViteBase', () => {
     expect(resolveViteBase({ DEPLOY_TARGET: 'edge' })).toBe('/');
   });
 
-  it('defaults to the GitHub Pages project base', () => {
-    expect(resolveViteBase({})).toBe(GITHUB_PAGES_BASE);
-    expect(resolveViteBase({})).toBe('/WorldScript-Studio/');
+  it('defaults to the local /Andersen/ base outside production builds', () => {
+    expect(resolveViteBase({})).toBe(LOCAL_DEV_BASE);
+    expect(resolveViteBase({})).toBe('/Andersen/');
+    expect(resolveViteBase({ NODE_ENV: 'development' })).toBe('/Andersen/');
+  });
+
+  it('keeps the GitHub Pages project base for production builds', () => {
+    expect(resolveViteBase({ NODE_ENV: 'production' })).toBe(GITHUB_PAGES_BASE);
+    expect(resolveViteBase({ NODE_ENV: 'production' })).toBe('/WorldScript-Studio/');
   });
 });

@@ -5,6 +5,9 @@
 
 export const GITHUB_PAGES_BASE = '/WorldScript-Studio/';
 
+// QNBS-v3: local dev default — a plain `pnpm run dev` (no launcher, no VITE_BASE) serves /Andersen/; production builds keep GITHUB_PAGES_BASE so the CI GitHub Pages deploy (NODE_ENV=production, no VITE_BASE) is unaffected.
+export const LOCAL_DEV_BASE = '/Andersen/';
+
 /**
  * True when the active `vite build` is the one Tauri's `beforeBuildCommand` hook invokes to
  * produce the desktop bundle, as opposed to the web/PWA build.
@@ -27,7 +30,8 @@ export function isTauriBuild(env: Record<string, string | undefined> = process.e
  * - Tauri desktop  → './'  (relative; assets must load from tauri://localhost/ root)
  * - explicit VITE_BASE → normalised with a trailing slash
  * - edge (Vercel/Cloudflare root domain) → '/'
- * - default (GitHub Pages project page) → '/WorldScript-Studio/'
+ * - local dev default (NODE_ENV !== 'production') → '/Andersen/'
+ * - production build default (GitHub Pages project page) → '/WorldScript-Studio/'
  */
 export function resolveViteBase(env: Record<string, string | undefined> = process.env): string {
   if (isTauriBuild(env)) {
@@ -40,5 +44,5 @@ export function resolveViteBase(env: Record<string, string | undefined> = proces
   if (env['DEPLOY_TARGET'] === 'edge') {
     return '/';
   }
-  return GITHUB_PAGES_BASE;
+  return env['NODE_ENV'] === 'production' ? GITHUB_PAGES_BASE : LOCAL_DEV_BASE;
 }
