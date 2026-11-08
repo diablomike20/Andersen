@@ -26,9 +26,6 @@ Minden nagy történet egyetlen gondolattal kezdődik. Egy karakterrel. Egy hell
 </p>
 
 <p align="center">
-</p>
-
-<p align="center">
   <img src="https://img.shields.io/badge/WRITE-Kézirat-1B2A41?style=for-the-badge&labelColor=0B1220" alt="Kéziratírás">
   <img src="https://img.shields.io/badge/BUILD-Világépítés-9B7540?style=for-the-badge&labelColor=0B1220" alt="Világépítés">
   <img src="https://img.shields.io/badge/CREATE-Karakterek-9B7540?style=for-the-badge&labelColor=0B1220" alt="Karakteralkotás">
