@@ -1,6 +1,5 @@
 @echo off
-setlocal
+rem Andersen Launcher - hibakereso inditas (lathato konzollal)
 cd /d "%~dp0"
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0tools\launcher\Andersen-Launcher.ps1"
+python "andersen_launcher.py"
 if errorlevel 1 pause
-endlocal

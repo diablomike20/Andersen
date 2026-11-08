@@ -11,9 +11,9 @@
 <p><em>Egy apró ajtó egy nagy alkotói világhoz.</em></p>
 
 [![Windows](https://img.shields.io/badge/WINDOWS-172A42?style=flat-square&labelColor=091321)](https://www.microsoft.com/windows)
-![PowerShell](https://img.shields.io/badge/POWERSHELL-172A42?style=flat-square&labelColor=091321)
+![Python 3.10+](https://img.shields.io/badge/PYTHON_3.10%2B-172A42?style=flat-square&labelColor=091321)
 ![Magyar felület](https://img.shields.io/badge/MAGYAR_FELÜLET-C9A96E?style=flat-square&labelColor=091321)
-[![Launcher branch](https://img.shields.io/badge/BRANCH-Launcher_Design_V1-172A42?style=flat-square&labelColor=091321)](https://github.com/diablomike20/Andersen/tree/Launcher_Design_V1)
+[![Launcher branch](https://img.shields.io/badge/BRANCH-Launcher-172A42?style=flat-square&labelColor=091321)](https://github.com/diablomike20/Andersen/tree/Launcher)
 
 </div>
 
@@ -45,25 +45,27 @@ Nem akar többnek látszani annál, ami. Nem maga az alkotói alkalmazás, és n
 
 ## A műhely bejárata
 
-A launcher a legfontosabb fejlesztői műveleteket rendezi egyetlen felületre. Elindítás előtt ellenőrzi az alapvető környezetet, a hiányzó függőségekre figyelmeztet, a kiválasztott feladatot pedig külön PowerShell-ablakban futtatja.
+A launcher egyetlen felületen fogja össze a mindennapi fejlesztői műveleteket. Indítás előtt ellenőrzi a Git, a Node.js és a pnpm/corepack meglétét, figyeli a forrásmappát és a 3000-es portot, a folyamatok kimenetét pedig a beépített naplóban jeleníti meg.
 
 <div align="center">
 
-| **01 · ELŐKÉSZÍTÉS** | **02 · MEGNYITÁS** | **03 · ALKOTÁS** | **04 · ÉPÍTÉS** |
+| **01 · ELLENŐRZÉS** | **02 · INDÍTÁS** | **03 · ALKOTÁS** | **04 · FRISSÍTÉS** |
 |:--:|:--:|:--:|:--:|
-| Környezetellenőrzés | Launcher indítása | Fejlesztői mód | Build készítése |
+| Környezet és forrás | Fejlesztői szerver | Böngészőben nyílik | Git pull + pnpm |
 
 </div>
 
 ### A választható műveletek
 
-| Művelet | Parancs | Cél |
-|:--|:--|:--|
-| **Webes fejlesztői mód** | <code>pnpm run dev</code> | Az Andersen webes felületének helyi fejlesztése. |
-| **Asztali alkalmazás** | <code>pnpm run tauri:dev</code> | A Tauri-alapú asztali változat fejlesztői indítása. |
-| **Függőségek telepítése** | <code>pnpm install</code> | A projekt szükséges csomagjainak telepítése. |
-| **Webes build készítése** | <code>pnpm run build</code> | A webes build előállítása. |
-| **GitHub-tárház megnyitása** | — | Az Andersen forráskódjának megnyitása. |
+| Művelet | Mit csinál? |
+|:--|:--|
+| **INDÍTÁS / MEGNYITÁS** | Elindítja a webes fejlesztői szervert (`pnpm run dev`), majd megnyitja a böngészőt a `http://127.0.0.1:3000/Andersen/` címen. |
+| **Asztali mód** | A Tauri asztali alkalmazást indítja (`pnpm run tauri:dev`). Az első indítás Rust-fordítás miatt hosszabb lehet. |
+| **Frissítés** | `git pull --ff-only` + `pnpm install`. Csak tiszta munkakönyvtárnál frissít. |
+| **Leállítás** | Leállítja a futó szervert vagy telepítést. |
+| **Mappa** | Megnyitja a forrásmappát az Intézőben. |
+| **Újraellenőrzés** | Újra ellenőrzi a Git, Node.js, pnpm, forrás és port állapotát. |
+| **Módosítás** | Másik forrásmappa kiválasztása. Üres mappa esetén oda tölti le az Andersent. |
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/diablomike20/Andersen/main/branding/andersen-creative-journey.svg" alt="Az Andersen alkotói folyamatát bemutató illusztráció" width="100%">
@@ -84,25 +86,40 @@ A launcher a legfontosabb fejlesztői műveleteket rendezi egyetlen felületre. 
 
 **01 — Legyen meg a teljes Andersen projekt**
 
-A launcher önmagában nem tartalmazza az alkalmazás forráskódját. Először klónozd vagy töltsd le a teljes [Andersen repositoryt](https://github.com/diablomike20/Andersen).
+A launcher önmagában nem tartalmazza az alkalmazás forráskódját. Először klónozd vagy töltsd le a teljes [Andersen repositoryt](https://github.com/diablomike20/Andersen):
 
-**02 — Helyezd el a launcher fájljait**
+```bash
+git clone https://github.com/diablomike20/Andersen.git
+```
 
-A Launcher_Design_V1 branch három fájlját másold a teljes projekt megfelelő helyére. A meglévő projektfájlokat ne írd felül.
+**02 — Klónozd a launchert külön mappába**
 
-**03 — Nyisd meg a műhelyt**
+A launcher szándékosan külön mappában él, hogy a `git pull` ne írja felül:
 
-Indítsd el dupla kattintással a Start-Andersen.bat fájlt, majd válaszd ki a kívánt műveletet.
+```bash
+git clone --branch Launcher --single-branch https://github.com/diablomike20/Andersen.git AndersenLauncher
+```
 
-### A teljes projektben így nézzen ki
+**03 — Indítsd el**
+
+Nyisd meg az `AndersenLauncher` mappában a `Start-Andersen.bat` fájlt (látható konzollal), vagy az `Inditas.vbs` fájlt (konzolablak nélkül).
+
+Az első indításkor a launcher megkeresi az Andersen forrásmappáját. Alapértelmezésben a `%USERPROFILE%\Andersen` mappát használja; ha máshol van, a **Módosítás** gombbal választhatod ki. Ha a függőségek még hiányoznak, a launcher felajánlja a telepítést.
+
+### A launcher mappája így nézzen ki
 
 ```text
-Andersen/                              ← a teljes alkalmazás projektje
-├── package.json
-├── Start-Andersen.bat                 ← launcher belépési pont
+AndersenLauncher/
+├── Start-Andersen.bat        ← indítás látható konzollal (hibakereséshez)
+├── Inditas.vbs               ← indítás konzolablak nélkül
+├── andersen_launcher.py      ← a grafikus launcher
+├── create_shortcut.ps1       ← asztali parancsikon készítése
+├── assets/
+│   ├── andersen-icon.ico
+│   ├── andersen-icon.png
+│   └── andersen-emblem.png
 └── tools/
-    └── launcher/
-        └── Andersen-Launcher.ps1      ← grafikus indítófelület
+    └── make_assets.py
 ```
 
 <p align="center">
@@ -113,33 +130,30 @@ Andersen/                              ← a teljes alkalmazás projektje
 
 | Összetevő | Követelmény |
 |:--|:--|
-| Operációs rendszer | Windows |
-| PowerShell | Windows PowerShell 5.1 vagy újabb |
+| Operációs rendszer | Windows 10/11 |
+| Python | 3.10 vagy újabb, `tkinter` támogatással |
+| Képkezelés | `Pillow` (opcionális — az embléma megjelenítéséhez) |
 | Node.js | 22.19.0 vagy újabb |
 | Csomagkezelő | Corepack vagy pnpm |
 | Projektben rögzített pnpm | 12.13.0 |
-| Asztali fejlesztés | A Tauri Windowsos előfeltételei |
+| Git | a forrás letöltéséhez és a frissítéshez |
+| Asztali fejlesztés | a Tauri Windowsos előfeltételei (Rust, WebView2) |
 
-A launcher ellenőrzi a Node.js és a pnpm elérhetőségét, valamint a függőségek meglétét. Ha a node_modules könyvtár hiányzik, felajánlja a telepítést.
+A launcher a `corepack pnpm` parancsot használja, így nem kell globálisan telepíteni a pnpm-et. A Python és a Node.js telepítése nem része a launchernek.
+
+## Jó tudni
+
+- A fejlesztői szerver az **`/Andersen/`** útvonalon szolgál ki; a launcher `VITE_BASE=/Andersen/` beállítással indítja.
+- Az első betöltésnél a Vite előkészíti a modulokat, ilyenkor néhány másodpercig csak az **Andersen** betöltőképernyő látszik.
+- Az upstream projekt `predev` lépése megköveteli az `AGENTS.md` fájlt, amely a repóban nem található. A launcher szükség esetén létrehoz egy megjelölt placeholdert, és frissítés előtt eltávolítja azt.
+- A `predev` a `public/locales/*/bundle.json` fájlokat is újragenerálja; a launcher frissítés előtt visszaállítja ezeket, hogy a `git pull` ne akadjon el.
+- A `launcher_config.json` helyi beállításokat tartalmaz, ezért nincs a repóban. A launcher első indításkor hozza létre.
 
 ## Egy fontos különbség
 
 Ez a repository-ág **launcher-only csomag**. Nem az Andersen teljes alkalmazása, nem tartalmazza annak forráskódját, és nem telepíti automatikusan a Node.js-t vagy a Tauri rendszerkövetelményeit.
 
-A launcher a fejlesztői parancsok indítására szolgál. A parancsok kimenete külön PowerShell-ablakban marad látható, így a hibák és a folyamat állapota követhető.
-
-## A csomag tartalma
-
-```text
-Launcher_Design_V1/
-├── README.md
-├── Start-Andersen.bat
-└── tools/
-    └── launcher/
-        └── Andersen-Launcher.ps1
-```
-
-A szándékos egyszerűség itt fontos: ez a branch csak azt tartalmazza, ami a launcher működéséhez és bemutatásához szükséges.
+A launcher a fejlesztői parancsok indítására szolgál. A parancsok kimenete a launcher naplójában követhető; a `Start-Andersen.bat` használatakor külön konzolablakban is látható.
 
 ## Közreműködés
 
@@ -159,7 +173,7 @@ A használatra az Andersen repository licencfeltételei vonatkoznak: [LICENSE](h
 
 [**Andersen**](https://github.com/diablomike20/Andersen)
 &nbsp; · &nbsp;
-[**Launcher**](https://github.com/diablomike20/Andersen/tree/Launcher_Design_V1)
+[**Launcher**](https://github.com/diablomike20/Andersen/tree/Launcher)
 
 <sub>MADE FOR THE LOVE OF STORIES, BOOKS & CREATION</sub>
 

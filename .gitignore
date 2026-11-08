@@ -1,0 +1,7 @@
+# Helyi beállítások (személyes elérési út) – nem kerül a repóba
+launcher_config.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
