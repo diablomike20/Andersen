@@ -74,8 +74,8 @@
   "export.manuscriptLabel": "Kézirat",
   "export.motivationLabel": "Motiváció",
   "export.notesLabel": "Megjegyzések",
-  "export.notify.completeBody": "Your manuscript export finished successfully.",
-  "export.notify.completeTitle": "Export complete",
+  "export.notify.completeBody": "A kézirat exportálása sikeresen befejeződött.",
+  "export.notify.completeTitle": "Az exportálás befejeződött",
   "export.options.copied": "Másolva!",
   "export.options.downloadButton": "Fájl letöltése",
   "export.options.title": "Exportálási vezérlők",
@@ -93,7 +93,7 @@
   "export.preview.modeText": "Szöveg",
   "export.preview.noContent": "Az előnézet megtekintéséhez válassza ki a tartalmat.",
   "export.preview.title": "Élő előnézet",
-  "export.title": "Export Publishing Suite",
+  "export.title": "Kéziratkiadási és exportáló eszközök",
   "export.toggleSection": "{{title}} láthatóságának váltása",
   "export.worldsLabel": "Világok"
 }
