@@ -10,6 +10,13 @@
     <filter id="shadow"><feGaussianBlur stdDeviation="8"/></filter>
   </defs>
   <rect width="1200" height="440" rx="28" fill="url(#bg)"/>
+  <rect x="13" y="13" width="1174" height="414" rx="21" fill="none" stroke="#D8B66F" stroke-opacity=".48" stroke-width="1.2"/>
+  <rect x="22" y="22" width="1156" height="396" rx="16" fill="none" stroke="#D8B66F" stroke-opacity=".16"/>
+  <g fill="none" stroke="#D8B66F" stroke-width="1.4" stroke-opacity=".58">
+    <path d="M34 94V34H94M1106 34h60v60M34 346v60h60M1106 406h60v-60"/>
+    <path d="M34 60c22 0 26-26 48-26M1166 60c-22 0-26-26-48-26M34 380c22 0 26 26 48 26M1166 380c-22 0-26 26-48 26"/>
+    <path d="M48 34l8 8-8 8-8-8zM1152 34l8 8-8 8-8-8zM48 390l8 8-8 8-8-8zM1152 390l8 8-8 8-8-8z"/>
+  </g>
   <circle cx="875" cy="206" r="245" fill="url(#glow)"/>
   <g fill="none" stroke="#D7B66E" stroke-opacity=".18">
     <path d="M680 70L760 112 835 62 915 118 1000 75 1090 130"/>
