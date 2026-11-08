@@ -158,15 +158,15 @@ function clearIntlCaches() {
 }
 
 export const I18nContext = createContext<I18nContextType>({
-  language: 'de',
+  language: 'hu',
   setLanguage: () => {},
   isReady: false,
-  t: <T = string>(key: string) => (bootstrapTranslation('en', key) ?? key) as unknown as T,
+  t: <T = string>(key: string) => (bootstrapTranslation('hu', key) ?? key) as unknown as T,
   dir: 'ltr',
   getPluralCategory: () => 'other',
   formatNumber: (value) => value.toString(),
   formatRelativeTime: (value, unit) => `${value} ${unit}`,
-  getCollator: () => new Intl.Collator('en'),
+  getCollator: () => new Intl.Collator('hu'),
   formatList: (items) => items.join(', '),
   formatDisplayName: (value) => value,
   countWords: () => 0,
@@ -181,13 +181,13 @@ const LANG_KEY = 'worldscript-language';
 const getInitialLanguage = (): Language => {
   try {
     // QNBS-v3: validate the persisted value against the SSOT registry (isLanguage) instead of a
-    // hand-maintained VALID_LANGS array — a retired/unknown code falls back to English.
+    // hand-maintained VALID_LANGS array — a retired/unknown code falls back to Hungarian.
     const saved = localStorage.getItem(LANG_KEY);
     if (isLanguage(saved)) return saved;
   } catch {
     /* localStorage may be unavailable */
   }
-  return 'en';
+  return 'hu';
 };
 
 export const I18nProvider: React.FC<I18nProviderProps> = ({ children }) => {
