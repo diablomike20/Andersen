@@ -1,0 +1,41 @@
+<svg viewBox="0 0 1600 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Biztonság és adatvédelem az Andersenben">
+  <defs>
+    <linearGradient id="bgS" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A1220"/>
+      <stop offset="100%" stop-color="#172A42"/>
+    </linearGradient>
+    <radialGradient id="shieldGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#D6B36D" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#D6B36D" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="260" fill="url(#bgS)"/>
+
+  <g transform="translate(800 140)">
+    <circle r="100" fill="url(#shieldGlow)"/>
+    <path d="M0 -80 L64 -54 V10 C64 56 32 82 0 96 C -32 82 -64 56 -64 10 V-54 Z"
+          fill="#0E1A30" stroke="#D6B36D" stroke-width="2.4"/>
+    <path d="M0 -62 L48 -42 V12 C48 48 24 68 0 80 C -24 68 -48 48 -48 12 V-42 Z"
+          fill="none" stroke="#D6B36D" stroke-width="1" opacity="0.5"/>
+    <!-- open book inside the shield -->
+    <g transform="translate(0 2)" stroke="#F3E0B4" stroke-width="1.8" fill="none" stroke-linecap="round">
+      <path d="M-22 10 C -22 -8 -8 -12 0 -8 C 8 -12 22 -8 22 10"/>
+      <line x1="0" y1="-8" x2="0" y2="12"/>
+      <path d="M-18 -2 h12 M-18 4 h12 M6 -2 h12 M6 4 h12" stroke-width="1.2" opacity="0.8"/>
+    </g>
+    <circle cx="0" cy="-30" r="3" fill="#D6B36D"/>
+  </g>
+
+  <g font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#8FA3C0">
+    <text x="300" y="90" text-anchor="middle">privát sérülékenység-bejelentés</text>
+    <text x="1300" y="90" text-anchor="middle">átlátható hálózati adatkezelés</text>
+    <text x="300" y="190" text-anchor="middle">soha nincs titok nélküled</text>
+    <text x="1300" y="190" text-anchor="middle">a kézirat a tiéd marad</text>
+  </g>
+  <g stroke="#D6B36D" stroke-width="0.8" stroke-dasharray="2 6" opacity="0.4">
+    <line x1="380" y1="80" x2="690" y2="120"/>
+    <line x1="1220" y1="80" x2="910" y2="120"/>
+    <line x1="380" y1="180" x2="690" y2="170"/>
+    <line x1="1220" y1="180" x2="910" y2="170"/>
+  </g>
+</svg>

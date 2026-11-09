@@ -1,0 +1,15 @@
+<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Választható MI ikon">
+  <circle cx="40" cy="40" r="36" fill="#0E1A30" stroke="#D6B36D" stroke-width="2"/>
+  <g stroke="#F3E0B4" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(40 40)">
+    <rect x="-11" y="-11" width="22" height="22" rx="5"/>
+    <line x1="-18" y1="-7" x2="-11" y2="-7"/>
+    <line x1="-18" y1="7" x2="-11" y2="7"/>
+    <line x1="11" y1="-7" x2="18" y2="-7"/>
+    <line x1="11" y1="7" x2="18" y2="7"/>
+    <line x1="-7" y1="-18" x2="-7" y2="-11"/>
+    <line x1="7" y1="-18" x2="7" y2="-11"/>
+    <line x1="-7" y1="11" x2="-7" y2="18"/>
+    <line x1="7" y1="11" x2="7" y2="18"/>
+    <circle r="4.5"/>
+  </g>
+</svg>

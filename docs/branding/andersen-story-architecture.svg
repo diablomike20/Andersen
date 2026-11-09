@@ -1,0 +1,85 @@
+<svg viewBox="0 0 1600 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Háromfelvonásos történetív és jelenettervezési grafika">
+  <defs>
+    <linearGradient id="bg6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A1220"/>
+      <stop offset="100%" stop-color="#172A42"/>
+    </linearGradient>
+    <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8FA3C0"/>
+      <stop offset="50%" stop-color="#D6B36D"/>
+      <stop offset="100%" stop-color="#F3E0B4"/>
+    </linearGradient>
+    <filter id="g6"><feGaussianBlur stdDeviation="3"/></filter>
+  </defs>
+  <rect width="1600" height="560" fill="url(#bg6)"/>
+
+  <!-- axis -->
+  <line x1="110" y1="460" x2="1500" y2="460" stroke="#2A3C58" stroke-width="1.4"/>
+  <text x="1500" y="486" text-anchor="end" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#8FA3C0">idő →</text>
+  <text x="110" y="100" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#8FA3C0">feszültség</text>
+  <line x1="110" y1="110" x2="110" y2="460" stroke="#2A3C58" stroke-width="1.4"/>
+
+  <!-- act backgrounds -->
+  <g opacity="0.35">
+    <rect x="110" y="110" width="400" height="350" fill="#172A42"/>
+    <rect x="510" y="110" width="580" height="350" fill="#1C2F4A"/>
+    <rect x="1090" y="110" width="410" height="350" fill="#172A42"/>
+  </g>
+  <line x1="510" y1="110" x2="510" y2="460" stroke="#D6B36D" stroke-width="1" stroke-dasharray="4 6" opacity="0.5"/>
+  <line x1="1090" y1="110" x2="1090" y2="460" stroke="#D6B36D" stroke-width="1" stroke-dasharray="4 6" opacity="0.5"/>
+
+  <text x="300" y="140" text-anchor="middle" font-family="Georgia, serif" font-size="18" letter-spacing="3" fill="#CBD6E8">I. FELVONÁS</text>
+  <text x="790" y="140" text-anchor="middle" font-family="Georgia, serif" font-size="18" letter-spacing="3" fill="#CBD6E8">II. FELVONÁS</text>
+  <text x="1290" y="140" text-anchor="middle" font-family="Georgia, serif" font-size="18" letter-spacing="3" fill="#CBD6E8">III. FELVONÁS</text>
+
+  <!-- the story arc -->
+  <path d="M150 420 C 260 400 340 380 420 340 C 480 310 470 260 560 250 C 700 236 760 300 850 230 C 950 156 1000 200 1090 150 C 1200 86 1300 120 1360 100 C 1420 84 1460 120 1480 150"
+        fill="none" stroke="url(#arcGrad)" stroke-width="4" filter="url(#g6)" stroke-linecap="round"/>
+  <path d="M150 420 C 260 400 340 380 420 340 C 480 310 470 260 560 250 C 700 236 760 300 850 230 C 950 156 1000 200 1090 150 C 1200 86 1300 120 1360 100 C 1420 84 1460 120 1480 150"
+        fill="none" stroke="url(#arcGrad)" stroke-width="2.2"/>
+
+  <!-- plot point markers -->
+  <g font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#F3E0B4">
+    <circle cx="150" cy="420" r="6" fill="#0E1A30" stroke="#D6B36D" stroke-width="2"/>
+    <text x="150" y="448" text-anchor="middle" fill="#8FA3C0">Nyitókép</text>
+
+    <circle cx="420" cy="340" r="7" fill="#0E1A30" stroke="#D6B36D" stroke-width="2"/>
+    <text x="420" y="368" text-anchor="middle">1. fordulópont</text>
+
+    <circle cx="850" cy="230" r="7" fill="#0E1A30" stroke="#D6B36D" stroke-width="2"/>
+    <text x="850" y="212" text-anchor="middle">Középpont</text>
+
+    <circle cx="1090" cy="150" r="8" fill="#0E1A30" stroke="#C0392B" stroke-width="2.4"/>
+    <text x="1090" y="130" text-anchor="middle" fill="#E8B0A8">Válság</text>
+
+    <circle cx="1360" cy="100" r="7" fill="#0E1A30" stroke="#D6B36D" stroke-width="2"/>
+    <text x="1360" y="78" text-anchor="middle">Csúcspont</text>
+
+    <circle cx="1480" cy="150" r="6" fill="#0E1A30" stroke="#D6B36D" stroke-width="2"/>
+    <text x="1480" y="178" text-anchor="middle" fill="#8FA3C0">Lezárás</text>
+  </g>
+
+  <!-- scene chips row below -->
+  <g font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#CBD6E8">
+    <g transform="translate(260 500)">
+      <rect x="-50" y="-16" width="100" height="32" rx="16" fill="#0E1A30" stroke="#D6B36D" stroke-width="1"/>
+      <text x="0" y="5" text-anchor="middle">1. jelenet</text>
+    </g>
+    <g transform="translate(560 500)">
+      <rect x="-50" y="-16" width="100" height="32" rx="16" fill="#0E1A30" stroke="#D6B36D" stroke-width="1"/>
+      <text x="0" y="5" text-anchor="middle">2. jelenet</text>
+    </g>
+    <g transform="translate(860 500)">
+      <rect x="-50" y="-16" width="100" height="32" rx="16" fill="#0E1A30" stroke="#D6B36D" stroke-width="1"/>
+      <text x="0" y="5" text-anchor="middle">3. jelenet</text>
+    </g>
+    <g transform="translate(1160 500)">
+      <rect x="-50" y="-16" width="100" height="32" rx="16" fill="#0E1A30" stroke="#D6B36D" stroke-width="1"/>
+      <text x="0" y="5" text-anchor="middle">4. jelenet</text>
+    </g>
+    <g transform="translate(1420 500)">
+      <rect x="-50" y="-16" width="100" height="32" rx="16" fill="#0E1A30" stroke="#D6B36D" stroke-width="1"/>
+      <text x="0" y="5" text-anchor="middle">5. jelenet</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,92 @@
+<svg viewBox="0 0 1600 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Az Andersen négy alapelve: alkotói kontroll, adattulajdonlás, választható MI és nyílt közösség">
+  <defs>
+    <linearGradient id="bg9" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A1220"/>
+      <stop offset="100%" stop-color="#172A42"/>
+    </linearGradient>
+    <radialGradient id="ng9" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#D6B36D" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#D6B36D" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="380" fill="url(#bg9)"/>
+
+  <g stroke="#2A3C58" stroke-width="1">
+    <line x1="400" y1="60" x2="400" y2="320" opacity="0.5"/>
+    <line x1="800" y1="60" x2="800" y2="320" opacity="0.5"/>
+    <line x1="1200" y1="60" x2="1200" y2="320" opacity="0.5"/>
+  </g>
+
+  <!-- 1: alkotói kontroll -->
+  <g transform="translate(200 160)" font-family="'Segoe UI', Arial, sans-serif">
+    <circle r="72" fill="url(#ng9)"/>
+    <circle r="54" fill="#0E1A30" stroke="#D6B36D" stroke-width="2"/>
+    <g stroke="#F3E0B4" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-4 24 C -4 -2 6 -10 12 -36 C 16 -52 12 -62 4 -66 C 8 -56 4 -46 -6 -36 C -16 -26 -20 -10 -18 10 L -26 24"/>
+      <path d="M-26 24 l-6 8 M-18 10 l-10 8"/>
+    </g>
+    <text y="90" text-anchor="middle" font-size="16" font-weight="700" fill="#F3E0B4">Alkotói kontroll</text>
+    <text y="114" text-anchor="middle" font-size="12.5" fill="#8FA3C0">
+      <tspan x="0">a végső szó</tspan>
+      <tspan x="0" dy="16">mindig a szerzőé</tspan>
+    </text>
+  </g>
+
+  <!-- 2: adattulajdonlás -->
+  <g transform="translate(600 160)" font-family="'Segoe UI', Arial, sans-serif">
+    <circle r="72" fill="url(#ng9)"/>
+    <circle r="54" fill="#0E1A30" stroke="#D6B36D" stroke-width="2"/>
+    <g stroke="#F3E0B4" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="-18" y="-6" width="36" height="30" rx="4"/>
+      <path d="M-11 -6 V-18 C -11 -30 11 -30 11 -18 V-6"/>
+      <circle cx="0" cy="8" r="3.2" fill="#F3E0B4" stroke="none"/>
+    </g>
+    <text y="90" text-anchor="middle" font-size="16" font-weight="700" fill="#F3E0B4">Adattulajdonlás</text>
+    <text y="114" text-anchor="middle" font-size="12.5" fill="#8FA3C0">
+      <tspan x="0">helyi, átlátható</tspan>
+      <tspan x="0" dy="16">adatkezelés</tspan>
+    </text>
+  </g>
+
+  <!-- 3: valaszthato MI -->
+  <g transform="translate(1000 160)" font-family="'Segoe UI', Arial, sans-serif">
+    <circle r="72" fill="url(#ng9)"/>
+    <circle r="54" fill="#0E1A30" stroke="#D6B36D" stroke-width="2"/>
+    <g stroke="#F3E0B4" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="-16" y="-16" width="32" height="32" rx="6"/>
+      <line x1="-24" y1="-10" x2="-16" y2="-10"/>
+      <line x1="-24" y1="10" x2="-16" y2="10"/>
+      <line x1="16" y1="-10" x2="24" y2="-10"/>
+      <line x1="16" y1="10" x2="24" y2="10"/>
+      <line x1="-10" y1="-24" x2="-10" y2="-16"/>
+      <line x1="10" y1="-24" x2="10" y2="-16"/>
+      <line x1="-10" y1="16" x2="-10" y2="24"/>
+      <line x1="10" y1="16" x2="10" y2="24"/>
+      <circle cx="0" cy="0" r="6" fill="none"/>
+    </g>
+    <text y="90" text-anchor="middle" font-size="16" font-weight="700" fill="#F3E0B4">Választható MI</text>
+    <text y="114" text-anchor="middle" font-size="12.5" fill="#8FA3C0">
+      <tspan x="0">segít, ha hívod —</tspan>
+      <tspan x="0" dy="16">sosem kötelező</tspan>
+    </text>
+  </g>
+
+  <!-- 4: nyilt kozosseg -->
+  <g transform="translate(1400 160)" font-family="'Segoe UI', Arial, sans-serif">
+    <circle r="72" fill="url(#ng9)"/>
+    <circle r="54" fill="#0E1A30" stroke="#D6B36D" stroke-width="2"/>
+    <g stroke="#F3E0B4" stroke-width="1.8" fill="none" stroke-linecap="round">
+      <circle r="8" cx="-16" cy="-10"/>
+      <circle r="8" cx="16" cy="-10"/>
+      <circle r="8" cx="0" cy="14"/>
+      <line x1="-10" y1="-4" x2="-5" y2="8"/>
+      <line x1="10" y1="-4" x2="5" y2="8"/>
+      <line x1="-8" y1="-10" x2="8" y2="-10"/>
+    </g>
+    <text y="90" text-anchor="middle" font-size="16" font-weight="700" fill="#F3E0B4">Nyílt közösség</text>
+    <text y="114" text-anchor="middle" font-size="12.5" fill="#8FA3C0">
+      <tspan x="0">megismerhető,</tspan>
+      <tspan x="0" dy="16">közreműködhető</tspan>
+    </text>
+  </g>
+</svg>

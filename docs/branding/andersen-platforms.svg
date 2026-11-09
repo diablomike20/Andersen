@@ -1,0 +1,81 @@
+<svg viewBox="0 0 1600 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Andersen webes, PWA és asztali platformokon, választható MI-vel">
+  <defs>
+    <linearGradient id="bg10" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A1220"/>
+      <stop offset="100%" stop-color="#172A42"/>
+    </linearGradient>
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1C2F4A"/>
+      <stop offset="100%" stop-color="#0E1A30"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="500" fill="url(#bg10)"/>
+
+  <!-- cloud of optional AI providers at top -->
+  <g font-family="'Segoe UI', Arial, sans-serif" font-size="12.5" fill="#8FA3C0">
+    <g transform="translate(800 70)">
+      <rect x="-230" y="-24" width="130" height="40" rx="20" fill="#0E1A30" stroke="#D6B36D" stroke-width="1" opacity="0.9"/>
+      <text x="-165" y="1" text-anchor="middle" fill="#CBD6E8">Felhő MI</text>
+      <rect x="-65" y="-24" width="130" height="40" rx="20" fill="#0E1A30" stroke="#D6B36D" stroke-width="1" opacity="0.9"/>
+      <text x="0" y="1" text-anchor="middle" fill="#CBD6E8">Helyi modell</text>
+      <rect x="100" y="-24" width="130" height="40" rx="20" fill="#0E1A30" stroke="#D6B36D" stroke-width="1" opacity="0.9"/>
+      <text x="165" y="1" text-anchor="middle" fill="#CBD6E8">Böngésző MI</text>
+    </g>
+    <text x="800" y="112" text-anchor="middle" font-style="italic" fill="#6E82A3">— mind opcionális —</text>
+  </g>
+  <g stroke="#D6B36D" stroke-width="1" stroke-dasharray="3 6" opacity="0.45">
+    <path d="M635 92 Q 700 150 760 180"/>
+    <path d="M800 92 V180"/>
+    <path d="M965 92 Q 900 150 840 180"/>
+  </g>
+
+  <!-- three device frames -->
+  <!-- Web (browser window) -->
+  <g transform="translate(360 300)">
+    <rect x="-150" y="-110" width="300" height="200" rx="12" fill="url(#screenGrad)" stroke="#D6B36D" stroke-width="2"/>
+    <rect x="-150" y="-110" width="300" height="26" rx="12" fill="#172A42"/>
+    <circle cx="-130" cy="-97" r="4" fill="#C0392B"/>
+    <circle cx="-116" cy="-97" r="4" fill="#D6B36D"/>
+    <circle cx="-102" cy="-97" r="4" fill="#3A5A3E"/>
+    <g stroke="#9C8A63" stroke-width="2" opacity="0.7">
+      <line x1="-120" y1="-60" x2="60" y2="-60"/>
+      <line x1="-120" y1="-38" x2="100" y2="-38"/>
+      <line x1="-120" y1="-16" x2="40" y2="-16"/>
+    </g>
+    <rect x="-120" y="4" width="240" height="60" rx="6" fill="#172A42" stroke="#D6B36D" stroke-width="1" opacity="0.8"/>
+    <text y="128" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#F3E0B4">Web</text>
+  </g>
+
+  <!-- PWA (phone) -->
+  <g transform="translate(800 300)">
+    <rect x="-70" y="-130" width="140" height="240" rx="22" fill="url(#screenGrad)" stroke="#D6B36D" stroke-width="2"/>
+    <rect x="-56" y="-112" width="112" height="196" rx="4" fill="#0A1220"/>
+    <circle cx="0" cy="98" r="7" fill="none" stroke="#D6B36D" stroke-width="1.6"/>
+    <g fill="#F3E0B4" opacity="0.9">
+      <rect x="-40" y="-92" width="28" height="28" rx="6"/>
+      <rect x="-4" y="-92" width="28" height="28" rx="6" opacity="0.6"/>
+      <rect x="-40" y="-56" width="28" height="28" rx="6" opacity="0.6"/>
+      <rect x="-4" y="-56" width="28" height="28" rx="6" opacity="0.6"/>
+    </g>
+    <text y="158" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#F3E0B4">PWA</text>
+  </g>
+
+  <!-- Desktop (Tauri) -->
+  <g transform="translate(1240 300)">
+    <rect x="-150" y="-96" width="300" height="180" rx="10" fill="url(#screenGrad)" stroke="#D6B36D" stroke-width="2"/>
+    <rect x="-130" y="-78" width="260" height="144" rx="4" fill="#0A1220"/>
+    <rect x="-60" y="84" width="120" height="10" rx="3" fill="#172A42" stroke="#D6B36D" stroke-width="1"/>
+    <rect x="-90" y="94" width="180" height="8" rx="3" fill="#172A42"/>
+    <g stroke="#9C8A63" stroke-width="2" opacity="0.7">
+      <line x1="-110" y1="-50" x2="60" y2="-50"/>
+      <line x1="-110" y1="-28" x2="100" y2="-28"/>
+      <line x1="-110" y1="-6" x2="40" y2="-6"/>
+    </g>
+    <text y="134" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="700" fill="#F3E0B4">Desktop (Tauri)</text>
+  </g>
+
+  <!-- local data badge -->
+  <g transform="translate(800 480)" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#8FA3C0">
+    <text text-anchor="middle">alapértelmezés: helyi adattulajdonlás minden platformon</text>
+  </g>
+</svg>

@@ -1,0 +1,41 @@
+<svg viewBox="0 0 1600 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Közreműködés az Andersen projektben">
+  <defs>
+    <linearGradient id="bgC" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A1220"/>
+      <stop offset="100%" stop-color="#172A42"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="280" fill="url(#bgC)"/>
+
+  <!-- two hands / quills meeting over a manuscript page -->
+  <g transform="translate(800 150)">
+    <rect x="-130" y="-90" width="260" height="170" rx="6" fill="#F6EFDD" opacity="0.08" stroke="#D6B36D" stroke-width="1.4"/>
+    <g stroke="#9C8A63" stroke-width="2" stroke-linecap="round" opacity="0.65">
+      <line x1="-100" y1="-60" x2="60" y2="-60"/>
+      <line x1="-100" y1="-38" x2="100" y2="-38"/>
+      <line x1="-100" y1="-16" x2="40" y2="-16"/>
+      <line x1="-100" y1="6" x2="80" y2="6"/>
+      <line x1="-100" y1="28" x2="50" y2="28"/>
+    </g>
+
+    <!-- left quill, pointing in -->
+    <g transform="translate(-180 20) rotate(32)">
+      <path d="M0 0 C 18 -40 14 -78 -6 -104 C -2 -74 -2 -46 -12 -20 C -16 -8 -22 2 -30 8 L -20 -4 C -24 0 -30 4 -34 8 L -24 -2 C -8 -16 4 -36 0 0 Z" fill="#F3E0B4" stroke="#B8914A" stroke-width="1"/>
+    </g>
+    <!-- right quill, pointing in -->
+    <g transform="translate(180 20) rotate(-32) scale(-1 1)">
+      <path d="M0 0 C 18 -40 14 -78 -6 -104 C -2 -74 -2 -46 -12 -20 C -16 -8 -22 2 -30 8 L -20 -4 C -24 0 -30 4 -34 8 L -24 -2 C -8 -16 4 -36 0 0 Z" fill="#CBD6E8" stroke="#8FA3C0" stroke-width="1"/>
+    </g>
+
+    <!-- small spark where they meet -->
+    <g fill="#D6B36D" opacity="0.9">
+      <circle cx="0" cy="-70" r="2.4"/>
+      <circle cx="10" cy="-78" r="1.6"/>
+      <circle cx="-10" cy="-78" r="1.6"/>
+    </g>
+  </g>
+
+  <text x="800" y="258" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="16" fill="#8FA3C0">
+    minden jó szerkesztői megjegyzés egy kicsit jobbá teszi a közös munkát
+  </text>
+</svg>

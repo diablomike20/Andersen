@@ -1,0 +1,53 @@
+<svg viewBox="0 0 1600 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Az Andersen felhasználói felületének nyelvei">
+  <defs>
+    <linearGradient id="bgL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A1220"/>
+      <stop offset="100%" stop-color="#172A42"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="280" fill="url(#bgL)"/>
+
+  <!-- open book with two "language" pages -->
+  <g transform="translate(800 170)">
+    <path d="M-6 -90 C -90 -110 -170 -96 -220 -66 L -220 86 C -170 56 -90 42 -6 62 Z" fill="#172A42" stroke="#D6B36D" stroke-width="1.6"/>
+    <path d="M6 -90 C 90 -110 170 -96 220 -66 L 220 86 C 170 56 90 42 6 62 Z" fill="#172A42" stroke="#D6B36D" stroke-width="1.6"/>
+    <rect x="-6" y="-96" width="12" height="164" fill="#0E1A30"/>
+
+    <!-- left page: magyar flag-ish ribbon + text lines -->
+    <g>
+      <rect x="-190" y="-70" width="26" height="36" rx="3" fill="#C0392B" opacity="0.85"/>
+      <rect x="-190" y="-34" width="26" height="12" fill="#F6EFDD" opacity="0.85"/>
+      <rect x="-190" y="-22" width="26" height="24" fill="#2E7D4F" opacity="0.85"/>
+      <g stroke="#9C8A63" stroke-width="2" stroke-linecap="round" opacity="0.8">
+        <line x1="-150" y1="-55" x2="-30" y2="-48"/>
+        <line x1="-150" y1="-35" x2="-20" y2="-28"/>
+        <line x1="-150" y1="-15" x2="-50" y2="-10"/>
+        <line x1="-150" y1="5" x2="-30" y2="10"/>
+        <line x1="-150" y1="25" x2="-60" y2="28"/>
+      </g>
+      <text x="-110" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#F3E0B4" font-weight="700">MAGYAR · alapértelmezett</text>
+    </g>
+
+    <!-- right page: EN -->
+    <g>
+      <rect x="164" y="-70" width="26" height="36" rx="3" fill="#2A4A7C" opacity="0.85"/>
+      <rect x="164" y="-34" width="26" height="36" fill="#C0392B" opacity="0.5"/>
+      <g stroke="#9C8A63" stroke-width="2" stroke-linecap="round" opacity="0.8">
+        <line x1="30" y1="-48" x2="150" y2="-55"/>
+        <line x1="20" y1="-28" x2="150" y2="-35"/>
+        <line x1="50" y1="-10" x2="150" y2="-15"/>
+        <line x1="30" y1="10" x2="150" y2="5"/>
+        <line x1="60" y1="28" x2="150" y2="25"/>
+      </g>
+      <text x="110" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#CBD6E8" font-weight="600">ENGLISH · + további</text>
+    </g>
+  </g>
+
+  <!-- floating translation glyphs -->
+  <g font-family="Georgia, serif" font-size="20" fill="#8FA3C0" opacity="0.6">
+    <text x="190" y="90">Aa</text>
+    <text x="1370" y="110">文</text>
+    <text x="230" y="220">Ää</text>
+    <text x="1340" y="230">あ</text>
+  </g>
+</svg>

@@ -1,0 +1,85 @@
+<svg viewBox="0 0 1600 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Karakterprofilok és kapcsolati hálózat grafikai illusztrációja">
+  <defs>
+    <linearGradient id="bg5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A1220"/>
+      <stop offset="100%" stop-color="#172A42"/>
+    </linearGradient>
+    <radialGradient id="glow5" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#D6B36D" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#D6B36D" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="620" fill="url(#bg5)"/>
+  <rect width="1600" height="620" fill="url(#glow5)"/>
+
+  <!-- relationship lines (behind cards) -->
+  <g stroke="#D6B36D" stroke-width="1.2" opacity="0.55">
+    <line x1="420" y1="300" x2="800" y2="190"/>
+    <line x1="420" y1="300" x2="800" y2="420"/>
+    <line x1="800" y1="190" x2="1180" y2="300"/>
+    <line x1="800" y1="420" x2="1180" y2="300"/>
+    <line x1="420" y1="300" x2="1180" y2="300"/>
+  </g>
+  <g font-family="Georgia, serif" font-size="13" font-style="italic" fill="#8FA3C0">
+    <text x="600" y="235">szövetséges</text>
+    <text x="580" y="380">mentor</text>
+    <text x="990" y="235">vetélytárs</text>
+    <text x="970" y="380">family</text>
+  </g>
+
+  <!-- character card template, 4 instances -->
+  <g id="card-protagonist" transform="translate(420 300)">
+    <circle r="68" fill="#0E1A30" stroke="#D6B36D" stroke-width="2"/>
+    <circle r="68" fill="none" stroke="#D6B36D" stroke-width="0.6" opacity="0.4" r2="74"/>
+    <g transform="translate(0 -8)" stroke="#F3E0B4" stroke-width="2" fill="none" stroke-linecap="round">
+      <circle r="16" cy="-14"/>
+      <path d="M-24 28 C -24 2 -14 -4 0 -4 C 14 -4 24 2 24 28"/>
+    </g>
+    <rect x="-70" y="80" width="140" height="34" rx="8" fill="#172A42" stroke="#D6B36D" stroke-width="1"/>
+    <text x="0" y="102" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="15" fill="#F3E0B4" font-weight="600">Főszereplő</text>
+  </g>
+
+  <g transform="translate(800 190)">
+    <circle r="56" fill="#0E1A30" stroke="#D6B36D" stroke-width="1.6"/>
+    <g transform="translate(0 -6)" stroke="#CBD6E8" stroke-width="1.8" fill="none" stroke-linecap="round">
+      <circle r="13" cy="-12"/>
+      <path d="M-20 24 C -20 2 -11 -3 0 -3 C 11 -3 20 2 20 24"/>
+    </g>
+    <rect x="-62" y="66" width="124" height="30" rx="7" fill="#172A42" stroke="#D6B36D" stroke-width="1"/>
+    <text x="0" y="86" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#CBD6E8" font-weight="600">Mentor</text>
+  </g>
+
+  <g transform="translate(800 420)">
+    <circle r="56" fill="#0E1A30" stroke="#D6B36D" stroke-width="1.6"/>
+    <g transform="translate(0 -6)" stroke="#CBD6E8" stroke-width="1.8" fill="none" stroke-linecap="round">
+      <circle r="13" cy="-12"/>
+      <path d="M-20 24 C -20 2 -11 -3 0 -3 C 11 -3 20 2 20 24"/>
+    </g>
+    <rect x="-70" y="66" width="140" height="30" rx="7" fill="#172A42" stroke="#D6B36D" stroke-width="1"/>
+    <text x="0" y="86" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#CBD6E8" font-weight="600">Testvér</text>
+  </g>
+
+  <g transform="translate(1180 300)">
+    <circle r="62" fill="#0E1A30" stroke="#C0392B" stroke-width="1.8"/>
+    <g transform="translate(0 -6)" stroke="#E8B0A8" stroke-width="1.8" fill="none" stroke-linecap="round">
+      <circle r="14" cy="-12"/>
+      <path d="M-22 26 C -22 2 -12 -3 0 -3 C 12 -3 22 2 22 26"/>
+    </g>
+    <rect x="-66" y="72" width="132" height="30" rx="7" fill="#172A42" stroke="#C0392B" stroke-width="1"/>
+    <text x="0" y="92" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#E8B0A8" font-weight="600">Ellenfél</text>
+  </g>
+
+  <!-- small motivation/goal tags floating -->
+  <g font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#8FA3C0">
+    <text x="260" y="150">cél</text>
+    <text x="260" y="170">•  félelem</text>
+    <text x="260" y="190">•  ív</text>
+  </g>
+  <g stroke="#D6B36D" stroke-width="0.8" opacity="0.4">
+    <line x1="300" y1="186" x2="368" y2="260"/>
+  </g>
+
+  <text x="800" y="570" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="17" fill="#8FA3C0">
+    motivációk, célok és kapcsolatok — a történet emberi hálózata
+  </text>
+</svg>

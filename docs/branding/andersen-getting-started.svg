@@ -1,0 +1,41 @@
+<svg viewBox="0 0 1600 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Első lépések az Andersennel">
+  <defs>
+    <linearGradient id="bgGS" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A1220"/>
+      <stop offset="100%" stop-color="#172A42"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="260" fill="url(#bgGS)"/>
+
+  <!-- a path of three stepping stones toward an open door/book -->
+  <g stroke="#D6B36D" stroke-width="1.4" stroke-dasharray="2 10" opacity="0.6">
+    <path d="M220 190 Q 500 100 800 150 T 1360 130" fill="none"/>
+  </g>
+
+  <g font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#CBD6E8" text-anchor="middle">
+    <g transform="translate(220 190)">
+      <circle r="30" fill="#0E1A30" stroke="#D6B36D" stroke-width="1.8"/>
+      <text y="5" font-size="16" fill="#F3E0B4" font-weight="700">1</text>
+      <text y="52">corepack enable</text>
+    </g>
+    <g transform="translate(750 128)">
+      <circle r="30" fill="#0E1A30" stroke="#D6B36D" stroke-width="1.8"/>
+      <text y="5" font-size="16" fill="#F3E0B4" font-weight="700">2</text>
+      <text y="52">pnpm install</text>
+    </g>
+    <g transform="translate(1280 118)">
+      <circle r="34" fill="#0E1A30" stroke="#D6B36D" stroke-width="2"/>
+      <text y="5" font-size="17" fill="#F3E0B4" font-weight="700">3</text>
+      <text y="56">pnpm run dev</text>
+    </g>
+  </g>
+
+  <!-- open door shape at the end -->
+  <g transform="translate(1460 128)">
+    <path d="M-28 50 V-40 C -28 -58 28 -58 28 -40 V50 Z" fill="none" stroke="#D6B36D" stroke-width="2"/>
+    <circle cx="12" cy="4" r="2.6" fill="#D6B36D"/>
+    <path d="M28 50 L56 60 V-50 L28 -40" fill="#0E1A30" stroke="#D6B36D" stroke-width="1.2" opacity="0.7"/>
+  </g>
+
+  <text x="800" y="36" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="16" fill="#8FA3C0">három parancs, és már bent is vagy</text>
+</svg>

@@ -1,0 +1,98 @@
+<svg viewBox="0 0 1600 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Az Andersen alkotói folyamata az ötlettől a történet megosztásáig">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A1220"/>
+      <stop offset="100%" stop-color="#172A42"/>
+    </linearGradient>
+    <linearGradient id="pathGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8FA3C0" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#D6B36D" stop-opacity="0.9"/>
+    </linearGradient>
+    <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#D6B36D" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#D6B36D" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="g2" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="380" fill="url(#bg2)"/>
+
+  <!-- connecting path -->
+  <path d="M130 200 C 300 120, 420 280, 590 200 S 880 120, 1050 200 S 1340 280, 1470 200"
+        fill="none" stroke="url(#pathGrad)" stroke-width="2.5" stroke-dasharray="2 10" stroke-linecap="round"/>
+
+  <!-- 5 stage nodes -->
+  <!-- 1 IDEA -->
+  <g transform="translate(130 200)">
+    <circle r="46" fill="url(#nodeGlow)"/>
+    <circle r="30" fill="#0E1A30" stroke="#D6B36D" stroke-width="1.6"/>
+    <g stroke="#F3E0B4" stroke-width="1.6" fill="none" stroke-linecap="round">
+      <circle r="9" cy="-2"/>
+      <line x1="-3" y1="9" x2="-3" y2="15"/>
+      <line x1="3" y1="9" x2="3" y2="15"/>
+      <line x1="-4" y1="17" x2="4" y2="17"/>
+      <line x1="0" y1="-16" x2="0" y2="-20"/>
+      <line x1="11" y1="-10" x2="14" y2="-13"/>
+      <line x1="-11" y1="-10" x2="-14" y2="-13"/>
+    </g>
+    <text x="0" y="62" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="17" letter-spacing="2.5" fill="#F3E0B4" font-weight="600">ÖTLET</text>
+  </g>
+
+  <!-- 2 DISCOVERY -->
+  <g transform="translate(470 230)">
+    <circle r="46" fill="url(#nodeGlow)"/>
+    <circle r="30" fill="#0E1A30" stroke="#D6B36D" stroke-width="1.6"/>
+    <g stroke="#F3E0B4" stroke-width="1.6" fill="none" stroke-linecap="round">
+      <circle r="8" cx="-2" cy="-2"/>
+      <line x1="5" y1="5" x2="13" y2="13"/>
+    </g>
+    <text x="0" y="62" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="17" letter-spacing="2.5" fill="#F3E0B4" font-weight="600">FELFEDEZÉS</text>
+  </g>
+
+  <!-- 3 BUILD -->
+  <g transform="translate(800 200)">
+    <circle r="50" fill="url(#nodeGlow)"/>
+    <circle r="34" fill="#0E1A30" stroke="#D6B36D" stroke-width="2"/>
+    <g stroke="#F3E0B4" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-11 11 L11 -11"/>
+      <path d="M6 -16 L16 -6 L9 1 L-1 -9 Z" fill="#0E1A30"/>
+      <path d="M-14 8 L-16 16 L-8 14 Z" fill="#F3E0B4"/>
+    </g>
+    <text x="0" y="66" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="18" letter-spacing="2.5" fill="#F3E0B4" font-weight="700">ÉPÍTÉS</text>
+  </g>
+
+  <!-- 4 REFINE -->
+  <g transform="translate(1130 230)">
+    <circle r="46" fill="url(#nodeGlow)"/>
+    <circle r="30" fill="#0E1A30" stroke="#D6B36D" stroke-width="1.6"/>
+    <g stroke="#F3E0B4" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-10 10 L8 -8 L12 -4 L-6 14 Z" fill="#F3E0B4" opacity="0.15"/>
+      <path d="M-10 10 L8 -8 L12 -4 L-6 14 Z"/>
+      <path d="M-13 13 L-16 16 L-10 15 Z" fill="#F3E0B4"/>
+    </g>
+    <text x="0" y="62" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="17" letter-spacing="2.5" fill="#F3E0B4" font-weight="600">FINOMÍTÁS</text>
+  </g>
+
+  <!-- 5 SHARE -->
+  <g transform="translate(1470 200)">
+    <circle r="46" fill="url(#nodeGlow)"/>
+    <circle r="30" fill="#0E1A30" stroke="#D6B36D" stroke-width="1.6"/>
+    <g stroke="#F3E0B4" stroke-width="1.6" fill="none" stroke-linecap="round">
+      <circle r="4" cx="-10" cy="-8"/>
+      <circle r="4" cx="10" cy="0"/>
+      <circle r="4" cx="-10" cy="8"/>
+      <line x1="-7" y1="-6" x2="7" y2="-1"/>
+      <line x1="-7" y1="6" x2="7" y2="1"/>
+    </g>
+    <text x="0" y="62" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="17" letter-spacing="2.5" fill="#F3E0B4" font-weight="600">MEGOSZTÁS</text>
+  </g>
+
+  <!-- arrows along the path -->
+  <g fill="#D6B36D" opacity="0.8">
+    <path d="M300 160 l10 -4 l-2 10 Z"/>
+    <path d="M640 265 l10 4 l-8 8 Z"/>
+    <path d="M960 160 l10 -4 l-2 10 Z"/>
+    <path d="M1300 265 l10 4 l-8 8 Z"/>
+  </g>
+</svg>
