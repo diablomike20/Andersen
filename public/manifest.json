@@ -2,9 +2,9 @@
   "name": "Andersen",
   "short_name": "Andersen",
   "description": "Magyar nyelvű novella- és regényíró műhely mesterséges intelligencia támogatással.",
-  "start_url": "/WorldScript-Studio/?source=pwa",
-  "scope": "/WorldScript-Studio/",
-  "id": "/WorldScript-Studio/",
+  "start_url": "/Andersen/?source=pwa",
+  "scope": "/Andersen/",
+  "id": "/Andersen/",
 
   "display": "standalone",
   "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
@@ -45,42 +45,42 @@
       "name": "Sablonok",
       "short_name": "Sablonok",
       "description": "Történetsablonok böngészése és új projekt indítása",
-      "url": "/WorldScript-Studio/?view=templates&source=shortcut",
+      "url": "/Andersen/?view=templates&source=shortcut",
       "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
     },
     {
       "name": "Kéziratom",
       "short_name": "Kézirat",
       "description": "A kézirat megnyitása",
-      "url": "/WorldScript-Studio/?view=manuscript&source=shortcut",
+      "url": "/Andersen/?view=manuscript&source=shortcut",
       "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
     },
     {
       "name": "Karakterek",
       "short_name": "Karakterek",
       "description": "Karakterek kezelése",
-      "url": "/WorldScript-Studio/?view=characters&source=shortcut",
+      "url": "/Andersen/?view=characters&source=shortcut",
       "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
     },
     {
       "name": "MI-író",
       "short_name": "Író",
       "description": "Az MI-íróstúdió megnyitása",
-      "url": "/WorldScript-Studio/?view=writer&source=shortcut",
+      "url": "/Andersen/?view=writer&source=shortcut",
       "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
     },
     {
       "name": "Új jelenet",
       "short_name": "Jelenet",
       "description": "Ugrás a cselekménytáblára és új jelenet hozzáadása",
-      "url": "/WorldScript-Studio/#/board?action=add-scene",
+      "url": "/Andersen/#/board?action=add-scene",
       "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
     },
     {
       "name": "Írási munkamenet indítása",
       "short_name": "Munkamenet",
       "description": "Az íráskövető megnyitása és írási munkamenet indítása",
-      "url": "/WorldScript-Studio/#/progress?action=start-session",
+      "url": "/Andersen/#/progress?action=start-session",
       "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
     }
   ],
@@ -92,7 +92,7 @@
   "handle_links": "preferred",
 
   "share_target": {
-    "action": "/WorldScript-Studio/",
+    "action": "/Andersen/",
     "method": "GET",
     "params": {
       "title": "share_title",
@@ -104,7 +104,7 @@
   "protocol_handlers": [
     {
       "protocol": "web+worldscript",
-      "url": "/WorldScript-Studio/?protocol=%s"
+      "url": "/Andersen/?protocol=%s"
     }
   ],
 

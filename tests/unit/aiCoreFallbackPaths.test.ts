@@ -124,7 +124,7 @@ describe('runLocalTextGeneration branches', () => {
     tabLeaderState.result = false;
     const result = await runLocalTextGeneration('write something');
     expect(result.layer).toBe('webllm');
-    expect(result.text).toContain('Another WorldScript tab');
+    expect(result.text).toContain('Another Andersen tab');
   });
 
   it('WebGPU + engine returns text → layer:webllm', async () => {

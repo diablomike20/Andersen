@@ -22,14 +22,14 @@ describe('EnergyThresholdWakeWordEngine', () => {
   });
 
   it('detects default wake phrase', () => {
-    expect(engine.checkTranscript('hey worldscript')).toBe(true);
-    expect(engine.checkTranscript('Hey WorldScript')).toBe(true);
-    expect(engine.checkTranscript('HEY WORLDSCRIPT')).toBe(true);
+    expect(engine.checkTranscript('hey andersen')).toBe(true);
+    expect(engine.checkTranscript('Hey Andersen')).toBe(true);
+    expect(engine.checkTranscript('HEY ANDERSEN')).toBe(true);
   });
 
   it('detects wake phrase in longer sentence', () => {
-    expect(engine.checkTranscript('hey worldscript open dashboard')).toBe(true);
-    expect(engine.checkTranscript('ok hey worldscript')).toBe(true);
+    expect(engine.checkTranscript('hey andersen open dashboard')).toBe(true);
+    expect(engine.checkTranscript('ok hey andersen')).toBe(true);
   });
 
   it('does not detect non-matching phrases', () => {
@@ -41,7 +41,7 @@ describe('EnergyThresholdWakeWordEngine', () => {
   it('supports custom phrase', () => {
     engine.setPhrase('ok computer');
     expect(engine.checkTranscript('ok computer')).toBe(true);
-    expect(engine.checkTranscript('hey worldscript')).toBe(false);
+    expect(engine.checkTranscript('hey andersen')).toBe(false);
   });
 
   it('maintains rolling transcript history', () => {
@@ -50,7 +50,7 @@ describe('EnergyThresholdWakeWordEngine', () => {
       engine.checkTranscript(`random ${i}`);
     }
     // Last 5 should be in history, but default phrase still not detected
-    expect(engine.checkTranscript('hey worldscript')).toBe(true);
+    expect(engine.checkTranscript('hey andersen')).toBe(true);
   });
 
   it('processChunk returns false (audio not processed in fallback)', async () => {
@@ -67,7 +67,7 @@ describe('EnergyThresholdWakeWordEngine', () => {
     engine.checkTranscript('test');
     await engine.dispose();
     // After dispose, history should be empty
-    expect(engine.checkTranscript('hey worldscript')).toBe(true);
+    expect(engine.checkTranscript('hey andersen')).toBe(true);
   });
 });
 
@@ -80,6 +80,6 @@ describe('createWakeWordEngine', () => {
   it('creates engine with custom phrase', async () => {
     const engine = (await createWakeWordEngine('ok worldscript')) as EnergyThresholdWakeWordEngine;
     expect(engine.checkTranscript('ok worldscript')).toBe(true);
-    expect(engine.checkTranscript('hey worldscript')).toBe(false);
+    expect(engine.checkTranscript('hey andersen')).toBe(false);
   });
 });

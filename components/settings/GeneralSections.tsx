@@ -340,7 +340,7 @@ export const AboutSection: FC = React.memo(() => {
           <p>{t('settings.about.description')}</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
             <a
-              href="https://www.github.com/qnbs/WorldScript-Studio/"
+              href="https://github.com/diablomike20/Andersen"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-sc-lg border border-[var(--sc-border-subtle)] text-[var(--sc-text-secondary)] hover:text-[var(--sc-text-primary)] hover:border-[var(--sc-border-strong)] transition-colors duration-sc-fast text-sm font-medium"

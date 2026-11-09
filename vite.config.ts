@@ -43,9 +43,9 @@ export default defineConfig({
       transformIndexHtml(html) {
         if (deployBase === GITHUB_PAGES_BASE) return html;
         // QNBS-v3: only rewrite app-relative paths (preceded by quote/space) so
-        // absolute URLs like https://worldscript-studio.app/WorldScript-Studio/
+        // absolute URLs like https://diablomike20.github.io/Andersen/
         // are not corrupted when deployBase is './'.
-        return html.replace(/(?<=["'\s])\/WorldScript-Studio\//g, deployBase);
+        return html.replace(/(?<=["'\s])\/Andersen\//g, deployBase);
       },
     },
     VitePWA({

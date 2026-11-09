@@ -158,7 +158,7 @@ describe('AiProviderCard — ollama provider (#266)', () => {
     expect(screen.getByText('settings.ai.ollamaDesktopOnlyTitle')).toBeTruthy();
     expect(screen.getByText('settings.ai.ollamaDesktopOnlyBody')).toBeTruthy();
     const cta = screen.getByRole('link', { name: /downloadDesktopCta/ });
-    expect(cta.getAttribute('href')).toContain('github.com/qnbs/WorldScript-Studio/releases');
+    expect(cta.getAttribute('href')).toContain('github.com/diablomike20/Andersen/releases');
     expect(cta.getAttribute('rel')).toContain('noreferrer');
 
     // QNBS-v3 (#266): no auto-fetch in the browser — this is what killed the CORS console noise.
@@ -689,7 +689,7 @@ describe('AiProviderCard — anthropic provider (ADR-0016)', () => {
 
   it('GitHub Pages: shows the unavailable warning block, no key input', () => {
     setDesktopRuntime(false);
-    import.meta.env.BASE_URL = '/WorldScript-Studio/';
+    import.meta.env.BASE_URL = '/Andersen/';
     render(
       <AiProviderCard
         advancedAi={anthropicAdvancedAi}

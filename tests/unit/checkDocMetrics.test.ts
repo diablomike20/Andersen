@@ -20,7 +20,7 @@ import {
   scanReleaseTruth,
   scanSecurityDocPrStatus,
   stripHistoricalSections,
-  VERCEL_URL_PATTERN,
+  DEPLOYMENT_URL_PATTERN,
 } from '../../scripts/check-doc-metrics.mjs';
 
 const getTaggedVersionsAt = getTaggedVersions as unknown as (repositoryRoot: string) => Set<string>;
@@ -1109,14 +1109,14 @@ describe('scanForDrift', () => {
 // QNBS-v3 (F-10): regression guard for the dead worldscript-studio-indol.vercel.app URL that had
 // leaked into the in-app link and the Italian locale — this is the check that would have caught it.
 describe('getCanonicalProductionUrl', () => {
-  it('reads a real https://….vercel.app/ URL from constants/brand.ts', () => {
+  it('reads the GitHub Pages project URL from constants/brand.ts', () => {
     const url = getCanonicalProductionUrl();
-    expect(url).toMatch(/^https:\/\/worldscript-studio[a-z0-9-]*\.vercel\.app\/$/);
+    expect(url).toMatch(/^https:\/\/diablomike20\.github\.io\/Andersen\/$/);
   });
 });
 
 describe('scanForUrlDrift', () => {
-  const canonical = 'https://worldscript-studio.vercel.app/';
+  const canonical = 'https://diablomike20.github.io/Andersen/';
 
   it('flags a Vercel URL that does not match the canonical one', () => {
     const content = 'Production: https://worldscript-studio-indol.vercel.app/';
@@ -1132,7 +1132,21 @@ describe('scanForUrlDrift', () => {
   });
 
   it('does not flag the canonical URL without a trailing slash', () => {
-    const content = 'Production: https://worldscript-studio.vercel.app';
+    const content = 'Production: https://diablomike20.github.io/Andersen';
+    const findings = scanForUrlDrift(content, 'FAKE.md', canonical);
+    expect(findings).toHaveLength(0);
+  });
+
+  it('flags the legacy qnbs GitHub Pages site', () => {
+    const content = 'Production: https://qnbs.github.io/WorldScript-Studio/';
+    const findings = scanForUrlDrift(content, 'FAKE.md', canonical);
+    expect(findings).toHaveLength(1);
+    expect(findings[0]).toContain('qnbs.github.io/WorldScript-Studio');
+  });
+
+  it('does not flag a sub-path of the canonical site', () => {
+    const content =
+      'Updater: https://diablomike20.github.io/Andersen/updater/latest.json';
     const findings = scanForUrlDrift(content, 'FAKE.md', canonical);
     expect(findings).toHaveLength(0);
   });
@@ -1157,7 +1171,7 @@ describe('scanForUrlDrift', () => {
   });
 
   it('does not flag the canonical hostname without a scheme', () => {
-    const content = 'URL di produzione: <code>worldscript-studio.vercel.app</code>';
+    const content = 'URL di produzione: <code>diablomike20.github.io/Andersen</code>';
     const findings = scanForUrlDrift(content, 'FAKE.json', canonical);
     expect(findings).toHaveLength(0);
   });
@@ -1167,10 +1181,10 @@ describe('scanForUrlDrift', () => {
   // findings, silently. Assert the pattern's own match behavior directly instead: without hostname
   // boundaries it would extract "worldscript-studio.vercel.app" out of these unrelated domains and
   // treat it as equivalent to canonical, which is the actual bug CodeRabbit flagged.
-  describe('VERCEL_URL_PATTERN hostname boundaries', () => {
+  describe('DEPLOYMENT_URL_PATTERN hostname boundaries', () => {
     function matches(text: string) {
-      VERCEL_URL_PATTERN.lastIndex = 0;
-      return VERCEL_URL_PATTERN.test(text);
+      DEPLOYMENT_URL_PATTERN.lastIndex = 0;
+      return DEPLOYMENT_URL_PATTERN.test(text);
     }
 
     it('does not match a canonical-host-suffixed lookalike domain', () => {
@@ -1187,6 +1201,23 @@ describe('scanForUrlDrift', () => {
 
     it('still matches the -indol dead-preview host (hyphenated variant)', () => {
       expect(matches('https://worldscript-studio-indol.vercel.app/')).toBe(true);
+    });
+
+    it('matches the canonical GitHub Pages site with and without a slash', () => {
+      expect(matches('https://diablomike20.github.io/Andersen/')).toBe(true);
+      expect(matches('https://diablomike20.github.io/Andersen')).toBe(true);
+    });
+
+    it('matches the legacy qnbs GitHub Pages site so it can be flagged', () => {
+      expect(matches('https://qnbs.github.io/WorldScript-Studio/')).toBe(true);
+    });
+
+    it('does not match a sub-path of the canonical GitHub Pages site', () => {
+      expect(matches('https://diablomike20.github.io/Andersen/updater/latest.json')).toBe(false);
+    });
+
+    it('does not match an unrelated GitHub Pages project', () => {
+      expect(matches('https://diablomike20.github.io/Other/')).toBe(false);
     });
   });
 });

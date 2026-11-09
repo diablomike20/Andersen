@@ -1,8 +1,9 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "Andersen",
+  "mainBinaryName": "Andersen",
   "version": "1.29.2",
-  "identifier": "com.worldscript.studio",
+  "identifier": "hu.diablomike20.andersen",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:3000",
@@ -30,10 +31,10 @@
   "bundle": {
     "active": true,
     "targets": "all",
-    "createUpdaterArtifacts": true,
+    "createUpdaterArtifacts": false,
     "category": "Productivity",
-    "publisher": "QNBS",
-    "copyright": "© 2026 QNBS. Licensed under MIT.",
+    "publisher": "Diablomike20",
+    "copyright": "© 2026 Diablomike20. Licensed under MIT.",
     "shortDescription": "Magyar nyelvű novella- és regényíró alkalmazás mesterséges intelligencia támogatással",
     "longDescription": "Az Andersen magyar nyelvű, offline-központú novella- és regényíró alkalmazás. Támogatja a történet- és világépítést, a karakterkezelést, a helyi MI-modelleket és a kéziratok exportálását.",
     "icon": [
@@ -73,17 +74,17 @@
     "updater": {
       "active": true,
       "endpoints": [
-        "https://github.com/qnbs/WorldScript-Studio/releases/latest/download/latest.json",
-        "https://qnbs.github.io/WorldScript-Studio/updater/latest.json"
+        "https://raw.githubusercontent.com/diablomike20/Andersen/main/public/updater/latest.json",
+        "https://diablomike20.github.io/Andersen/updater/latest.json"
       ],
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDZBOTlDOEIxNUYyQzA5RUEKUldUcUNTeGZzY2laYW8yU21QNldMbzZQcTFmUDNTdVZ5RHhNenFkSTVGNTRoTllTRXpBcjJyVVMK",
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDdDMjRCMDU5OTgyNjcwMzYKUldRMmNDYVlXYkFrZkhWK0lOSytUR2h6MytZSWlINWNMNEVvM0FTaGpiY2Q1RXIwbmxUTzh0NHYK",
       "windows": {
         "installMode": "passive"
       }
     },
     "deep-link": {
       "desktop": {
-        "schemes": ["worldscript", "storycraft"]
+        "schemes": ["worldscript", "storycraft", "andersen"]
       }
     }
   }

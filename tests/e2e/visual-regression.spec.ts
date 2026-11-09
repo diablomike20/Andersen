@@ -11,7 +11,7 @@ import { clickNavItem, ensureBlankProject, selectEnglish, waitForSpaReady } from
 // production-build baselines and always mismatch on unrelated HMR/port differences.
 
 // QNBS-v3: fully-qualified, VRT-local entry, deliberately bypassing the shared baseURL — every other e2e spec's page.goto('/') targets Vite's dev server (which serves at root regardless), while VRT's static server genuinely serves the app under this GH-Pages-style subpath, so scoping this here avoids any risk to the rest of the suite's navigation.
-const APP_ENTRY = 'http://127.0.0.1:3000/WorldScript-Studio/';
+const APP_ENTRY = 'http://127.0.0.1:3000/Andersen/';
 
 test.describe('Visual regression', () => {
   test.use({ viewport: { width: 1280, height: 720 } });

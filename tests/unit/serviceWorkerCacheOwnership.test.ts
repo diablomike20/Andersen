@@ -14,7 +14,7 @@ if (!extractedVersion) throw new Error('Could not extract APP_VERSION from publi
 const APP_VERSION = extractedVersion;
 
 // QNBS-v3: the one BASE every loadServiceWorker() call below uses via selfMock.location.pathname — shared so ADMISSION_MARKER_URL can never silently diverge from it.
-const TEST_BASE = '/WorldScript-Studio/';
+const TEST_BASE = '/Andersen/';
 
 // QNBS-v3: only the suffix is extracted from source; TEST_BASE above is the single hardcoded value both this constant and selfMock.location.pathname derive from.
 const admissionUrlMatch = swSource.match(/const PRECACHE_ADMISSION_URL\s*=\s*`\$\{BASE\}([^`]+)`/);
@@ -201,7 +201,7 @@ describe('service worker — cache ownership (activate / CLEAR_CACHE never delet
   it('non-Tauri activate: prunes stale owned generations, keeps current owned and foreign caches', async () => {
     const { getHandler, fakeCaches } = loadServiceWorker({
       protocol: 'https:',
-      hostname: 'qnbs.github.io',
+      hostname: 'diablomike20.github.io',
       initialCacheNames: [
         STALE_STATIC,
         CURRENT_STATIC,
@@ -223,7 +223,7 @@ describe('service worker — cache ownership (activate / CLEAR_CACHE never delet
   it('non-Tauri activate: never attempts to delete a foreign cache', async () => {
     const { getHandler, fakeCaches } = loadServiceWorker({
       protocol: 'https:',
-      hostname: 'qnbs.github.io',
+      hostname: 'diablomike20.github.io',
       initialCacheNames: [STALE_STATIC, CURRENT_STATIC, FOREIGN_CACHE],
     });
     await admitPrecache(fakeCaches);
@@ -249,7 +249,7 @@ describe('service worker — cache ownership (activate / CLEAR_CACHE never delet
   it('CLEAR_CACHE: deletes owned caches of any generation, never a foreign cache', async () => {
     const { getHandler, fakeCaches } = loadServiceWorker({
       protocol: 'https:',
-      hostname: 'qnbs.github.io',
+      hostname: 'diablomike20.github.io',
       initialCacheNames: [STALE_STATIC, CURRENT_STATIC, CURRENT_IMAGES, FOREIGN_CACHE],
     });
     await getHandler('message')({
@@ -267,7 +267,7 @@ describe('service worker — cache ownership (activate / CLEAR_CACHE never delet
   it('CLEAR_CACHE: never attempts to delete a foreign cache', async () => {
     const { getHandler, fakeCaches } = loadServiceWorker({
       protocol: 'https:',
-      hostname: 'qnbs.github.io',
+      hostname: 'diablomike20.github.io',
       initialCacheNames: [CURRENT_STATIC, FOREIGN_CACHE],
     });
     await getHandler('message')({
@@ -281,7 +281,7 @@ describe('service worker — cache ownership (activate / CLEAR_CACHE never delet
   it('non-Tauri activate: a failed owned-cache delete never causes a foreign cache to be deleted', async () => {
     const { getHandler, fakeCaches } = loadServiceWorker({
       protocol: 'https:',
-      hostname: 'qnbs.github.io',
+      hostname: 'diablomike20.github.io',
       initialCacheNames: [STALE_STATIC, CURRENT_STATIC, FOREIGN_CACHE],
       rejectOnDelete: STALE_STATIC,
     });
@@ -308,7 +308,7 @@ describe('service worker — cache ownership (activate / CLEAR_CACHE never delet
   it('non-Tauri activate: never deletes a foreign cache whose name shares the owned prefix', async () => {
     const { getHandler, fakeCaches } = loadServiceWorker({
       protocol: 'https:',
-      hostname: 'qnbs.github.io',
+      hostname: 'diablomike20.github.io',
       initialCacheNames: [CURRENT_STATIC, COLLIDING_FOREIGN_CACHE],
     });
     await admitPrecache(fakeCaches);
@@ -320,7 +320,7 @@ describe('service worker — cache ownership (activate / CLEAR_CACHE never delet
   it('CLEAR_CACHE: never deletes a foreign cache whose name shares the owned prefix', async () => {
     const { getHandler, fakeCaches } = loadServiceWorker({
       protocol: 'https:',
-      hostname: 'qnbs.github.io',
+      hostname: 'diablomike20.github.io',
       initialCacheNames: [CURRENT_STATIC, COLLIDING_FOREIGN_CACHE],
     });
     await getHandler('message')({
@@ -338,7 +338,7 @@ describe('service worker — precache admission gate (#525)', () => {
   it('failed addAll() causes the install waitUntil() promise to reject', async () => {
     const { getHandler } = loadServiceWorker({
       protocol: 'https:',
-      hostname: 'qnbs.github.io',
+      hostname: 'diablomike20.github.io',
       initialCacheNames: [],
       failAddAllFor: CURRENT_STATIC,
       failAddAllTimes: 1,
@@ -349,7 +349,7 @@ describe('service worker — precache admission gate (#525)', () => {
   it('skipWaiting() is not called for a failed installation', async () => {
     const { getHandler, skipWaitingCalls } = loadServiceWorker({
       protocol: 'https:',
-      hostname: 'qnbs.github.io',
+      hostname: 'diablomike20.github.io',
       initialCacheNames: [],
       failAddAllFor: CURRENT_STATIC,
       failAddAllTimes: 1,
@@ -361,7 +361,7 @@ describe('service worker — precache admission gate (#525)', () => {
   it('successful install completes, writes the admission marker and invokes skipWaiting()', async () => {
     const { getHandler, fakeCaches, skipWaitingCalls } = loadServiceWorker({
       protocol: 'https:',
-      hostname: 'qnbs.github.io',
+      hostname: 'diablomike20.github.io',
       initialCacheNames: [],
     });
     await runWaitUntil(getHandler('install'));
@@ -373,7 +373,7 @@ describe('service worker — precache admission gate (#525)', () => {
   it('successful activate after an admitted install prunes the previous owned generation', async () => {
     const { getHandler, fakeCaches } = loadServiceWorker({
       protocol: 'https:',
-      hostname: 'qnbs.github.io',
+      hostname: 'diablomike20.github.io',
       initialCacheNames: [STALE_STATIC],
     });
     await runWaitUntil(getHandler('install'));
@@ -385,7 +385,7 @@ describe('service worker — precache admission gate (#525)', () => {
   it('a later real successful install attempt after a failed one succeeds normally (no permanent stuck state)', async () => {
     const { getHandler, fakeCaches, clientsClaimCalls } = loadServiceWorker({
       protocol: 'https:',
-      hostname: 'qnbs.github.io',
+      hostname: 'diablomike20.github.io',
       initialCacheNames: [STALE_STATIC],
       failAddAllFor: CURRENT_STATIC,
       failAddAllTimes: 1,
@@ -411,7 +411,7 @@ describe('service worker — precache manifest deduplication (#525 follow-up)', 
   it('a manifest entry resolving to the same URL as an explicit shell asset does not trigger a duplicate-request rejection', async () => {
     const { getHandler, fakeCaches, skipWaitingCalls } = loadServiceWorker({
       protocol: 'https:',
-      hostname: 'qnbs.github.io',
+      hostname: 'diablomike20.github.io',
       initialCacheNames: [],
       manifest: [
         { url: 'index.html', revision: 'abc123' },
@@ -430,7 +430,7 @@ describe('service worker — precache manifest deduplication (#525 follow-up)', 
     // QNBS-v3: exercises the fake's InvalidStateError branch through real production dedup logic, not just the explicit-list case above — proves the rejection path is actually reachable and correctly avoided.
     const { getHandler, fakeCaches, skipWaitingCalls } = loadServiceWorker({
       protocol: 'https:',
-      hostname: 'qnbs.github.io',
+      hostname: 'diablomike20.github.io',
       initialCacheNames: [],
       manifest: [
         { url: 'assets/app-somehash.js', revision: '' },

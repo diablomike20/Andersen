@@ -353,7 +353,7 @@ export async function runLocalTextGeneration(
     return {
       layer: 'webllm',
       text:
-        'WebLLM: Another WorldScript tab holds the local inference lock. Close extra tabs or use Ollama. Preview: ' +
+        'WebLLM: Another Andersen tab holds the local inference lock. Close extra tabs or use Ollama. Preview: ' +
         sanitizedPrompt.slice(0, 160) +
         (sanitizedPrompt.length > 160 ? '…' : ''),
     };

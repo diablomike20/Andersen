@@ -1764,7 +1764,7 @@ describe('Anthropic — desktop (Track A) and web proxy (Track B) branches (ADR-
   });
 
   it('testAIConnection: returns proxyUnavailableStaticHost on GitHub Pages, without ever checking for a key', async () => {
-    import.meta.env.BASE_URL = '/WorldScript-Studio/';
+    import.meta.env.BASE_URL = '/Andersen/';
     const result = await testAIConnection('anthropic', {});
     expect(result.ok).toBe(false);
     expect(result.kind).toBe('proxyUnavailableStaticHost');
@@ -1858,7 +1858,7 @@ describe('Anthropic — desktop (Track A) and web proxy (Track B) branches (ADR-
   });
 
   it('streamText: throws the GitHub-Pages-unavailable message without ever checking for a key', async () => {
-    import.meta.env.BASE_URL = '/WorldScript-Studio/';
+    import.meta.env.BASE_URL = '/Andersen/';
     await expect(
       streamText(
         'hello',

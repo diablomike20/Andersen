@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://qnbs.github.io/WorldScript-Studio/sitemap.xml
+Sitemap: https://diablomike20.github.io/Andersen/sitemap.xml

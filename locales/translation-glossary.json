@@ -6,7 +6,7 @@
     "version": "2.0"
   },
   "ja": {
-    "WorldScript Studio": "WorldScript Studio",
+    "Andersen": "Andersen",
     "AI": "AI",
     "Manuscript": "原稿",
     "Plot Board": "プロットボード",
@@ -52,7 +52,7 @@
     "Revision": "改訂"
   },
   "zh": {
-    "WorldScript Studio": "WorldScript Studio",
+    "Andersen": "Andersen",
     "AI": "AI",
     "Manuscript": "手稿",
     "Plot Board": "情节板",
@@ -98,7 +98,7 @@
     "Revision": "修订"
   },
   "pt": {
-    "WorldScript Studio": "WorldScript Studio",
+    "Andersen": "Andersen",
     "AI": "IA",
     "Manuscript": "Manuscrito",
     "Plot Board": "Quadro de Enredo",
@@ -144,7 +144,7 @@
     "Revision": "Revisão"
   },
   "el": {
-    "WorldScript Studio": "WorldScript Studio",
+    "Andersen": "Andersen",
     "AI": "AI",
     "Manuscript": "Χειρόγραφο",
     "Plot Board": "Πίνακας Πλοκής",
@@ -190,7 +190,7 @@
     "Revision": "Αναθεώρηση"
   },
   "fi": {
-    "WorldScript Studio": "WorldScript Studio",
+    "Andersen": "Andersen",
     "AI": "AI",
     "Manuscript": "Käsikirjoitus",
     "Plot Board": "Juonitaulu",
@@ -236,7 +236,7 @@
     "Revision": "Versio"
   },
   "sv": {
-    "WorldScript Studio": "WorldScript Studio",
+    "Andersen": "Andersen",
     "AI": "AI",
     "Manuscript": "Manuskript",
     "Plot Board": "Plot Board",
@@ -282,7 +282,7 @@
     "Revision": "Revidering"
   },
   "hu": {
-    "WorldScript Studio": "WorldScript Studio",
+    "Andersen": "Andersen",
     "AI": "AI",
     "Manuscript": "Kézirat",
     "Plot Board": "Cselekménytábla",
@@ -328,7 +328,7 @@
     "Revision": "Átdolgozás"
   },
   "is": {
-    "WorldScript Studio": "WorldScript Studio",
+    "Andersen": "Andersen",
     "AI": "AI",
     "Manuscript": "Handrit",
     "Plot Board": "Söguborð",
@@ -374,7 +374,7 @@
     "Revision": "Endurskoðun"
   },
   "eu": {
-    "WorldScript Studio": "WorldScript Studio",
+    "Andersen": "Andersen",
     "AI": "AI",
     "Manuscript": "Eskuizkribu",
     "Plot Board": "Argumentu-taula",
@@ -419,7 +419,7 @@
     "Revision": "Berrikuspena"
   },
   "fa": {
-    "WorldScript Studio": "WorldScript Studio",
+    "Andersen": "Andersen",
     "AI": "AI",
     "Manuscript": "دست‌نوشته",
     "Plot Board": "تخته‌داستان",
@@ -465,7 +465,7 @@
     "Revision": "بازبینی"
   },
   "ru": {
-    "WorldScript Studio": "WorldScript Studio",
+    "Andersen": "Andersen",
     "AI": "ИИ",
     "Manuscript": "Рукопись",
     "Plot Board": "Сюжетная доска",
@@ -511,7 +511,7 @@
     "Revision": "Редакция"
   },
   "ko": {
-    "WorldScript Studio": "WorldScript Studio",
+    "Andersen": "Andersen",
     "AI": "AI",
     "Manuscript": "원고",
     "Plot Board": "플롯 보드",

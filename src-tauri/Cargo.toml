@@ -2,9 +2,9 @@
 name = "worldscript-studio"
 version = "1.29.2"
 description = "AI-powered creative writing and world-building application"
-authors = ["QNBS"]
+authors = ["Diablomike20"]
 license = "MIT"
-repository = "https://github.com/QNBS/WorldScript-Studio"
+repository = "https://github.com/diablomike20/Andersen"
 edition = "2021"
 # Declared floor for the desktop app (#572): the locked graph already needs 1.89 (notify-rust 4.18),
 # and the current Tauri plugin lines need 1.90. CI builds it with exactly this toolchain.

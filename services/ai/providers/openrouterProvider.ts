@@ -29,7 +29,7 @@ export { OPENROUTER_FREE_MODEL_FALLBACK } from '../cloudModelCatalog';
 const logger = createLogger('openrouter-provider');
 
 const OPENROUTER_BASE_URL = 'https://openrouter.ai/api/v1';
-const SITE_URL = 'https://github.com/qnbs/WorldScript-Studio';
+const SITE_URL = 'https://github.com/diablomike20/Andersen';
 const SITE_TITLE = 'WorldScript Studio';
 
 // ─── Free-tier model fallback ────────────────────────────────────────────────

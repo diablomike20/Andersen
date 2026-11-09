@@ -1,9 +1,9 @@
 // QNBS-v3: Single source for Vite `base`. Extracted from vite.config.ts so the Tauri-detection
 // regression is permanently unit-tested: a desktop build that fell through to the GitHub Pages base
-// ('/WorldScript-Studio/') 404'd every hashed asset under tauri://localhost/ → blank webview (only the
+// ('/Andersen/') 404'd every hashed asset under tauri://localhost/ → blank webview (only the
 // native file/help menu rendered). Root cause was checking the Tauri 1.x env var name.
 
-export const GITHUB_PAGES_BASE = '/WorldScript-Studio/';
+export const GITHUB_PAGES_BASE = '/Andersen/';
 
 // QNBS-v3: local dev default — a plain `pnpm run dev` (no launcher, no VITE_BASE) serves /Andersen/; production builds keep GITHUB_PAGES_BASE so the CI GitHub Pages deploy (NODE_ENV=production, no VITE_BASE) is unaffected.
 export const LOCAL_DEV_BASE = '/Andersen/';
@@ -31,7 +31,7 @@ export function isTauriBuild(env: Record<string, string | undefined> = process.e
  * - explicit VITE_BASE → normalised with a trailing slash
  * - edge (Vercel/Cloudflare root domain) → '/'
  * - local dev default (NODE_ENV !== 'production') → '/Andersen/'
- * - production build default (GitHub Pages project page) → '/WorldScript-Studio/'
+ * - production build default (GitHub Pages project page) → '/Andersen/'
  */
 export function resolveViteBase(env: Record<string, string | undefined> = process.env): string {
   if (isTauriBuild(env)) {

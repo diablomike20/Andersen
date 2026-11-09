@@ -9,7 +9,7 @@ function resolveDeployBase() {
   if (process.env.DEPLOY_TARGET === 'edge') {
     return '/';
   }
-  return '/WorldScript-Studio/';
+  return '/Andersen/';
 }
 
 module.exports = {

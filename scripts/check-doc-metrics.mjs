@@ -55,8 +55,8 @@ export function scanLocalizedBundleBudgetTruth(content, filePath, budget) {
       index: match.index ?? -1,
       value: match[0].replace(/[^\d]/g, ''),
     }));
-    const vendorLabel = /\bvendor\b/i.exec(budgetSection);
-    const entryLabel = /(?:\bentry\b|\bentrada\b|entrée)/i.exec(budgetSection);
+    const vendorLabel = /(?:vendor|külső)/i.exec(budgetSection);
+    const entryLabel = /(?:entry|entrada|entrée|belépő)/i.exec(budgetSection);
     if (
       numericClaims.length === 2 &&
       vendorLabel?.index !== undefined &&
@@ -185,8 +185,11 @@ export function scanReadmeTestMetrics(readme) {
 // QNBS-v3 (F-10): the sole source of truth for the canonical production URL — see constants/brand.ts.
 const PRODUCTION_URL_ASSIGNMENT = /export const PRODUCTION_URL = '([^']+)';/;
 // QNBS-v3 (CodeRabbit): scheme optional (locales/it/help.json has no `https://` prefix) + hostname-boundary lookaround so `evil.com`-suffixed or `not`-prefixed lookalike hosts can't slip through as a "match".
-export const VERCEL_URL_PATTERN =
-  /(?<![a-zA-Z0-9-])(?:https?:\/\/)?worldscript-studio[a-z0-9-]*\.vercel\.app\/?(?![a-zA-Z0-9.-])/gi;
+// QNBS-v3 (Andersen rebrand): match every historical deployment host as well as the current
+// GitHub Pages project site, so a stale qnbs/WorldScript URL or an old Vercel preview is flagged.
+// Sub-paths (e.g. /Andersen/updater/latest.json) are intentionally not treated as site URLs.
+export const DEPLOYMENT_URL_PATTERN =
+  /(?<![a-zA-Z0-9-])(?:https?:\/\/)?(?:worldscript-studio[a-z0-9-]*\.vercel\.app|(?:qnbs|diablomike20)\.github\.io\/(?:WorldScript-Studio|Andersen))\/?(?![a-zA-Z0-9./-])/gi;
 
 /** Read the canonical production URL from constants/brand.ts (the single source of truth). */
 export function getCanonicalProductionUrl() {
@@ -212,7 +215,7 @@ export function scanForUrlDrift(content, filePath, canonicalUrl) {
       .replace(/\/$/, '')
       .toLowerCase();
   lines.forEach((line, i) => {
-    for (const m of line.matchAll(VERCEL_URL_PATTERN)) {
+    for (const m of line.matchAll(DEPLOYMENT_URL_PATTERN)) {
       const found = m[0];
       if (normalize(found) !== normalize(canonicalUrl)) {
         findings.push(

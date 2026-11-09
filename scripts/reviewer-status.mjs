@@ -42,7 +42,7 @@ try {
   if (!pr || !isValidPullRequestNumber(pr))
     throw new Error('--pr must be a positive pull request number within GraphQL Int range');
   repo = parseRepository(
-    argument('--repo') ?? process.env.GITHUB_REPOSITORY ?? 'qnbs/WorldScript-Studio',
+    argument('--repo') ?? process.env.GITHUB_REPOSITORY ?? 'diablomike20/Andersen',
   );
 } catch (error) {
   console.error('[reviewers] ' + error.message);

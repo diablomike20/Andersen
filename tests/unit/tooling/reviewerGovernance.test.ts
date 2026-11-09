@@ -56,7 +56,7 @@ if (request.includes('graphql')) {
 } else if (request.includes('/check-runs?')) {
   response = [{ check_runs: [{ name: 'Provider\\nInjected', status: 'completed', conclusion: 'failure' }] }];
 } else if (request.includes('/status?')) {
-  response = [{ statuses: [{ id: 7, context: 'DeepSource', state: 'success', target_url: 'https://github.com/qnbs/WorldScript-Studio' }] }];
+  response = [{ statuses: [{ id: 7, context: 'DeepSource', state: 'success', target_url: 'https://github.com/diablomike20/Andersen' }] }];
 } else if (request.includes('/issues/779/comments') || request.includes('/pulls/779/reviews')) {
   response = [];
 } else if (request.includes('/pulls/779/comments')) {
@@ -135,47 +135,54 @@ describe('reviewer-status CLI validation', () => {
   it('rejects malformed repository targets before API access', () => {
     const result = spawnSync(
       process.execPath,
-      [reviewerStatusScript, '--pr', '779', '--repo', 'qnbs/WorldScript-Studio/extra'],
+      [reviewerStatusScript, '--pr', '779', '--repo', 'diablomike20/Andersen/extra'],
       { cwd: repositoryRoot, encoding: 'utf8' },
     );
     expect(result.status).toBe(2);
     expect(result.stderr).toContain('--repo must be exactly owner/name');
   });
 
-  it('collects commit statuses from paginated status response objects', () => {
-    const tempDirectory = mkdtempSync(join(tmpdir(), 'reviewer-status-gh-'));
-    const fakeGh = join(tempDirectory, 'gh');
-    writeFileSync(fakeGh, reviewerStatusHappyPathScript);
-    chmodSync(fakeGh, 0o755);
+  // QNBS-v3: the fake `gh` fixture is a shebang script; Windows cannot execute it via PATH,
+  // so this integration test runs on the POSIX CI runner only.
+  it.skipIf(process.platform === 'win32')(
+    'collects commit statuses from paginated status response objects',
+    () => {
+      const tempDirectory = mkdtempSync(join(tmpdir(), 'reviewer-status-gh-'));
+      const fakeGh = join(tempDirectory, 'gh');
+      writeFileSync(fakeGh, reviewerStatusHappyPathScript);
+      chmodSync(fakeGh, 0o755);
 
-    try {
-      const result = spawnSync(process.execPath, [reviewerStatusScript, '--pr', '779'], {
-        cwd: repositoryRoot,
-        encoding: 'utf8',
-        env: { ...process.env, PATH: `${tempDirectory}:${process.env['PATH'] ?? ''}` },
-      });
-      expect(result.status).toBe(0);
-      expect(result.stdout).toContain('commitStatuses total=1');
-      expect(result.stdout).toContain('context="DeepSource"');
-      expect(result.stdout).toContain('rootCommentId=42');
-      expect(result.stdout).toContain('restCommentId=42');
-      expect(result.stdout).toContain('inReplyTo=7');
-      expect(result.stdout).toContain('checkSuites total=1');
-      expect(result.stdout).toContain('status="QUEUED"');
-      expect(result.stdout).toContain('app="renovate"');
-      expect(result.stdout).toContain('checkName="Provider\\nInjected"');
-    } finally {
-      rmSync(tempDirectory, { recursive: true, force: true });
-    }
-  });
+      try {
+        const result = spawnSync(process.execPath, [reviewerStatusScript, '--pr', '779'], {
+          cwd: repositoryRoot,
+          encoding: 'utf8',
+          env: { ...process.env, PATH: `${tempDirectory}:${process.env['PATH'] ?? ''}` },
+        });
+        expect(result.status).toBe(0);
+        expect(result.stdout).toContain('commitStatuses total=1');
+        expect(result.stdout).toContain('context="DeepSource"');
+        expect(result.stdout).toContain('rootCommentId=42');
+        expect(result.stdout).toContain('restCommentId=42');
+        expect(result.stdout).toContain('inReplyTo=7');
+        expect(result.stdout).toContain('checkSuites total=1');
+        expect(result.stdout).toContain('status="QUEUED"');
+        expect(result.stdout).toContain('app="renovate"');
+        expect(result.stdout).toContain('checkName="Provider\\nInjected"');
+      } finally {
+        rmSync(tempDirectory, { recursive: true, force: true });
+      }
+    },
+  );
 
-  it('rejects evidence when the pull-request base changes during collection', () => {
-    const tempDirectory = mkdtempSync(join(tmpdir(), 'reviewer-status-base-'));
-    const fakeGh = join(tempDirectory, 'gh');
-    const stateFile = join(tempDirectory, 'pull-count');
-    writeFileSync(
-      fakeGh,
-      `#!/usr/bin/env node
+  it.skipIf(process.platform === 'win32')(
+    'rejects evidence when the pull-request base changes during collection',
+    () => {
+      const tempDirectory = mkdtempSync(join(tmpdir(), 'reviewer-status-base-'));
+      const fakeGh = join(tempDirectory, 'gh');
+      const stateFile = join(tempDirectory, 'pull-count');
+      writeFileSync(
+        fakeGh,
+        `#!/usr/bin/env node
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 const request = process.argv.slice(2).join(' ');
 const stateFile = process.env.REVIEWER_STATUS_STATE_FILE;
@@ -202,23 +209,24 @@ if (request.includes('graphql')) {
 }
 process.stdout.write(JSON.stringify(response));
 `,
-    );
-    chmodSync(fakeGh, 0o755);
+      );
+      chmodSync(fakeGh, 0o755);
 
-    try {
-      const result = spawnSync(process.execPath, [reviewerStatusScript, '--pr', '779'], {
-        cwd: repositoryRoot,
-        encoding: 'utf8',
-        env: {
-          ...process.env,
-          PATH: `${tempDirectory}:${process.env['PATH'] ?? ''}`,
-          REVIEWER_STATUS_STATE_FILE: stateFile,
-        },
-      });
-      expect(result.status).toBe(1);
-      expect(result.stderr).toContain('head or base changed');
-    } finally {
-      rmSync(tempDirectory, { recursive: true, force: true });
-    }
-  });
+      try {
+        const result = spawnSync(process.execPath, [reviewerStatusScript, '--pr', '779'], {
+          cwd: repositoryRoot,
+          encoding: 'utf8',
+          env: {
+            ...process.env,
+            PATH: `${tempDirectory}:${process.env['PATH'] ?? ''}`,
+            REVIEWER_STATUS_STATE_FILE: stateFile,
+          },
+        });
+        expect(result.status).toBe(1);
+        expect(result.stderr).toContain('head or base changed');
+      } finally {
+        rmSync(tempDirectory, { recursive: true, force: true });
+      }
+    },
+  );
 });

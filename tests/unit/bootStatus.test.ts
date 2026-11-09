@@ -36,7 +36,7 @@ describe('static boot shell', () => {
     const shell = root.firstElementChild;
     expect(shell?.hasAttribute(BOOT_SHELL_ATTRIBUTE)).toBe(true);
     expect(shell?.getAttribute('role')).toBe('status');
-    expect(shell?.textContent).toBe('WorldScript Studio');
+    expect(shell?.textContent).toBe('Andersen');
   });
 
   it('counts as not mounted until React replaces it', () => {

@@ -1,5 +1,5 @@
 // ============================================================
-// WorldScript Studio — Advanced Service Worker v3.0
+// Andersen — Advanced Service Worker v3.0
 // Strategy: Stale-While-Revalidate + Cache-First + Network-Only
 // Features: Versioned caches, background sync, periodic updates,
 //           offline fallback, push notifications, share target
@@ -105,9 +105,9 @@ async function cachedLocaleBundle(dynamicCache, request) {
 
 async function offlineFallback(request) {
   if (request.destination === 'document') {
-    // QNBS-v3: scoped to CACHE_STATIC (where offline.html is precached) — an unscoped caches.match() searches every cache on the shared qnbs.github.io origin, not just this app's own.
+    // QNBS-v3: scoped to CACHE_STATIC (where offline.html is precached) — an unscoped caches.match() searches every cache on the shared diablomike20.github.io origin, not just this app's own.
     const cached = await caches.match(`${BASE}offline.html`, { cacheName: CACHE_STATIC });
-    return cached || new Response('<!doctype html><title>Offline</title><p>WorldScript Studio ist offline.</p>', {
+    return cached || new Response('<!doctype html><title>Offline</title><p>Andersen ist offline.</p>', {
       headers: { 'Content-Type': 'text/html' },
       status: 503,
     });
@@ -383,7 +383,7 @@ self.addEventListener('message', (event) => {
 self.addEventListener('push', (event) => {
   if (!event.data) return;
   let data;
-  try { data = event.data.json(); } catch { data = { title: 'WorldScript Studio', body: event.data.text() }; }
+  try { data = event.data.json(); } catch { data = { title: 'Andersen', body: event.data.text() }; }
 
   const options = {
     body:    data.body    || 'New notification',
@@ -398,7 +398,7 @@ self.addEventListener('push', (event) => {
   };
 
   event.waitUntil(
-    self.registration.showNotification(data.title || 'WorldScript Studio', options)
+    self.registration.showNotification(data.title || 'Andersen', options)
   );
 });
 
@@ -449,4 +449,4 @@ self.addEventListener('periodicsync', (event) => {
   }
 });
 
-swLogger.log(`WorldScript Studio Service Worker v${APP_VERSION} loaded`);
+swLogger.log(`Andersen Service Worker v${APP_VERSION} loaded`);

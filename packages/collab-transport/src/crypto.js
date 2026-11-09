@@ -15,7 +15,7 @@
  * SECURITY MAINTENANCE — Renovate cannot auto-update this fork.
  * On any new y-webrtc release: diff crypto.js + y-webrtc.js against the new tag,
  * cherry-pick security fixes, re-apply SC patches 1-3 above, bump version to <upstream>-sc1.
- * Checklist + audit log: https://github.com/qnbs/WorldScript-Studio/issues/60
+ * Checklist + audit log: https://github.com/diablomike20/Andersen/issues
  */
 /* eslint-env browser */
 

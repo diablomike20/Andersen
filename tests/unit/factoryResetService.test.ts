@@ -285,7 +285,7 @@ describe('wipeAllAppData', () => {
       configurable: true,
       value: {
         ...originalLocation,
-        href: 'http://localhost:3000/WorldScript-Studio/?foo=bar&view=settings#/settings',
+        href: 'http://localhost:3000/Andersen/?foo=bar&view=settings#/settings',
         reload: reloadMock,
       },
     });
@@ -293,7 +293,7 @@ describe('wipeAllAppData', () => {
 
     await runWipe();
 
-    expect(replaceStateSpy).toHaveBeenCalledWith(null, '', '/WorldScript-Studio/?foo=bar');
+    expect(replaceStateSpy).toHaveBeenCalledWith(null, '', '/Andersen/?foo=bar');
     expect(reloadMock).toHaveBeenCalledTimes(1);
     expect(replaceStateSpy.mock.invocationCallOrder[0]).toBeLessThan(
       reloadMock.mock.invocationCallOrder[0]!,
@@ -307,7 +307,7 @@ describe('wipeAllAppData', () => {
       configurable: true,
       value: {
         ...originalLocation,
-        href: 'http://localhost:3000/WorldScript-Studio/?foo=a%20b&flag&view=settings',
+        href: 'http://localhost:3000/Andersen/?foo=a%20b&flag&view=settings',
         reload: reloadMock,
       },
     });
@@ -315,7 +315,7 @@ describe('wipeAllAppData', () => {
 
     await runWipe();
 
-    expect(replaceStateSpy).toHaveBeenCalledWith(null, '', '/WorldScript-Studio/?foo=a%20b&flag');
+    expect(replaceStateSpy).toHaveBeenCalledWith(null, '', '/Andersen/?foo=a%20b&flag');
     replaceStateSpy.mockRestore();
   });
 
@@ -325,7 +325,7 @@ describe('wipeAllAppData', () => {
       configurable: true,
       value: {
         ...originalLocation,
-        href: 'http://localhost:3000/WorldScript-Studio/?%76iew=settings&foo=bar',
+        href: 'http://localhost:3000/Andersen/?%76iew=settings&foo=bar',
         reload: reloadMock,
       },
     });
@@ -333,7 +333,7 @@ describe('wipeAllAppData', () => {
 
     await runWipe();
 
-    expect(replaceStateSpy).toHaveBeenCalledWith(null, '', '/WorldScript-Studio/?foo=bar');
+    expect(replaceStateSpy).toHaveBeenCalledWith(null, '', '/Andersen/?foo=bar');
     replaceStateSpy.mockRestore();
   });
 

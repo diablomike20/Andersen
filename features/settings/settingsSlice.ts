@@ -76,7 +76,7 @@ const defaultSettings: Settings = {
     localBackendPreset: 'ollama_default',
     openAiCompatibleBaseUrl: '',
     openAiSiteUrl: '',
-    openAiSiteTitle: 'WorldScript Studio',
+    openAiSiteTitle: 'Andersen',
     hybridFallbackEnabled: false,
     hybridFallbackChain: [],
     ragMode: 'hybrid',

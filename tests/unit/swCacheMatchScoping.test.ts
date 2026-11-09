@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 
 // QNBS-v3: regression guard for #514 — CacheStorage is origin-scoped, not path-scoped, so a bare
-// caches.match(request) on a shared origin like qnbs.github.io searches every cache on the origin,
+// caches.match(request) on a shared origin like diablomike20.github.io searches every cache on the origin,
 // not just this app's own. sw.js is a classic service worker (uses `self`, not importable), so we
 // assert its source contract instead of executing it, mirroring swLocaleStrategy.test.ts's pattern.
 const swSource = readFileSync(
@@ -34,7 +34,7 @@ function offlineFallbackBlock(src: string): string {
 function cachesDotMatchCalls(block: string): string[] {
   const codeOnly = block
     .split('\n')
-    .map((line) => line.replace(/\/\/.*$/, ''))
+    .map((line) => line.replace(/\/\/[^\r\n]*/, ''))
     .join('\n');
   const calls: string[] = [];
   const re = /\bcaches\.match\([^;]*?\)/g;

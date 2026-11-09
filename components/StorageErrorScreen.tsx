@@ -33,7 +33,7 @@ export const STARTUP_COPY_FALLBACKS: StorageErrorCopy = {
   projectIoUnavailable:
     'The project could not currently be read because of a storage or file-access problem. It has not been classified as corrupt or changed. Check the storage device and file permissions, then retry.',
   projectUnsupported:
-    'This project uses a schema version this build cannot edit. The original file has not been changed. Upgrade WorldScript Studio or open it with a compatible build.',
+    'This project uses a schema version this build cannot edit. The original file has not been changed. Upgrade Andersen or open it with a compatible build.',
   projectMigrationGap:
     'This project uses an older schema version that this build cannot migrate. The original file has not been changed. Open it with a compatible build that supports its migration path.',
   reload: 'Reload',
@@ -51,7 +51,7 @@ export const STARTUP_COPY_FALLBACKS: StorageErrorCopy = {
   recoveryAlreadyPreserved:
     'The project appears to have been preserved by another recovery attempt. Reload to continue.',
   resetWarning: 'Resetting the database will delete all local projects and settings.',
-  safeOpen: 'Open WorldScript Studio without this project',
+  safeOpen: 'Open Andersen without this project',
   safeOpenNotice:
     'This project stays on disk exactly as it is. It will not be opened or changed in this session, so a compatible build can still open it later.',
 };
@@ -483,7 +483,7 @@ export function StorageErrorScreen({
         gap: '1rem',
       }}
     >
-      <h1 style={{ fontSize: '1.5rem', fontWeight: 700 }}>WorldScript Studio</h1>
+      <h1 style={{ fontSize: '1.5rem', fontWeight: 700 }}>Andersen</h1>
       <p style={{ color: '#94a3b8', maxWidth: '32rem' }}>{copy.description}</p>
       <p
         style={{

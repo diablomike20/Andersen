@@ -147,7 +147,7 @@ export function normalizePersistedSettings(incoming: Record<string, unknown>): S
     localBackendPreset: 'ollama_default',
     openAiCompatibleBaseUrl: '',
     openAiSiteUrl: '',
-    openAiSiteTitle: 'WorldScript Studio',
+    openAiSiteTitle: 'Andersen',
     hybridFallbackEnabled: false,
     hybridFallbackChain: [],
     ragMode: 'hybrid',

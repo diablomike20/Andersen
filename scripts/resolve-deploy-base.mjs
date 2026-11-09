@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Resolves Vite `base` for static hosting targets.
- * - GitHub Pages (default): /WorldScript-Studio/
+ * - GitHub Pages (default): /Andersen/
  * - Vercel / Cloudflare Pages (root domain): set VITE_BASE=/ or DEPLOY_TARGET=edge
  */
 function resolveDeployBase() {
@@ -12,7 +12,7 @@ function resolveDeployBase() {
   if (process.env.DEPLOY_TARGET === 'edge') {
     return '/';
   }
-  return '/WorldScript-Studio/';
+  return '/Andersen/';
 }
 
 export const deployBase = resolveDeployBase();

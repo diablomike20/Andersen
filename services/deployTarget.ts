@@ -12,7 +12,7 @@ import { GITHUB_PAGES_BASE } from '../config/resolveViteBase';
  * Signal: `import.meta.env.BASE_URL` is Vite's build-time-injected base path — already this
  * codebase's canonical GitHub-Pages-vs-edge marker (see config/resolveViteBase.ts, which computes
  * it from the same GITHUB_PAGES_BASE constant). GitHub Pages project pages are always served from
- * the '/WorldScript-Studio/' subpath; Vercel, Cloudflare Pages, and custom domains serve from '/'.
+ * the '/Andersen/' subpath; Vercel, Cloudflare Pages, and custom domains serve from '/'.
  */
 export function isServerlessProxyCapable(): boolean {
   return import.meta.env.BASE_URL !== GITHUB_PAGES_BASE;

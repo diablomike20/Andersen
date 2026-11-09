@@ -3,7 +3,15 @@
   "private": true,
   "version": "1.29.2",
   "description": "Andersen — Hungarian-first, offline-capable, AI-assisted creative writing studio.",
-  "author": "QNBS",
+  "author": "Diablomike20",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/diablomike20/Andersen.git"
+  },
+  "homepage": "https://github.com/diablomike20/Andersen#readme",
+  "bugs": {
+    "url": "https://github.com/diablomike20/Andersen/issues"
+  },
   "keywords": [
     "andersen",
     "creative-writing",

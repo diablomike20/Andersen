@@ -458,7 +458,7 @@ export const LocalAiSection: FC = () => {
               : t('settings.ai.localAi.perfNoData')}
           </p>
           <a
-            href="https://github.com/qnbs/WorldScript-Studio/blob/main/docs/LOCAL-AI.md"
+            href="https://github.com/diablomike20/Andersen/blob/main/docs/LOCAL-AI.md"
             target="_blank"
             rel="noreferrer"
             className="inline-block text-xs font-medium text-[var(--sc-accent)] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sc-ring-focus)]"

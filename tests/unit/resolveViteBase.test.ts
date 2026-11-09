@@ -71,6 +71,6 @@ describe('resolveViteBase', () => {
 
   it('keeps the GitHub Pages project base for production builds', () => {
     expect(resolveViteBase({ NODE_ENV: 'production' })).toBe(GITHUB_PAGES_BASE);
-    expect(resolveViteBase({ NODE_ENV: 'production' })).toBe('/WorldScript-Studio/');
+    expect(resolveViteBase({ NODE_ENV: 'production' })).toBe('/Andersen/');
   });
 });

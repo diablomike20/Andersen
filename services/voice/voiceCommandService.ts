@@ -88,7 +88,7 @@ export class VoiceCommandService {
       speechVolume: 1.0,
       allowCloudFallback: false,
       listeningTimeoutSeconds: 8,
-      wakeWordPhrase: 'Hey WorldScript',
+      wakeWordPhrase: 'Hey Andersen',
       ttsMuted: false,
       dictationAutoPunctuation: true,
       enableVoiceWasm: false,

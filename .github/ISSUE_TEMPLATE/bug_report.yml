@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         Thanks for taking the time to report a bug! Please fill in as much detail as possible.
-        **Do not report security vulnerabilities here** — use [GitHub Private Vulnerability Reporting](https://github.com/qnbs/WorldScript-Studio/security/advisories/new) instead.
+        **Do not report security vulnerabilities here** — use [GitHub Private Vulnerability Reporting](https://github.com/diablomike20/Andersen/security/advisories/new) instead.
 
   - type: textarea
     id: description

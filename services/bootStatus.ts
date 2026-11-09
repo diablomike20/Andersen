@@ -73,7 +73,7 @@ export function renderStartupNotice(
   );
   const title = doc.createElement('h1');
   title.setAttribute('style', 'font-size:1.5rem;font-weight:700');
-  title.textContent = 'WorldScript Studio';
+  title.textContent = 'Andersen';
   const message = doc.createElement('p');
   message.setAttribute('style', 'color:var(--sc-text-muted);max-width:36rem');
   message.textContent = notice.message;

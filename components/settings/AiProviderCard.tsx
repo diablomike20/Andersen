@@ -622,7 +622,7 @@ export const AiProviderCard: FC<AiProviderCardProps> = ({
                 </p>
                 <p>{t('settings.ai.ollamaDesktopOnlyBody')}</p>
                 <a
-                  href="https://github.com/qnbs/WorldScript-Studio/releases"
+                  href="https://github.com/diablomike20/Andersen/releases"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-1 font-semibold underline underline-offset-2 hover:opacity-80"

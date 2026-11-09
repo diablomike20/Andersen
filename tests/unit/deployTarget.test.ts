@@ -18,7 +18,7 @@ describe('isServerlessProxyCapable', () => {
   });
 
   it('is false for the GitHub Pages project-page base path', () => {
-    import.meta.env.BASE_URL = '/WorldScript-Studio/';
+    import.meta.env.BASE_URL = '/Andersen/';
     expect(isServerlessProxyCapable()).toBe(false);
   });
 
