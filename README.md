@@ -199,6 +199,9 @@ A jelenlegi kódbázis főbb technológiái:
 
 A pontos függőségverziókat és az elérhető parancsokat a `package.json` tartalmazza.
 
+<!-- bundle-budget:source-of-truth -->
+Raw bundle-budget ceilings (KB per uncompressed asset): entry **2500 KB**, vendor **6200 KB**, other JavaScript **2500 KB**, and WASM **30000 KB**.
+
 <p align="center">
   <img src="branding/andersen-community.svg" alt="Az Andersen nyílt alkotói közösségét jelképező absztrakt kapcsolati hálózat" width="100%">
 </p>
