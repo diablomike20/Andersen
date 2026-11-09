@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="branding/andersen-hero.svg" alt="Andersen — Ne csak történeteket írj. Teremts világokat." width="100%">
+  <img src="docs/branding/andersen-hero.svg" alt="Andersen — Ne csak történeteket írj. Teremts világokat." width="100%">
 </p>
 
 <p align="center">
@@ -10,27 +10,51 @@
 </p>
 
 <p align="center">
-  <img src="branding/andersen-emblem.svg" alt="Andersen saját nyitott könyv emblémája" width="112">
-</p>
-
-<p align="center">
   <em>Your world. Your story. Your creation.</em>
 </p>
 
 <p align="center">
-  <img src="branding/andersen-writing-oath.svg" alt="Díszes könyvészeti illusztráció nyitott könyvvel, tollal és tintatartóval: minden világ egyetlen mondattal kezdődik" width="100%">
+  <a href="#a-történet-műhelye">Kézirat</a> ·
+  <a href="#építs-fel-egy-saját-univerzumot">Világ</a> ·
+  <a href="#akik-életre-keltik-a-történetet">Karakterek</a> ·
+  <a href="#a-cselekmény-mögötti-szerkezet">Cselekmény</a> ·
+  <a href="#egy-alkotói-tér-egy-teljes-ökoszisztéma">Ökoszisztéma</a> ·
+  <a href="#alkotói-szabadság-tudatos-alapok">Alapelvek</a> ·
+  <a href="#első-lépések">Első lépések</a>
 </p>
 
----
+<p align="center">
+  <img src="docs/branding/andersen-divider.svg" alt="" width="60%">
+</p>
 
-Minden nagy történet egyetlen gondolattal kezdődik. Egy karakterrel. Egy hellyel. Egy lehetetlennel, ami egyszer csak valósággá válik.
+<p align="center">
+  <img src="docs/branding/andersen-quote-ornament.svg" alt="" width="55%">
+</p>
 
-**Az Andersen egy nyílt forráskódú kreatív alkotóműhely íróknak, történetmesélőknek és világépítőknek.** Egyetlen összefüggő munkakörnyezetben kapcsolja össze a kéziratírást, a karakteralkotást, a világépítést, a cselekménytervezést, a kutatást és a szerkesztést – hogy ne a szétszórt eszközökkel, hanem az alkotással foglalkozhass.
+> *Kedves Olvasó,*
+>
+> ez nem egy újabb szövegszerkesztő szeretne lenni. Azoknak épül, akik éjszakákat öltek már egy mondatba, mert az első tíz változat még nem volt elég jó. Akik egy kitalált város utcáit jobban ismerik, mint a sajátjukét. Akiknek a könyvespolc nem bútor, hanem térkép – arról, hogy kik voltak és kik szeretnének lenni.
+>
+> Mi magunk is ilyenek vagyunk. Ezért épül az Andersen úgy, ahogy egy jó könyvet olvasunk: lassan, figyelmesen, és azzal a tisztelettel, amit egy történet megérdemel – akár a tiéd, akár azé, akinek írod.
+>
+> *— az Andersen csapata*
+
+<p align="center">
+  <img src="docs/branding/andersen-divider.svg" alt="" width="60%">
+</p>
+
+<img src="docs/branding/andersen-initial-m.svg" width="64" align="left" style="margin:4px 14px 0 0;">
+
+Minden nagy történet egyetlen gondolattal kezdődik. Egy karakterrel. Egy hellyel. Egy lehetetlennel, ami egyszer csak valósággá válik. Aztán jön az éjszaka, amikor leülsz, és megpróbálod papírra – vagy képernyőre – vetni azt, amit magad előtt látsz.
+
+<br clear="left">
+
+**Az Andersen nem egy funkciólista. Egy műhely** – íróknak, történetmesélőknek és világépítőknek, akik elhiszik, hogy egy jól megépített világ ugyanúgy megérdemli a gondosságot, mint maga a mondat, amit éppen csiszolsz. Egy helyen tartja a kéziratot, a karaktereket, a világot, a cselekményt, a kutatást és a szerkesztést, hogy ne az eszközeiddel kelljen bajlódnod – hanem azzal, amiért tulajdonképpen leültél: a történettel.
 
 **A történet a tiéd. Az irányítás is.**
 
 <p align="center">
-  <img src="branding/andersen-creative-journey.svg" alt="Az Andersen alkotói folyamata az ötlettől a történet megosztásáig" width="100%">
+  <img src="docs/branding/andersen-creative-journey.svg" alt="Az Andersen alkotói folyamata az ötlettől a történet megosztásáig" width="100%">
 </p>
 
 <p align="center">
@@ -38,59 +62,91 @@ Minden nagy történet egyetlen gondolattal kezdődik. Egy karakterrel. Egy hell
 </p>
 
 <p align="center">
-  <img src="branding/andersen-feature-mosaic.svg" alt="Az Andersen hat alkotói eszköztára: kéziratírás, világépítés, karakterek, cselekmény, kutatás és publikálás" width="100%">
+  <img src="docs/branding/andersen-divider.svg" alt="" width="60%">
 </p>
-
-<p align="center"><img src="branding/andersen-ornamental-divider.svg" alt="" width="100%"></p>
 
 ## A történet műhelye
 
 <p align="center">
-  <img src="branding/andersen-manuscript.svg" alt="Prémium grafikai illusztráció az Andersen kéziratíró műhelyéről" width="100%">
+  <img src="docs/branding/andersen-manuscript.svg" alt="Prémium grafikai illusztráció az Andersen kéziratíró műhelyéről" width="100%">
 </p>
 
-A kézirat nem elszigetelt dokumentum. A fejezetek, jelenetek, karakterek, helyszínek és jegyzetek ugyanahhoz a történethez tartoznak. Az Andersen célja, hogy ezek között természetes legyen az átjárás, miközben az alkotói döntés végig nálad marad.
+<img src="docs/branding/andersen-initial-e.svg" width="56" align="left" style="margin:4px 14px 0 0;">
 
-<p align="center"><img src="branding/andersen-ornamental-divider.svg" alt="" width="100%"></p>
+Egy kézirat sosem csak szöveg. Fejezetek, jelenetek, arcok, helyszínek és félig elfelejtett jegyzetek fonódnak össze benne, gyakran úgy, hogy te magad sem veszed észre, melyik mikor került bele. Az Andersen azért épül úgy, hogy ez az összefonódás természetes maradjon – a fejezetek között ugyanúgy lehet lapozni, mint egy valódi könyvben –, miközben minden alkotói döntés végig a te kezedben marad.
+
+<br clear="left">
+
+<p align="center">
+  <img src="docs/branding/andersen-divider.svg" alt="" width="60%">
+</p>
 
 ## Építs fel egy saját univerzumot
 
 <p align="center">
-  <img src="branding/andersen-world-atlas.svg" alt="Fantáziatérkép az Andersen világépítési eszközeinek szemléltetésére" width="100%">
+  <img src="docs/branding/andersen-world-atlas.svg" alt="Fantáziatérkép az Andersen világépítési eszközeinek szemléltetésére" width="100%">
 </p>
 
-A hiteles történet mögött következetes világ áll. Helyszínek, kultúrák, szabályok, történelmi rétegek és apró részletek, amelyek egymással összefüggnek. Az Andersen világépítő eszközei segítenek rendszerezni mindazt, amit az olvasó talán soha nem lát közvetlenül – de amitől a világ élőnek hat.
+<img src="docs/branding/andersen-initial-e.svg" width="56" align="left" style="margin:4px 14px 0 0;">
 
-<p align="center"><img src="branding/andersen-ornamental-divider.svg" alt="" width="100%"></p>
+Egy hiteles világ ritkán a részletek mennyiségéről szól – inkább arról, hogy összeérnek-e. Helyszínek, kultúrák, törvények, régi történelem és apró, szinte észrevehetetlen momentumok, amelyek valahogy mégis mind egymásra mutatnak. Ezekből áll össze az, amit az olvasó talán sosem lát tisztán kimondva, mégis érez: hogy a világ, amiben éppen jár, élő. Az Andersen világépítő eszközei ennek a láthatatlan rendnek adnak otthont.
+
+<br clear="left">
+
+<p align="center">
+  <img src="docs/branding/andersen-divider.svg" alt="" width="60%">
+</p>
 
 ## Akik életre keltik a történetet
 
 <p align="center">
-  <img src="branding/andersen-character-atlas.svg" alt="Karakterek és kapcsolati hálózat grafikai illusztrációja" width="100%">
+  <img src="docs/branding/andersen-character-atlas.svg" alt="Karakterprofilok és kapcsolati hálózat grafikai illusztrációja" width="100%">
 </p>
 
-A szereplők többek egyszerű neveknél. Motivációk, célok, konfliktusok, kapcsolatok és változások formálják őket. Az Andersen karakter- és kapcsolatkezelési területe segít egyben látni a történet emberi – vagy éppen nem emberi – hálózatát.
+<img src="docs/branding/andersen-initial-e.svg" width="56" align="left" style="margin:4px 14px 0 0;">
 
-<p align="center"><img src="branding/andersen-ornamental-divider.svg" alt="" width="100%"></p>
+Egy karakter nem egy név egy listában. Vágyak, sebek, apró ellentmondások és azok a pillanatok formálják, amikor valaki egészen mást választ, mint amit a történet – vagy éppen te magad – várt volna tőle. Az Andersen karakterkezelő tere ezért nem adatlapokban gondolkodik, hanem kapcsolatokban: abban a láthatatlan hálóban, ami egyben tartja a szereplőidet, legyenek emberi vagy éppen egészen nem emberi lények.
+
+<br clear="left">
+
+<p align="center">
+  <img src="docs/branding/andersen-divider.svg" alt="" width="60%">
+</p>
 
 ## A cselekmény mögötti szerkezet
 
 <p align="center">
-  <img src="branding/andersen-story-architecture.svg" alt="Háromfelvonásos történetív és jelenettervezési grafika" width="100%">
+  <img src="docs/branding/andersen-story-architecture.svg" alt="Háromfelvonásos történetív és jelenettervezési grafika" width="100%">
 </p>
 
-A történet ritmusát a fordulópontok, a jelenetek és az egymásra épülő események adják. Tervezd meg a nagy ívet, bontsd részekre a cselekményt, és tartsd szem előtt, hogyan kapcsolódnak össze a részletek.
+<img src="docs/branding/andersen-initial-e.svg" width="56" align="left" style="margin:4px 14px 0 0;">
 
-<p align="center"><img src="branding/andersen-ornamental-divider.svg" alt="" width="100%"></p>
+Egy jó történet ritmusa ritkán a véletlen műve. Fordulópontok, visszatartott információk, és jelenetek, amelyek csendben készítik elő a következő ütést – ezek adják azt a sodrást, amitől az olvasó nem tud letenni egy könyvet. Az Andersen segít megtervezni a nagy ívet, aztán jelenetről jelenetre bontani, hogy sose veszítsd szem elől, hogyan kapcsolódik össze minden egyetlen egésszé.
+
+<br clear="left">
+
+<p align="center">
+  <img src="docs/branding/andersen-divider.svg" alt="" width="60%">
+</p>
 
 ## Egy alkotói tér. Egy teljes ökoszisztéma.
 
 <p align="center">
-  <img src="branding/andersen-ecosystem.svg" alt="Az Andersen teljes alkotói ökoszisztémája" width="100%">
+  <img src="docs/branding/andersen-ecosystem.svg" alt="Az Andersen teljes alkotói ökoszisztémája" width="100%">
 </p>
 
 <p align="center">
-  <img src="branding/andersen-workflow.svg" alt="Az Andersen öt összekapcsolt alkotói területe" width="100%">
+  <img src="docs/branding/andersen-workflow.svg" alt="Az Andersen öt összekapcsolt alkotói területe" width="100%">
+</p>
+
+<img src="docs/branding/andersen-initial-h.svg" width="56" align="left" style="margin:4px 14px 0 0;">
+
+Hét terület, egyetlen közös nyelven – mindegyik a maga helyén, mégis ugyanannak a történetnek a részeként:
+
+<br clear="left">
+
+<p align="center">
+  <img src="docs/branding/andersen-areas-icons.svg" alt="Az Andersen hét alkotói területének ikonsora" width="100%">
 </p>
 
 | Alkotói terület | Mire használhatod? |
@@ -103,55 +159,75 @@ A történet ritmusát a fordulópontok, a jelenetek és az egymásra épülő e
 | **Haladáskövetés** | Alkotói célok és a projekt állapotának követése |
 | **Exportálás és publikálás** | A munka előkészítése a támogatott exportfolyamatokhoz |
 
-Az egyes funkciók elérhetősége platformonként és beállításonként eltérhet. A hálózati szolgáltatások internetkapcsolatot igényelnek.
+*Az egyes funkciók elérhetősége platformonként és beállításonként eltérhet. A hálózati szolgáltatások internetkapcsolatot igényelnek.*
 
-<p align="center"><img src="branding/andersen-ornamental-divider.svg" alt="" width="100%"></p>
+<p align="center">
+  <img src="docs/branding/andersen-divider.svg" alt="" width="60%">
+</p>
 
 ## Alkotói szabadság. Tudatos alapok.
 
 <p align="center">
-  <img src="branding/andersen-principles.svg" alt="Az Andersen négy alapelve: alkotói kontroll, adattulajdonlás, választható MI és nyílt közösség" width="100%">
+  <img src="docs/branding/andersen-principles.svg" alt="Az Andersen négy alapelve: alkotói kontroll, adattulajdonlás, választható MI és nyílt közösség" width="100%">
 </p>
 
-<p align="center">
-  <img src="branding/andersen-creative-control.svg" alt="Az alkotó irányít, a projektadatok és a választható eszközök támogatják a munkát" width="100%">
-</p>
+<img src="docs/branding/andersen-principle-control.svg" width="40" align="left" style="margin:2px 12px 0 0;">
 
 ### Az alkotóé az utolsó szó
 
-A kézirat és a projekt adatai jelentik a munka alapját. Az MI által készített tartalom javaslat, nem pedig olyan tekintély, amely észrevétlenül felülírhatja a szerző munkáját.
+A kézirat a tiéd, és minden adat, ami körülötte születik, szintén. Amit a mesterséges intelligencia hozzátesz, az javaslat – egy ötlet, amit elfogadhatsz, átírhatsz vagy nyugodtan figyelmen kívül hagyhatsz. Sosem tekintély, és sosem írja felül észrevétlenül azt, amit te eldöntöttél a saját történetedről.
+
+<br clear="left">
+
+<img src="docs/branding/andersen-principle-data.svg" width="40" align="left" style="margin:2px 12px 0 0;">
 
 ### Helyi működés, átlátható adatkezelés
 
-Az alapvető projektmunkafolyamatok a helyi adattulajdonlásra épülnek. Bizonyos választható funkciók – például a felhőalapú MI-szolgáltatók, az együttműködési szolgáltatások, a nyelvi ellenőrzők, a modellletöltések és a frissítés-ellenőrzések – hálózati kapcsolatot használnak. Minden integrációt csak a működésének megismerése után engedélyezz.
+A mindennapi munka – az írás, a szerkesztés, a világod építése – alapesetben helyben, a te gépeden történik. Néhány választható funkció, mint a felhőalapú MI-szolgáltatók, az együttműködési szolgáltatások, a nyelvi ellenőrzők vagy a frissítés-ellenőrzések, hálózati kapcsolatot igényel. Ezeket csak akkor kapcsold be, ha pontosan tudod, mit vállalsz velük.
+
+<br clear="left">
+
+<img src="docs/branding/andersen-principle-ai.svg" width="40" align="left" style="margin:2px 12px 0 0;">
 
 ### MI, amikor szeretnéd. Szabadság, mindig.
 
-Az Andersen akkor is használható írói környezet marad, ha nincs beállított API-kulcsod, nem érhető el egyetlen szolgáltató sem, vagy egyszerűen kikapcsolod az MI-funkciókat.
+Az Andersen API-kulcs nélkül, szolgáltató nélkül – sőt, teljesen MI nélkül is – az marad, aminek készült: egy hely, ahol írni lehet. Ha szeretnéd, dolgozhatsz támogatott felhőalapú, helyi vagy böngészőben futó modellekkel is. De a mesterséges intelligencia nálunk sosem főszereplő, legfeljebb egy csendes társ, aki csak akkor szólal meg, ha hívod.
 
-A támogatott szolgáltatókkal, helyi vagy böngészőben futó modellekkel is dolgozhatsz – de az MI nem kötelező főszereplő.
+<br clear="left">
+
+<img src="docs/branding/andersen-principle-opensource.svg" width="40" align="left" style="margin:2px 12px 0 0;">
 
 ### Nyílt fejlesztés, valódi közreműködés
 
-A projekt célja, hogy a működése megismerhető, továbbfejleszthető és a közreműködők számára is hozzáférhető legyen. A pontos dokumentáció, az ellenőrizhető tesztek és a funkciók érettségének őszinte bemutatása fontosabb a hangzatos ígéreteknél.
+Szeretnénk, ha az Andersen működése megismerhető maradna, a kódja továbbgondolható, a közösség hangja pedig valóban számítana. Inkább mutatjuk meg pontosan, hol tart most a projekt – mi kész, mi még kísérleti, mi hiányzik –, mint hogy hangzatos ígéretekkel fedjük el.
 
-<p align="center"><img src="branding/andersen-ornamental-divider.svg" alt="" width="100%"></p>
+<br clear="left">
+
+<p align="center">
+  <img src="docs/branding/andersen-divider.svg" alt="" width="60%">
+</p>
 
 ## A te munkakörnyezeted
 
 <p align="center">
-  <img src="branding/andersen-platforms.svg" alt="Andersen webes, PWA és asztali platformokon, választható MI-vel" width="100%">
+  <img src="docs/branding/andersen-platforms.svg" alt="Andersen webes, PWA és asztali platformokon, választható MI-vel" width="100%">
 </p>
 
-Az Andersen webes környezetben, telepíthető PWA-ként és Tauri-alapú asztali alkalmazásként is fejlesztett projekt. A pontos platformtámogatás és az egyes funkciók elérhetősége kiadásonként eltérhet.
+<img src="docs/branding/andersen-initial-i.svg" width="56" align="left" style="margin:4px 14px 0 0;">
+
+Írhatsz böngészőben, telepítheted PWA-ként a gépedre, vagy használhatod natív asztali alkalmazásként, Tauri alapokon. Bárhol is írsz éppen, a kézirat és a hangod ugyanaz marad. A pontos platformtámogatás és az egyes funkciók elérhetősége kiadásonként eltérhet.
+
+<br clear="left">
 
 <p align="center">
-  <img src="branding/andersen-start-here.svg" alt="Négy lépés az Andersen megismerésétől a fejlesztéshez való csatlakozásig" width="100%">
+  <img src="docs/branding/andersen-divider.svg" alt="" width="60%">
 </p>
 
-<p align="center"><img src="branding/andersen-ornamental-divider.svg" alt="" width="100%"></p>
-
 ## Első lépések
+
+<p align="center">
+  <img src="docs/branding/andersen-getting-started.svg" alt="Három lépés az Andersen elindításához" width="100%">
+</p>
 
 ### Az alkalmazás használata
 
@@ -159,7 +235,7 @@ Ez a repository az Andersen forráskódját és fejlesztési anyagait tartalmazz
 
 ### Futtatás forráskódból
 
-A projekt Node.js-t és pnpm-et használ. A pontos verziókat és parancsokat indulás előtt ellenőrizd a `package.json` fájlban.
+Ha szívesebben néznél be a motorháztető alá, mielőtt bárki más kipróbálná: a projekt Node.js-t és pnpm-et használ. A pontos verziókat és parancsokat indulás előtt ellenőrizd a `package.json` fájlban.
 
 ```bash
 corepack enable
@@ -181,13 +257,29 @@ pnpm run tauri:dev
 
 Egyes natív célplatformokhoz a Tauri platformfüggő fejlesztői eszközei is szükségesek. A fenti parancsok a forráskód futtatásához adnak kiindulópontot; nem garantálják, hogy minden célplatform külön konfiguráció nélkül buildelhető.
 
+<p align="center">
+  <img src="docs/branding/andersen-divider.svg" alt="" width="60%">
+</p>
+
 ## Nyelvek
+
+<p align="center">
+  <img src="docs/branding/andersen-languages.svg" alt="Az Andersen felhasználói felületének nyelvei" width="100%">
+</p>
 
 - Alapértelmezett kezelőfelületi nyelv: **magyar**
 - Az angol és további fordítások is részei a projektnek.
 - A fordítási kulcsok teljessége önmagában nem garantálja a szakmailag és nyelvileg kifogástalan szöveget. Szívesen fogadunk javaslatokat a terminológia, az egységesség és a nyelvi minőség javítására.
 
+<p align="center">
+  <img src="docs/branding/andersen-divider.svg" alt="" width="60%">
+</p>
+
 ## Technológiai háttér
+
+<p align="center">
+  <img src="docs/branding/andersen-techstack.svg" alt="Az Andersen technológiai háttere" width="100%">
+</p>
 
 A jelenlegi kódbázis főbb technológiái:
 
@@ -200,14 +292,16 @@ A jelenlegi kódbázis főbb technológiái:
 A pontos függőségverziókat és az elérhető parancsokat a `package.json` tartalmazza.
 
 <p align="center">
-  <img src="branding/andersen-community.svg" alt="Az Andersen nyílt alkotói közösségét jelképező absztrakt kapcsolati hálózat" width="100%">
+  <img src="docs/branding/andersen-divider.svg" alt="" width="60%">
 </p>
-
-<p align="center"><img src="branding/andersen-ornamental-divider.svg" alt="" width="100%"></p>
 
 ## Közreműködés
 
-Az Andersen nyílt projekt: örömmel fogadjuk az ötleteket, hibajelentéseket és a közösség érdemi hozzájárulását.
+<p align="center">
+  <img src="docs/branding/andersen-contributing.svg" alt="Közreműködés az Andersen projektben" width="100%">
+</p>
+
+Az Andersen nyílt projekt: örömmel fogadjuk az ötleteket, hibajelentéseket és a közösség érdemi hozzájárulását – akárcsak egy jó szerkesztői megjegyzést egy kéziraton.
 
 Pull request beküldése előtt:
 
@@ -220,7 +314,15 @@ Pull request beküldése előtt:
 
 Nagyobb változtatás előtt nyiss egy issue-t, hogy egyeztethessük az irányt.
 
+<p align="center">
+  <img src="docs/branding/andersen-divider.svg" alt="" width="60%">
+</p>
+
 ## Biztonság és adatvédelem
+
+<p align="center">
+  <img src="docs/branding/andersen-security.svg" alt="Biztonság és adatvédelem az Andersenben" width="100%">
+</p>
 
 Biztonsági sérülékenységet ne nyilvános issue-ban jelents. Használd a repository privát sérülékenység-bejelentési lehetőségét, amikor elérhető. Hibajelentésben soha ne szerepeljen valódi API-kulcs, token, személyes adat vagy bizalmas kéziratrészlet.
 
@@ -231,6 +333,10 @@ Az Andersen nem tünteti el a hálózati adatforgalmat: ha felhőszolgáltatót 
 A projekt megtartja a forráskódban szereplő licencet. A teljes feltételeket a [LICENSE](LICENSE) fájl tartalmazza.
 
 ---
+
+<p align="center">
+  <img src="docs/branding/andersen-footer-books.svg" alt="Könyvespolc és gyertya — az Andersen záró illusztrációja" width="100%">
+</p>
 
 <p align="center">
   <strong>ANDERSEN</strong><br>
