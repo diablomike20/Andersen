@@ -1,4 +1,4 @@
-# Andersen – Windows telepítő letöltő
+﻿# Andersen – Windows telepítő letöltő
 # A legfrissebb GitHub-kiadásból letölti a Windows telepítőt, ellenőrzi, majd elindítja.
 # Nem igényel Node.js-t, Pythont vagy Gitet – csak a beépített Windows PowerShellt.
 
@@ -9,6 +9,15 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
+
+# A magyar ékezetes szöveg helyes megjelenítése a konzolon és átirányításkor is.
+try {
+    & chcp.com 65001 | Out-Null
+    [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+    $OutputEncoding = [System.Text.Encoding]::UTF8
+} catch {
+    # Régebbi vagy korlátozott környezetben a kódlapváltás nem kötelező.
+}
 
 $repo = 'diablomike20/Andersen'
 $api = "https://api.github.com/repos/$repo/releases/latest"
