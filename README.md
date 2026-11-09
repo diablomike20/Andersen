@@ -21,6 +21,15 @@
   <img src="https://raw.githubusercontent.com/diablomike20/Andersen/main/branding/andersen-ornamental-divider.svg" alt="" width="100%">
 </p>
 
+## Csak használni szeretnéd az Andersent?
+
+A felhasználói gépen **nem kell Python, Node.js vagy Git**. Futtasd a **`Letoltes.bat`** fájlt:
+az letölti a legfrissebb Windows-telepítőt a GitHub-kiadásokból, ellenőrzi a letöltött
+fájl ellenőrzőösszegét, majd elindítja a telepítőt. Telepítés után az Andersen saját
+ablakban indul, böngésző nélkül.
+
+Az alábbi launcher a fejlesztéshez és a forrásból való futtatáshoz készült.
+
 <div align="center">
 
 ## Minden történet valahol elkezdődik.
@@ -124,6 +133,8 @@ Az első indításkor a launcher az `AndersenLauncher` mellett lévő `Andersen`
 Andersen - Studio/
 ├── Andersen/                 ← az alkalmazás forrása (main branch)
 └── AndersenLauncher/
+    ├── Letoltes.bat          ← a kész Windows-telepítő letöltése (felhasználóknak)
+    ├── Letoltes.ps1          ← a letöltő PowerShell-szkriptje
     ├── inditas.bat           ← indítás látható konzollal (hibakereséshez)
     ├── Inditas.vbs           ← indítás konzolablak nélkül
     ├── andersen_launcher.py  ← a grafikus launcher
@@ -141,6 +152,9 @@ Andersen - Studio/
 </p>
 
 ## Amire szükséged lesz
+
+A **`Letoltes.bat`** használatához csak Windows 10/11 kell – semmi mást nem kell telepíteni.
+A következő táblázat a fejlesztői launcher követelményeit mutatja.
 
 | Összetevő | Követelmény |
 |:--|:--|
@@ -167,7 +181,7 @@ A launcher a `corepack pnpm` parancsot használja, így nem kell globálisan tel
 
 Ez a repository-ág **launcher-only csomag**. Nem az Andersen teljes alkalmazása, nem tartalmazza annak forráskódját, és nem telepíti automatikusan a Node.js-t vagy a Tauri rendszerkövetelményeit.
 
-A launcher a fejlesztői parancsok indítására szolgál. A parancsok kimenete a launcher naplójában követhető; az `inditas.bat` használatakor külön konzolablakban is látható.
+A **`Letoltes.bat`** a kész Windows-telepítőt tölti le és indítja el; a launcher a fejlesztői parancsok indítására szolgál. A parancsok kimenete a launcher naplójában követhető; az `inditas.bat` használatakor külön konzolablakban is látható.
 
 ## Közreműködés
 
