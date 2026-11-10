@@ -3,13 +3,12 @@
 FROM node:22-alpine@sha256:757ec364de4d37cedf30871be2988927660834e656e9aa52aad9ac194814c30c AS builder
 
 # QNBS-v3: pnpm via corepack avoids a separate install layer and respects packageManager field.
-RUN corepack enable && corepack prepare pnpm@11.5.2 --activate
+RUN corepack enable && corepack prepare pnpm@12.13.0 --activate
 
 WORKDIR /app
 
 # Install deps (cache layer — only invalidated when lock file changes)
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-COPY patches/ ./patches/
 COPY packages/ ./packages/
 RUN pnpm install --frozen-lockfile
 

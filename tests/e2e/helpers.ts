@@ -176,11 +176,29 @@ export async function resolveStartupState(page: Page): Promise<StartupState> {
   return 'MAIN_CHROME';
 }
 
-/** Language toggle on the welcome portal (EN must be active for English copy in assertions). */
+/** Switch the welcome portal to English so English copy assertions are deterministic. */
 export async function selectEnglish(page: Page): Promise<void> {
-  const enBtn = page.getByRole('button', { name: /^EN$/i }).first();
-  if (await enBtn.isVisible({ timeout: 3000 }).catch(() => false)) {
-    await enBtn.click();
+  const current = await page
+    .locator('html')
+    .getAttribute('lang')
+    .catch(() => null);
+  if (current === 'en') return;
+  const trigger = page
+    .getByTestId('welcome-portal')
+    .locator('button[aria-haspopup="listbox"]')
+    .first();
+  if (!(await trigger.isVisible({ timeout: 3000 }).catch(() => false))) return;
+  await trigger.click();
+  const english = page.getByRole('option', { name: /English/i }).first();
+  if (await english.isVisible({ timeout: 3000 }).catch(() => false)) {
+    await english.click();
+    await page
+      .waitForFunction(() => document.documentElement.lang === 'en', { timeout: 10000 })
+      .catch(() => {});
+    await page
+      .getByRole('button', { name: /Start a New Project/i })
+      .waitFor({ state: 'visible', timeout: 10000 })
+      .catch(() => {});
   }
 }
 

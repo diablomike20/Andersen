@@ -1,5 +1,10 @@
 import { expect, test } from '@playwright/test';
-import { ensureBlankProject, ensureWelcomePortalEntry, waitForMainChrome } from './helpers';
+import {
+  ensureBlankProject,
+  ensureWelcomePortalEntry,
+  selectEnglish,
+  waitForMainChrome,
+} from './helpers';
 
 const isCI = process.env['CI'] === 'true';
 
@@ -29,8 +34,9 @@ test.describe('WelcomePortal entry precondition (CI-only)', () => {
     page,
   }) => {
     await page.goto('/');
+    await selectEnglish(page);
     await ensureBlankProject(page);
-    // QNBS-v3: waits for the debounced autosave to land so this scenario specifically exercises the full Settings/Factory Reset fallback, which does normalize to English as an implementation detail.
+    // QNBS-v3: waits for the debounced autosave to land so this scenario specifically exercises the full Settings/Factory Reset fallback, which resets the locale as an implementation detail.
     await expect(page.getByText(/All changes saved|Alle Änderungen gespeichert/i)).toBeVisible({
       timeout: 10000,
     });
@@ -39,7 +45,7 @@ test.describe('WelcomePortal entry precondition (CI-only)', () => {
     await waitForMainChrome(page);
     await expect(page.getByRole('button', { name: /Start a New Project/i })).not.toBeVisible();
     await ensureWelcomePortalEntry(page);
-    await expect(page.getByRole('button', { name: /Start a New Project/i })).toBeVisible();
+    await expect(page.getByTestId('welcome-portal')).toBeVisible();
   });
 
   test('reaches the entry point via the recovery flow with a persisted non-English language, on Mobile Chrome and desktop alike', async ({
@@ -47,6 +53,7 @@ test.describe('WelcomePortal entry precondition (CI-only)', () => {
   }) => {
     // QNBS-v3 (cubic): a persisted project reloads straight into the main shell (not the portal), so ensureWelcomePortalEntry below must drive the real Settings -> Factory Reset recovery flow in the applied non-English locale -- on Mobile Chrome (Pixel 5) that flow clicks the [data-tour='nav-more'] mobile "More" button, so this is exactly the scenario that exercises it, not one that skips it.
     await page.goto('/');
+    await selectEnglish(page);
     await ensureBlankProject(page);
     await expect(page.getByText(/All changes saved/i)).toBeVisible({ timeout: 10000 });
     await page.addInitScript(() => localStorage.setItem('worldscript-language', 'es'));
@@ -61,8 +68,9 @@ test.describe('WelcomePortal entry precondition (CI-only)', () => {
   test('reaches the entry point when its own internal reload can race a pending autosave', async ({
     page,
   }) => {
-    // QNBS-v3: deliberately does not wait for "All changes saved" — the helper's own English-normalization reload can race the pending debounced save either way, and it must end in the portal regardless.
+    // QNBS-v3: deliberately does not wait for "All changes saved" — the helper's own locale-resetting reload can race the pending debounced save either way, and it must end in the portal regardless.
     await page.goto('/');
+    await selectEnglish(page);
     await ensureBlankProject(page);
     await ensureWelcomePortalEntry(page);
     await expect(page.getByTestId('welcome-portal')).toBeVisible();
