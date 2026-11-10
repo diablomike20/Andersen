@@ -39,6 +39,7 @@ const bundles: Record<string, Record<string, string>> = {
   zh: EN_BUNDLE, // QNBS-v3: zh bundle uses EN for testing (Beta)
   pt: EN_BUNDLE, // QNBS-v3: pt bundle uses EN for testing (Beta)
   el: EN_BUNDLE, // QNBS-v3: el bundle uses EN for testing (Beta)
+  hu: EN_BUNDLE, // QNBS-v3: the Hungarian-first product defaults to hu; EN content keeps the mechanics assertions locale-neutral.
 };
 
 function makeOkResponse(data: Record<string, string>) {
@@ -63,6 +64,8 @@ function wrapper({ children }: { children: React.ReactNode }) {
 beforeEach(() => {
   vi.clearAllMocks();
   localStorage.clear();
+  // QNBS-v3: the product defaults to Hungarian; pin English so the Intl and bundle assertions stay locale-stable.
+  localStorage.setItem('worldscript-language', 'en');
   vi.stubGlobal('fetch', mockFetch);
 });
 
@@ -70,9 +73,10 @@ beforeEach(() => {
 // Initial language detection
 // ---------------------------------------------------------------------------
 describe('initial language detection', () => {
-  it('defaults to "en" when localStorage has no saved language', async () => {
+  it('defaults to "hu" when localStorage has no saved language', async () => {
+    localStorage.removeItem('worldscript-language');
     const { result } = renderHook(() => useContext(I18nContext), { wrapper });
-    expect(result.current.language).toBe('en');
+    expect(result.current.language).toBe('hu');
   });
 
   it('restores language from localStorage', async () => {
@@ -81,10 +85,10 @@ describe('initial language detection', () => {
     expect(result.current.language).toBe('de');
   });
 
-  it('ignores invalid values in localStorage and falls back to "en"', async () => {
+  it('ignores invalid values in localStorage and falls back to "hu"', async () => {
     localStorage.setItem('worldscript-language', 'xx');
     const { result } = renderHook(() => useContext(I18nContext), { wrapper });
-    expect(result.current.language).toBe('en');
+    expect(result.current.language).toBe('hu');
   });
 });
 

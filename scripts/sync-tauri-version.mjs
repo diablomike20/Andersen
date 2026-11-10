@@ -47,7 +47,8 @@ syncFile(cargoPath, /^version = "[^"]+"/m, `version = "${version}"`);
 syncFile(tauriConfPath, /"version":\s*"[^"]+"/, `"version": "${version}"`);
 
 // --- Cargo.lock (the workspace package's own locked entry, not registry deps) ---
-syncFile(cargoLockPath, /(name = "worldscript-studio"\nversion = )"[^"]+"/, `$1"${version}"`);
+// QNBS-v3: Windows checkouts may keep CRLF in Cargo.lock; match both endings so the locked version cannot drift from Cargo.toml.
+syncFile(cargoLockPath, /(name = "worldscript-studio"\r?\nversion = )"[^"]+"/, `$1"${version}"`);
 
 // --- AGENTS.md ---
 syncFile(agentsPath, /(\*\*Version:\*\* `)[^`]+(`)/, `$1${version}$2`);

@@ -1,0 +1,196 @@
+# Andersen - Agent Rules
+
+> **Provenance:** Imported from the upstream WorldScript Studio repository's agent rules. Historical references describe the upstream project; the current product and repository identity is **Andersen** (`https://github.com/diablomike20/Andersen`).
+
+
+`AGENTS.md` is the compact repository-wide operational source for coding agents. Keep
+non-obvious safety and workflow rules here; load the linked documents only when the task
+needs their detail. Dynamic facts belong in `package.json`, `.nvmrc`, scripts, or source.
+
+## Local execution on constrained hardware
+
+- Execute shell work sequentially: one Bash/tool shell call per turn; never start parallel
+  heavy processes or background Vitest, Biome, tsgo, Vite, Cargo, Storybook, or build jobs.
+- Use Node and pnpm declared by `package.json`/`.nvmrc`; pnpm only. Never use npm or yarn for
+  repository dependency operations.
+- Before every push, run `pnpm run ci:prepush`. On a new worktree or after dependency/lock
+  changes, use `node scripts/dependency-state.mjs reconcile` (or `pnpm run deps:reconcile`),
+  never a bare install. If `node_modules` is missing or pnpm's `verifyDepsBeforeRun` blocks
+  the `pnpm run` launcher, use the direct Node reconcile entrypoint; the pnpm command is only
+  the convenience wrapper when pnpm can already launch scripts. Never disable
+  `verifyDepsBeforeRun`, weaken `allowBuilds`, or use a bare install as a bypass.
+- Local default is the quick gate plus a focused test for every non-trivial behavior change;
+  add or update the narrowest relevant test rather than silently shipping unverified behavior.
+  Never run `pnpm test`, an untargeted Vitest wrapper, full
+  coverage, Playwright E2E, Stryker, Lighthouse, or Storybook test-runner locally; cloud CI is
+  authoritative for those heavy checks.
+- The authoritative repository typecheck is `pnpm run typecheck`; a lighter helper is not an
+  equivalent gate. Do not launch multiple heavyweight checks concurrently.
+
+## Preserve-first safety and security
+
+- Unknown, malformed, incompatible, or unsupported data is preserved and refused: never
+  delete, quarantine, silently normalize, or grant write authority when safety is unproven.
+- Treat readable and writable as separate capabilities. Storage, autosave, snapshots,
+  backups, auxiliary project files, and migration paths must honor the current authority
+  boundary and serialization contract.
+- Never commit or expose secrets. Never log keys, IVs, decrypted material, or full manuscript
+  payloads; use `services/logger.ts` with sanitized context.
+- Never store credentials, manuscript content, or other sensitive payloads in plaintext
+  `localStorage`; use the approved encrypted/storage boundary instead.
+- Do not weaken encryption, CSP, storage boundaries, or privacy gates. AI responses are not
+  cached by the service worker; delete only caches proven to be WorldScript-owned under the
+  canonical naming scheme.
+- Never execute AI, provider, user, or community content as code (`eval`, `new Function`, or
+  dynamic script injection); preserve the CSP `unsafe-eval` boundary and read the relevant ADR.
+- Community content remains schema-validated and guarded by `pnpm run content:guard`; new
+  network endpoints require the canonical CSP source and runtime privacy gate.
+
+## Codebase traps worth loading early
+
+- `exactOptionalPropertyTypes` is enabled: omit optional properties rather than assigning
+  `undefined` unless the type explicitly permits it. Avoid `any` and honor strict checks.
+- When adding a nested settings object, update default merging in both
+  `services/storage/idbProjectStore.ts#normalizePersistedSettings` and
+  `features/settings/settingsSlice.ts#setSettings` so persisted and Redux hydration agree.
+- User-visible copy uses the i18n system. Add keys to canonical `locales/*` sources and run
+  the repository i18n generator/check; do not hardcode UI strings or stale locale counts.
+- Do not use Tailwind `dark:` classes. Themes are body-class and semantic CSS-token driven.
+- First-party TS/TSX must not import `@tauri-apps/*` directly. Route desktop capabilities through
+  `desktopPlatform` / `@domain/desktop-contracts`; the approved boundary and exceptions are
+  defined by `scripts/check-tauri-import-boundary.mjs`. `components/ui/**` remains platform-neutral.
+- New feature flags need the repository’s relevant E2E coverage, but heavy E2E execution is
+  CI-only on this machine. Do not invent scattered `if (true)` feature gates.
+- For non-trivial TypeScript/TSX/CSS changes, add one short physical-line `QNBS-v3:` rationale
+  comment only when the reason is genuinely non-obvious (security, persistence, concurrency,
+  native boundary, or compatibility). A test being new, substantive, regression-critical,
+  security-sensitive, or persistence-sensitive does not by itself require a QNBS-v3 comment. In
+  test/fixture files, add one only when a non-obvious harness, setup, fixture, order, timing, mock,
+  suppression, or compatibility choice needs rationale beyond what the test name, inputs, and
+  assertions already explain. Straightforward regression cases whose names, fixtures, and
+  assertions state the invariant require no QNBS-v3 comment. No QNBS comment is needed for
+  obvious tests, fixtures, generated files, locale JSON, or mechanical renames. Config JSON/YAML
+  has no inline comment.
+  `pnpm run qnbs-comments:check` (staged/diff-aware; wired into pre-commit and `ci:prepush`)
+  mechanically enforces the one-physical-line part of this rule — see `docs/CI.md` for the full
+  risk-routed local admission matrix.
+- Do not mutate `ref.current` during render; use an effect. Prefer `user-event` for modeled
+  interactions and descriptive names such as `anchor` for download elements.
+
+## Native and storage direction
+
+React/PWA remains the first-class web product. Tauri 2 is transitional; the authoritative
+native direction is Rust Core plus Qt 6/Qt Quick. GPUI remains separately gated and CEF is not
+a future target. Before native work, read `docs/native/CORE-MIGRATION-LEDGER.md` and the
+binding roadmap/ADR; do not copy roadmap prose into agent context.
+
+For persistence, AI, filesystem, or encryption work, inspect the relevant source and the
+path-scoped Cursor/nested Claude rule first. Deep references include `docs/CI.md`,
+`docs/BEST-PRACTICES.md`, `docs/IDB-ENCRYPTION.md`, and the native ledger.
+
+Vendor-fork edits under `packages/collab-transport` follow `VENDOR-FORKS.md` and
+`pnpm run verify:vendor`; do not recreate the removed upstream patch or a parallel fork.
+
+## PR, review, signing, and merge work
+
+When a task enters commit/push/PR/CI/review/merge work, read and follow
+`docs/PR-CI-MERGE-WORKFLOW.md`; do not load that procedure for an unrelated tiny edit.
+
+- Use a feature branch and conventional commits. Never commit directly to `main`.
+- Open every pull request as ready for review; do not use draft PRs. If a PR number is
+  needed for its changelog entry, open it once implementation is ready and add the
+  reference promptly so review and CI start immediately.
+- PR budget is cumulative base→prospective head/index: absolute normal ceiling is ≤30 changed files / ≤3000 meaningful lines / ≤15 commits; at 30 files do not add a file, at 15 commits do not create another commit, and never push merely to discover the budget.
+- Resolve the real PR base and run `pnpm run pr:budget -- --base <ref>` before the first commit and before every corrective commit/push; use `--prospective` for staged changes. If no live PR base exists yet, provide the reviewed base as `PR_BUDGET_BASE=<ref>` for both admission and push. Treat remaining headroom as a design constraint, never delete meaningful safety proof to reclaim a slot, and use a bounded split/successor when a valid fix cannot fit.
+- Do not add Claude/Anthropic attribution, generated-by footers, or session URLs to commit
+  messages, tags, PR titles/bodies, or maintainer-authored review comments. Repository history
+  records the code change, not the agent session. Never add `Co-Authored-By` for Claude or a
+  `Claude-Session` trailer, including the `GitHub Copilot (Claude ...)` co-author form.
+  `scripts/check-commit-attribution.mjs` mechanically enforces this for commit messages, tags,
+  and PR titles/bodies (commit-msg hook, pre-push, and CI); review comments and replies have no
+  automated check and stay a manual policy — never append these footers there.
+- Before new history, run `pnpm run signing:doctor` and install hooks with
+  `pnpm run hooks:install`. Commits and tags must be normally signed and Git-verified; never
+  use `--no-gpg-sign`, `--no-verify`, unsigned temporary history, or force-push ordinary PR
+  history. Use `--force-with-lease` only where the canonical PR recovery procedure explicitly
+  requires it after a controlled rebase.
+- Inspect all three review channels: paginated inline threads, top-level issue comments, and
+  full review bodies. Validate each finding against current code; fix real correctness,
+  security, persistence, or data-integrity issues, or reply with evidence. Resolve inline
+  threads and leave no actionable finding. Never add a suppression to silence review.
+- Keep PRs comfortably below the repository’s absolute governance tier. Do not self-authorize
+  exceptions, weaken the checker, bypass protection, or use an admin merge.
+- GREEN PR CI IS NECESSARY BUT NOT SUFFICIENT for context-sensitive gates. When a required gate
+  changes behavior across feature, pull-request, merge-ref, detached-HEAD, or main context, prove
+  the current-base + PR resulting merge/main semantics before merge and make that proof part of
+  a required status check; do not infer resulting-main safety from PR-head green alone. The
+  trusted base-ref workflow-policy checker must retain that proof and the evaluator must run from
+  trusted base code after the introducing bootstrap; a PR must not certify its own admission logic.
+- After a merge, wait for exact resulting-main CI and CodeQL success, then follow
+  `docs/VERCEL-PREVIEW-RETENTION-POLICY.md`. Ordinary mode runs the full dry-run
+  reconciliation before dependent mutation. An explicitly declared bounded
+  dependency/toolchain maintenance train may defer only Preview housekeeping
+  under that policy. The introducing transition may make the pull request that
+  first admits the exception the train's first merge when its record is complete
+  before merge. A later pull request cannot reuse that transition. A failed
+  resulting-main gate aborts the train into ordinary reconciliation. Production
+  correctness gates stay mandatory after every train merge, and one full
+  reconciliation is required before non-train mutation resumes. Use a dry-run
+  manifest, protect Production/main, rollback history,
+  active-PR previews, and uncertain metadata; redact provider secrets and
+  creator emails. Do not use project-wide Vercel removal. A separately
+  declared release-batched Preview retention mode in that policy may defer the
+  same Preview housekeeping until the next sanctioned `v*` release
+  reconciliation. Its destructive writer is Codex CLI in the local VS Code/Ubuntu
+  environment. Cursor Cloud does not delete Vercel deployments, publish a
+  release, or receive release secrets. Per-merge exact-main `CI Success`, CodeQL,
+  Production READY, canonical HTTP, and alias/promotion/rollback checks stay
+  mandatory. Whole push-triggered `CI / CD` success remains required in normal
+  mode. The signed, reviewed GH #1176 incident mode is the sole bounded exception
+  for its listed dependency successors; it must report a cancelled Pages job and
+  the truthful overall workflow result, and it defers all Vercel retention.
+  Gate 7 and the production storage-authority switch stay maintainer-gated.
+  The introducing transition is one-time; a later pull request cannot reuse
+  that transition. Reaching 14 days or 24 non-protected Preview deployments,
+  or provider resource pressure, requires one exceptional Codex CLI pass and
+  stops dependent repository mutation until that pass is recorded. That pass
+  does not restore per-merge destructive cleanup. Until that mode is on `main`,
+  ordinary mode still requires
+  the full reconciliation. As of 2026-10-13 that release-batched mode is
+  superseded and ordinary per-merge reconciliation is active. As of 2026-11-06,
+  its operator eligibility, recorded in GH #627, permits one maintainer-designated
+  local Claude Code CLI or Codex CLI at a time. Cursor Cloud may write source and
+  PRs under ordinary repository rules, but destructive retention remains
+  `NOT_ADMITTED` until the separate maintainer-approved capability gate in GH
+  #1174 is complete. That gate requires Cursor-managed least-privilege Vercel
+  access and a clean, source-equal Node 22 runner; local Vercel tokens or state
+  must never be copied into Cursor. Until admission, hand off per-merge retention
+  to a qualified local operator and record the exclusive lease transfer. This
+  updates operator eligibility only: full reconciliation, SAFE-only deletion,
+  Production/rollback protection, all gates, and release restrictions remain in
+  force. See the policy's dated operator-eligibility section. During GH #1176
+  incident mode, no Vercel deployment or alias deletion is permitted; expiry,
+  any additional failed job, or a changed Pages failure signature stops the
+  dependency lane until normal full reconciliation is available.
+
+## Cursor Cloud Agent
+
+Cloud Agents run on Linux VMs with Cursor-managed signing and GitHub integration. `gh` API auth
+may fail while Git push/PR operations still work — diagnose both separately. Open every PR as
+**Ready for Review**; do not use Draft PRs, including when the PR number is needed for the
+changelog or governance. Complete that reference in the ready PR so CodeRabbit and CI can run
+immediately (see `config/reviewer-registry.json`). After merge, prove **resulting-main** CI/CodeQL/Vercel Production
+on the squash commit SHA, not the PR head. Operational detail: `docs/CURSOR-CLOUD-AGENT.md`;
+session snapshot: `pnpm run cursor:cloud-doctor`.
+
+## On-demand references
+
+- Product and setup overview: `README.md` and `CONTRIBUTING.md`.
+- CI and workflow mechanics: `docs/CI.md` and `docs/PR-CI-MERGE-WORKFLOW.md`.
+- Cursor Cloud Agent execution: `docs/CURSOR-CLOUD-AGENT.md`.
+- Native architecture: `docs/native/CORE-MIGRATION-LEDGER.md` and `docs/adr/0021-qt-gpui-native-desktop-strategy.md`.
+- i18n: `scripts/build-i18n.mjs`, `scripts/check-i18n-keys.mjs`, and `.cursor/rules/150-i18n-and-content.mdc`.
+- Architecture/dependency investigation: `docs/graphify.md` and `docs/codegraph.md`; use tools on demand.
+- Specialist path knowledge lives in `.cursor/rules/*.mdc` and nested `CLAUDE.md` files; for
+  cross-directory callers, follow the explicit guide mappings in the root `CLAUDE.md`; do not
+  duplicate specialist content here.

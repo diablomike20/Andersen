@@ -36,6 +36,7 @@ vi.mock('../../../services/ai/localBackendPresets', () => ({
     ollama_default: 'http://localhost:11434',
     lm_studio: 'http://localhost:1234',
     vllm: 'http://localhost:8000',
+    unsloth: 'http://localhost:8888',
     custom: 'http://localhost:11434',
   },
 }));
@@ -292,6 +293,30 @@ describe('AiProviderCard — ollama provider (#266)', () => {
     expect(screen.getByText('http://127.0.0.1:1234/v1')).toBeTruthy();
     expect(screen.getByText('settings.ai.localDiagnostic.tauriHttp')).toBeTruthy();
     expect(screen.getByText('local-model')).toBeTruthy();
+  });
+
+  it('desktop: shows the Unsloth key field and saves it to the unsloth slot', async () => {
+    setDesktopRuntime(true);
+    const user = userEvent.setup();
+    render(
+      <AiProviderCard
+        advancedAi={{
+          ...ollamaAdvancedAi,
+          ollamaBaseUrl: 'http://localhost:8888',
+          localBackendPreset: 'unsloth',
+        }}
+        onAdvancedAiPatch={mockOnAdvancedAiPatch}
+        onProviderChange={mockOnProviderChange}
+      />,
+    );
+
+    await waitFor(() => expect(storageService.getApiKey).toHaveBeenCalledWith('unsloth'));
+    await user.type(screen.getByLabelText('settings.ai.unslothKey'), 'sk-unsloth-abc');
+    await user.click(screen.getByRole('button', { name: 'settings.ai.save' }));
+
+    await waitFor(() =>
+      expect(storageService.saveApiKey).toHaveBeenCalledWith('unsloth', 'sk-unsloth-abc'),
+    );
   });
 
   // QNBS-v3: verify the browser opt-in displays metadata from its separate browser-fetch path.

@@ -500,8 +500,8 @@ export interface WritingGoal {
   enabled?: boolean;
 }
 
-/** Lokales OpenAI-kompatibles Backend — Preset setzt nur Default-URL (LM Studio, vLLM, …). */
-export type LocalBackendPreset = 'ollama_default' | 'lm_studio' | 'vllm' | 'custom';
+/** Lokales OpenAI-kompatibles Backend — Preset setzt nur Default-URL (LM Studio, vLLM, Unsloth, …). */
+export type LocalBackendPreset = 'ollama_default' | 'lm_studio' | 'vllm' | 'unsloth' | 'custom';
 
 export interface AdvancedAiSettings {
   model: AiModel;

@@ -17,8 +17,10 @@ export interface AIRequestOptions {
   /** Scopes service-level duplicate cancellation to the owning project incarnation when known. */
   deduplicationScope?: string;
   ollamaBaseUrl?: string;
-  /** Selects the local-server protocol; LM Studio and vLLM expose OpenAI-compatible `/v1` APIs. */
+  /** Selects the local-server protocol; LM Studio, vLLM and Unsloth expose OpenAI-compatible `/v1` APIs. */
   localBackendPreset?: LocalBackendPreset;
+  /** Resolved at request time for key-protected local servers (Unsloth); never persisted in settings. */
+  localApiKey?: string;
   // QNBS-v3 (ADR-0017): opt-in — attempt a direct browser→Ollama fetch instead of requiring
   // desktop. Only meaningful when provider is 'ollama' and isTauriRuntime() is false.
   browserOllamaEnabled?: boolean;

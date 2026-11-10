@@ -80,8 +80,10 @@ describe('i18n locale registry (SSOT)', () => {
   });
 
   it('production locales ship translated help (helpFallback false); others fall back', () => {
+    // QNBS-v3: Hungarian is the product's first language, so its help.json is fully translated even though the locale is still beta.
+    const translatedHelpBetas = new Set(['hu']);
     for (const l of LOCALES) {
-      if (l.status === 'production') {
+      if (l.status === 'production' || translatedHelpBetas.has(l.code)) {
         expect(l.helpFallback, l.code).toBe(false);
       } else {
         expect(l.helpFallback, l.code).toBe(true);

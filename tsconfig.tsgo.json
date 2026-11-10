@@ -36,5 +36,5 @@
     }
   },
   "include": ["."],
-  "exclude": ["node_modules", "dist", ".storybook", ".mcp", "storybook-static"]
+  "exclude": ["node_modules", "dist", ".storybook", ".mcp", "storybook-static", "src-tauri/target"]
 }

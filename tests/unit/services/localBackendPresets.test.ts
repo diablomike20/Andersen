@@ -19,11 +19,15 @@ describe('LOCAL_BACKEND_PRESET_DEFAULT_URL', () => {
     expect(LOCAL_BACKEND_PRESET_DEFAULT_URL.vllm).toBe('http://localhost:8000');
   });
 
+  it('unsloth is localhost:8888', () => {
+    expect(LOCAL_BACKEND_PRESET_DEFAULT_URL.unsloth).toBe('http://localhost:8888');
+  });
+
   it('custom defaults to localhost:11434', () => {
     expect(LOCAL_BACKEND_PRESET_DEFAULT_URL.custom).toBe('http://localhost:11434');
   });
 
-  it('has exactly 4 presets', () => {
-    expect(Object.keys(LOCAL_BACKEND_PRESET_DEFAULT_URL)).toHaveLength(4);
+  it('has exactly 5 presets', () => {
+    expect(Object.keys(LOCAL_BACKEND_PRESET_DEFAULT_URL)).toHaveLength(5);
   });
 });

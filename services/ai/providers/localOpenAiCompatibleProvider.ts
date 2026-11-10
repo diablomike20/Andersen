@@ -8,7 +8,7 @@ import { normalizeOllamaModelId, normalizeOpenAiCompatibleBaseUrl } from '../mod
 export function isOpenAiCompatibleLocalPreset(
   preset: AIRequestOptions['localBackendPreset'],
 ): boolean {
-  return preset === 'lm_studio' || preset === 'vllm' || preset === 'custom';
+  return preset === 'lm_studio' || preset === 'vllm' || preset === 'unsloth' || preset === 'custom';
 }
 
 function localOpenAiErrorSuffix(bodyText: string): string {
@@ -120,7 +120,13 @@ export async function streamOpenAiCompatibleLocal(
     : [{ role: 'user', content: sanitizePromptValue(prompt) }];
   const response = await localServerFetch(`${endpoint}/chat/completions`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      // QNBS-v3: Unsloth Studio authenticates its OpenAI-compatible server; other local presets omit this.
+      ...(opts.localApiKey?.trim()
+        ? { Authorization: `Bearer ${opts.localApiKey.trim()}` }
+        : {}),
+    },
     body: JSON.stringify({
       model: normalizeOllamaModelId(opts.model),
       stream: true,

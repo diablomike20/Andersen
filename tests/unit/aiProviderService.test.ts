@@ -1363,6 +1363,35 @@ describe('testAIConnection — ollama desktop branch', () => {
     );
   });
 
+  it('uses the Unsloth preset with its stored bearer key for the models check', async () => {
+    (window as { __TAURI_INTERNALS__?: unknown }).__TAURI_INTERNALS__ = {};
+    vi.mocked(storageService.getApiKey).mockResolvedValueOnce('sk-unsloth-test');
+    mockPluginHttpFetch.mockResolvedValueOnce(
+      new Response(JSON.stringify({ data: [{ id: 'unsloth-model' }] }), { status: 200 }),
+    );
+
+    const result = await testAIConnection('ollama', {
+      ollamaBaseUrl: 'http://127.0.0.1:8888/',
+      localBackendPreset: 'unsloth',
+    });
+
+    expect(result).toMatchObject({
+      ok: true,
+      localServer: {
+        normalizedEndpoint: 'http://127.0.0.1:8888/v1',
+        transport: 'tauri-http',
+        modelNames: ['unsloth-model'],
+      },
+    });
+    expect(storageService.getApiKey).toHaveBeenCalledWith('unsloth');
+    expect(mockPluginHttpFetch).toHaveBeenCalledWith(
+      'http://127.0.0.1:8888/v1/models',
+      expect.objectContaining({
+        headers: { Authorization: 'Bearer sk-unsloth-test' },
+      }),
+    );
+  });
+
   it('returns invalidResponse when the models payload has a non-array data field', async () => {
     (window as { __TAURI_INTERNALS__?: unknown }).__TAURI_INTERNALS__ = {};
     mockPluginHttpFetch.mockResolvedValueOnce(
@@ -1590,6 +1619,36 @@ describe('streamText — LM Studio/vLLM/custom OpenAI-compatible local streaming
     expect(mockPluginHttpFetch).toHaveBeenCalledWith(
       'http://localhost:8000/v1/chat/completions',
       expect.objectContaining({ method: 'POST' }),
+    );
+  });
+
+  it('sends the stored Unsloth key as a bearer token on streaming requests', async () => {
+    (window as { __TAURI_INTERNALS__?: unknown }).__TAURI_INTERNALS__ = {};
+    vi.mocked(storageService.getApiKey).mockResolvedValueOnce('sk-unsloth-test');
+    mockPluginHttpFetch.mockResolvedValueOnce(
+      new Response('data: {"choices":[{"delta":{"content":"hi"}}]}\n', { status: 200 }),
+    );
+    const chunks: string[] = [];
+
+    await streamText(
+      'prompt',
+      'Balanced',
+      {
+        provider: 'ollama',
+        model: 'ollama/unsloth-model',
+        ollamaBaseUrl: 'http://localhost:8888',
+        localBackendPreset: 'unsloth',
+      },
+      { onChunk: (chunk) => chunks.push(chunk) },
+    );
+
+    expect(chunks).toEqual(['hi']);
+    expect(storageService.getApiKey).toHaveBeenCalledWith('unsloth');
+    expect(mockPluginHttpFetch).toHaveBeenCalledWith(
+      'http://localhost:8888/v1/chat/completions',
+      expect.objectContaining({
+        headers: expect.objectContaining({ Authorization: 'Bearer sk-unsloth-test' }),
+      }),
     );
   });
 
@@ -2415,7 +2474,7 @@ describe('scanLocalOpenAiCompatibleEndpoints', () => {
   it('returns ok:false for all candidates when fetch throws', async () => {
     vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('ECONNREFUSED')));
     const results = await scanLocalOpenAiCompatibleEndpoints();
-    expect(results).toHaveLength(3);
+    expect(results).toHaveLength(4);
     for (const r of results) {
       expect(r.ok).toBe(false);
     }
@@ -2498,7 +2557,7 @@ describe('scanLocalOpenAiCompatibleEndpoints', () => {
     expect(String(ollamaCalls[1]?.[0])).toContain('/v1/models');
   });
 
-  it('does not attempt a second request for LM Studio/vLLM (only Ollama has a native fallback)', async () => {
+  it('does not attempt a second request for LM Studio/vLLM/Unsloth (only Ollama has a native fallback)', async () => {
     const fetchMock = vi
       .fn()
       .mockResolvedValue(new Response(JSON.stringify({ data: [] }), { status: 200 }));
@@ -2506,8 +2565,11 @@ describe('scanLocalOpenAiCompatibleEndpoints', () => {
     await scanLocalOpenAiCompatibleEndpoints();
     const lmStudioCalls = fetchMock.mock.calls.filter(([url]) => String(url).includes('1234'));
     const vllmCalls = fetchMock.mock.calls.filter(([url]) => String(url).includes('8000'));
+    const unslothCalls = fetchMock.mock.calls.filter(([url]) => String(url).includes('8888'));
     expect(lmStudioCalls).toHaveLength(1);
     expect(vllmCalls).toHaveLength(1);
+    expect(unslothCalls).toHaveLength(1);
+    expect(String(unslothCalls[0]?.[0])).toContain('/v1/models');
   });
 });
 

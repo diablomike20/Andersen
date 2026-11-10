@@ -15,6 +15,8 @@ export const LOCAL_BACKEND_PRESET_DEFAULT_URL: Record<LocalBackendPreset, string
   ollama_default: 'http://localhost:11434',
   lm_studio: 'http://localhost:1234',
   vllm: 'http://localhost:8000',
+  // QNBS-v3: Unsloth Studio's OpenAI-compatible llama-server listens on 8888 by default.
+  unsloth: 'http://localhost:8888',
   custom: 'http://localhost:11434',
 };
 

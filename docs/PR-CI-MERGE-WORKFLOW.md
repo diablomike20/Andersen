@@ -1,0 +1,255 @@
+# PR, CI & Merge Workflow
+
+> **Provenance:** Imported from the upstream WorldScript Studio repository documentation. Historical PR and issue links point to the upstream repository where those records live; the current product and repository identity is **Andersen** (`https://github.com/diablomike20/Andersen`).
+
+
+Full pre-push gate mechanics, worktree bootstrap, CI pipeline order, the PR review-comment correction loop (bot roster, three-channel comment check, quiescence loop), and known GitHub merge-gate quirks with recovery steps. The short list of non-negotiable rules distilled from this doc lives in the root `AGENTS.md`.
+
+**Context-sensitive merge invariant:** GREEN PR CI IS NECESSARY BUT NOT SUFFICIENT. A required gate
+whose result changes between a feature branch, pull-request event, synthetic merge ref, detached
+checkout, and `main` must have a deterministic current-base + PR resulting-merge/main-semantics
+proof before merge. That proof must be part of a required status check; a green PR head or
+branch-local pre-push result alone is never evidence that the resulting main will pass.
+
+The main-context admission proof is itself base-governed. It runs as a step of the required
+`pr-changelog-reference.yml` guard job (`Require this PR's own number in CHANGELOG.md [Unreleased]
+before merge`), which triggers on `opened`, `edited`, `synchronize`, and `reopened`. A title edit,
+which changes the prospective squash subject, therefore re-runs the proof, while body-only edits
+never start or cancel the heavyweight `ci.yml` pipeline (`ci.yml` must not trigger on `edited`).
+The trusted base-ref workflow-policy checker must retain that step with its exact job name, and the
+step executes the base ref's evaluator plus its local script dependencies against the current PR
+merge workspace. Only the introducing transition, where the base has no evaluator yet, may execute
+the PR copy; once the transition is merged, an ordinary PR cannot remove or replace the proof and
+still satisfy the structural gate. The step runs directly after the SHA-pinned checkout and a
+literal Node 22 `setup-node`, before any PR-controlled `run` step could write `$GITHUB_ENV` or
+`$GITHUB_PATH`. The policy also rejects job or step `if`/`continue-on-error`, job `env`, and
+workflow-level `env`/`defaults`/`concurrency` for that guard.
+The admission task runs directly in the workflow rather than through a cached Turbo task because
+its result depends on the PR number, base/head SHAs, merge ref, event payload, and Git history.
+
+The evaluator rebuilds the resulting first-parent `main` history for both default GitHub landings:
+the squash commit (GitHub's `COMMIT_OR_PR_TITLE` subject plus ` (#N)`) and the default
+`Merge pull request #N from …` merge commit. It then runs `scanMainContextTruth`, the exact rule
+`docs:check` enforces on `main`. One `PR #N` entry therefore covers a PR's internal review commits
+under either landing. A merge title edited by hand at merge time and rebase landings cannot be
+predicted before merge and stay outside this proof; use the protected squash auto-merge path.
+
+**Mandatory pre-push gate:** Run `pnpm run ci:prepush` before every push and again after every local correction before re-pushing. It includes the lightweight cumulative PR-budget preflight when a trustworthy base is available; an unresolved base is reported explicitly and requires `pnpm run pr:budget -- --base <ref>`. It always resolves a change-aware classification (`scripts/ci-prepush-classifier.mjs`) from the outgoing evidence first, then runs docs/release-truth, CSP, desktop-import-boundary, native-readiness, Tauri plugin version-parity, and dependency-state checks unconditionally — it does **not** run Biome lint; that stays the pre-commit hook's job on staged files only (`lint-staged`), and full-repository lint is CI-owned. The single-checker (`--checkers 1`) local typecheck and the i18n/content-guard checks run only when the classification requires them — `DOCS_ONLY`, `WORKFLOW_ONLY`, `NON_CODE_ONLY`, `RUST_TAURI`, `TOOLING`, and non-TypeScript `TEST_ONLY` changes report typecheck as `DEFERRED_TO_REQUIRED_CI` instead of running it locally, and i18n/content-guard checks run only for changes matching their own governed paths or implementation files (see `scripts/ci-prepush-check-registry.mjs`). It is the same `tsgo --noEmit` check as CI, not literally identical to it — CI uses `--checkers 4`. Whenever outgoing path evidence is incomplete, unresolved, or the manual committed-range diff fails, the gate fails closed into full local admission (every conditional check runs) rather than deferring anything. A targeted test or changed-file lint run alone is insufficient. If pnpm reports a dependency verification failure after a branch or lockfile change, run `node scripts/dependency-state.mjs reconcile` (or `pnpm run deps:reconcile`) first, then rerun the gate. The pre-commit hook does not replace this gate. Required GitHub CI remains the unconditional authority for the complete lint, TypeScript, and i18n validation regardless of what the local gate deferred.
+
+**New-worktree / first-time dependency bootstrap — never a bare `pnpm install`:** When materializing `node_modules` for the first time on a new git worktree (or any branch checkout that hasn't been installed yet), always run `node scripts/dependency-state.mjs reconcile` (or `pnpm run deps:reconcile`) — never a bare `pnpm install`. If `node_modules` is missing or pnpm's `verifyDepsBeforeRun` blocks the convenience wrapper, use the direct Node reconcile entrypoint. Never disable `verifyDepsBeforeRun` or weaken the `allowBuilds` allow-list. The bare form omits `--frozen-lockfile`, so on any manifest/lockfile drift it silently *rewrites* `pnpm-lock.yaml` instead of failing loudly, and it never writes the repo's own dependency fingerprint (`node_modules/.worldscript-deps-fingerprint`) — that fingerprint is checked only by `pnpm run deps:verify`, `ci:prepush`, and the pre-commit hook, not by arbitrary `pnpm run <script>` calls, so a stale one from a bare install can go undetected until one of those three actually runs. Separately, pnpm's own built-in `verifyDepsBeforeRun` check (unrelated to this repo's fingerprint file; it compares `node_modules` against the lockfile) can independently surface a broader `node_modules`/lockfile mismatch on other `pnpm run` calls as `ERR_PNPM_VERIFY_DEPS_BEFORE_RUN`. This matters most exactly where it looks safest: on a branch that deliberately touches *nothing* dependency-related — a Dependabot GitHub-Actions-only bump, a docs-only PR, a workflow-policy fix — a stray unverified bare install is the one action that could introduce an out-of-scope `pnpm-lock.yaml`/`package.json` change nobody asked for, or run install/postinstall scripts against an unverified graph. `deps:reconcile`'s `--frozen-lockfile` failing loudly is the primary safeguard; after it succeeds, `git status --porcelain` / `git diff --stat -- pnpm-lock.yaml package.json` showing no diff is corroborating evidence, not a substitute for using the right command in the first place — a clean lockfile diff after a bare install proves the graph happened to already be in sync, not that the bare install was the correct or safe choice to make. **Name the worktree directory itself dot-free** (e.g. `release-v1282`, not `release-v1.28.2`) — see the `tsgo` gotcha under Build & bundler gotchas.
+
+**Quality gate (local pre-push subset):** `pnpm run ci:prepush` runs dependency-state/docs/CSP/native-readiness/Tauri-plugin-parity checks unconditionally (never full-repository lint — see the pre-push gate note above for what runs lint locally), and the single-checker local typecheck and i18n/content-guard checks only for changes the classifier marks as potentially impacting them (fail-closed to "run everything conditional" when evidence is incomplete); CI additionally runs full-repository lint, the 4-checker typecheck, full-suite coverage, and heavy jobs regardless of what the local gate ran. Locally use only the targeted form `pnpm exec vitest run <path> --coverage` when debugging coverage. Full pipeline graph: [`CI.md`](CI.md). Coverage thresholds: lines 80, branches 66, functions 72, statements 78 (see `vitest.config.ts`).
+
+## Cumulative PR budget and convergence modes
+
+The PR-size evaluator in `scripts/check-pr-size.mjs` is the single mechanical authority for governed files, meaningful lines, exceptions, and commit counts. Budget is measured cumulatively from the trusted PR base to the committed head or prospective index, not from the last push. Before the first commit and before each corrective commit or push, resolve the base and run `pnpm run pr:budget -- --base <ref>`; use `--prospective` to evaluate staged changes without creating a temporary commit. `ci:prepush` repeats the committed-head check when it can resolve the base. If the base is not trustworthy, the command reports `UNRESOLVED_BASE` and must not silently assume `main`. Remote PR-size CI remains the final authority.
+
+The normal-profile thresholds are target ≤8 files / ≤400 meaningful lines / ≤6 commits, hard-advisory ≤20 / ≤1200 / ≤10, and absolute ≤30 / ≤3000 / ≤15. For an all-docs/governance PR, `docsGovernance` (≤15 files / ≤2400 meaningful lines / ≤8 commits) replaces hard-advisory, not target. Active exceptions remain base-governed and cannot raise the absolute ceiling.
+
+- **NORMAL / TARGET:** stay within the preferred target when practical.
+- **CAUTION:** after exceeding target, reassess that the PR still covers one execution-boundary family, remove opportunistic refactors, and batch findings by root cause.
+- **CONVERGENCE:** at or beyond the hard-advisory tier, or when reserve is small, freeze scope and boundary families; add no P3 cleanup, gather the review wave, bundle same-root-cause corrections, and update required docs/test metrics together.
+- **SATURATED:** when any absolute dimension reaches its ceiling, the next mutation must not increase it. Never create file 31 or commit 16, rewrite ordinary history to manufacture capacity, or delete meaningful safety proof. If a genuine blocker cannot fit, freeze the PR and create a clean successor carrying the reviewed semantic net state.
+
+## Boundary & Race Matrix for cross-cutting work
+
+Before the first implementation commit for async, concurrency, persistence, or data-integrity work, record a short issue-level or local Boundary & Race Matrix: canonical invariant; mutation/read targets; execution-boundary families; awaits, callbacks, retries, transactions, and streams; irreversible boundaries; same-ID/new-incarnation and latest-wins hazards; error paths; legacy/migration compatibility; expected files; and proposed PR slices.
+
+Split independently reviewable families when useful: foundation/identity authority; persistent IDB/filesystem mutation; UI/read/destructive-intent authority; streaming/presentation authority; and deferred/cancellation lifecycle. Keep deferred ownership in its existing issue (for example #713/#714). Combine families only when separation would break compilation, weaken the invariant in an intermediate state, or require an unsafe transition, and record that reason. If the predicted slice crosses several families or the hard-advisory tier, split before review rather than waiting for saturation; file count is a planning signal, not a reason to omit required proof.
+
+**CI pipeline order:** `security` → `quality` (Biome + tsgo + Vitest matrix) → `build` / `e2e` / `storybook` (parallel) → `lighthouse` (after build) → `deploy` on `main`. `ci-success` is a required-status aggregator (`if: always()`) so branch protection can require one context instead of many individual ones — it fails if any governed required job doesn't resolve to `success` (Rust jobs and `pr-size` legitimately skip when their trigger conditions don't apply, and that counts as pass for that job only). The exact, current dependency list lives in [`CI.md`](CI.md#job-graph) and the live `ci-success` job in `.github/workflows/ci.yml` — don't hardcode it here, it changes as jobs are added or removed. Two additional jobs run in parallel with `quality`, both path-scoped via the `changes` job (legitimately `skipping` on PRs that don't touch their directory, which `ci-success` treats as a pass for that job only): `rust-tauri` (`src-tauri/**` — fmt/check/clippy/test, needs the GTK/WebKit apt-get steps) and `core-rust` (`crates/**` — same fmt/check/clippy/test for the renderer-neutral Rust Core, no GUI deps so no apt-get steps needed).
+
+**CI-cloud-first workflow (constrained local hardware only):** `pnpm run ci:prepush` is the repository's approved constrained-hardware local admission gate, not a substitute for full validation — [`CI.md`](CI.md#cloud-ci-first-vs-local-development) states the canonical quality gate is GitHub Actions and low-end local machines should not be expected to run the full heavy stack. On low-end hardware, run only `ci:prepush` locally before pushing; the pre-commit hook separately runs staged Biome checks via `lint-staged`. Full-repository lint, the 4-checker typecheck, and full i18n validation remain CI's unconditional authority regardless of what `ci:prepush` deferred locally (see the pre-push gate note above). Developers on more capable hardware MAY additionally run `pnpm run lint` / `pnpm run typecheck` / `pnpm run i18n:check` locally before pushing, but the low-end policy does not require it. Coverage, E2E, Lighthouse, and Stryker are CI-gate jobs. After each push, update README.md badges and AUDIT.md quality-gate line with CI-reported numbers. Local CI simulation: `act pull_request --job quality` (Docker + `act`; see `infra/low-end-ci/DAILY-DRIVER.md`).
+
+**CI audit & housekeeping policy (ALL CI runs must be fully green):**
+- After every commit, monitor all jobs for the active workflow. Stryker is a separate manual workflow, not a routine PR check; monitor it when explicitly dispatched for an incremental, Tier-A, module, or force audit.
+- **CodeQL scanning**: Check `https://github.com/qnbs/WorldScript-Studio/security/code-scanning` after every push. Fix the root cause — do not just suppress alerts.
+- **Token-Permissions**: All GitHub Actions workflows must set top-level `permissions: contents: read`; write permissions belong at the job level, never top-level.
+- **OSV vulnerabilities**: Run `pnpm audit` or check the security CI job. Add `pnpm.overrides` with pinned exact versions.
+- Correction loop: fix → commit → verify CI → fix until all jobs green.
+
+**Post-merge Vercel retention gate:** After a protected merge, record the exact
+resulting `main` SHA and wait for that SHA's push-triggered `CI / CD` and CodeQL
+runs to succeed before starting dependent mutation. Then run the bounded,
+authenticated Vercel Preview reconciliation in
+[`VERCEL-PREVIEW-RETENTION-POLICY.md`](VERCEL-PREVIEW-RETENTION-POLICY.md):
+dry-run first, retain the newest three Previews for every open PR, protect
+Production and `main` aliases/configuration, delete only explicitly classified
+stale IDs, and verify Production plus active Previews afterwards. Ordinary mode
+requires that reconciliation before dependent mutation. An explicitly declared
+bounded dependency/toolchain maintenance train, defined in the retention
+policy, may defer only that Preview artifact housekeeping. Exact-main CI/CD,
+CodeQL, Production READY, canonical HTTP, and alias/promotion/rollback checks
+stay mandatory after every train merge, and one full reconciliation is required
+before non-train mutation resumes. The introducing transition in that policy
+may make the pull request that first admits the exception the train's first
+merge when its record is complete before merge. A later pull request cannot
+reuse that transition. A failed resulting-main gate aborts the train into
+ordinary reconciliation. A separately declared release-batched Preview
+retention mode in that policy may defer the same Preview housekeeping until
+the next sanctioned `v*` release reconciliation. Its destructive writer is
+Codex CLI in the local VS Code/Ubuntu environment. Cursor Cloud does not
+delete Vercel deployments, publish a release, or receive release secrets.
+Per-merge CI/CD, CodeQL, Production READY, canonical HTTP, and
+alias/promotion/rollback checks stay mandatory. Gate 7 and the production
+storage-authority switch stay maintainer-gated. The introducing transition is
+one-time; a later pull request cannot reuse that transition. Reaching 14 days
+or 24 non-protected Preview deployments, or provider resource pressure,
+requires one exceptional Codex CLI pass and stops dependent repository
+mutation until that pass is recorded. That pass does not restore per-merge
+destructive cleanup. Until that mode is on `main`, ordinary mode still
+requires the full reconciliation. As of 2026-10-13 that release-batched mode is
+superseded: the maintainer decision recorded in GH #627 makes ordinary
+per-merge reconciliation the active mode. As of 2026-11-06, its operator
+eligibility is defined in the dated section of
+`docs/VERCEL-PREVIEW-RETENTION-POLICY.md`: one maintainer-designated local Claude
+Code CLI or Codex CLI at a time. Cursor Cloud may write source and PRs, but
+destructive retention remains **NOT_ADMITTED** until the separate
+maintainer-approved capability gate in GH #1174 is complete. Until then,
+per-merge retention hands off to a qualified local operator; local Vercel
+tokens or `.vercel` state are never copied to Cursor Cloud. This is a Vercel artifact procedure; the
+existing GitHub deployment-record workflow does not satisfy it. Never print
+tokens, environment values, or creator emails.
+
+**PR review-comment policy — the correction loop (proactive, automatic, every PR):** Inspect all inline comments (CodeRabbit + any other bot/human), including collapsed **nitpick** and **outside-diff-range** findings, but collect the current review wave across all three channels before mutating source or pushing again. Validate findings against the *current* code (anchors may be stale), cluster sibling findings by root cause and execution boundary, then implement the smallest complete root-cause fix (code **+ tests + i18n + docs** where applicable) or reply with evidence when a finding is false, stale, duplicate, advisory-only, or out of scope with a durable owner. **Never add a new `biome-ignore`** — the suppression ratchet (`scripts/check-suppressions.mjs`) fails the quality gate; refactor so the rule passes honestly. After a correction, reply to each actionable thread citing the resolving commit (`POST .../comments/<id>/replies`), resolve it (GraphQL `resolveReviewThread`), and leave **0 actionable unresolved**. CodeAnt AI may expose 5 CI **status checks** (`CodeAnt - Quality Gates/SAST/SCA/SCR/Test Coverage`) to verify green, and may also post a genuine inline review thread (confirmed 2026-08-28 on PR #538) — inspect its actual current output rather than assuming from this roster, and check all three channels below regardless. This document is the canonical general PR/CI/merge workflow; [`CODEANT-REVIEW-LOOP.md`](CODEANT-REVIEW-LOOP.md) is a canonical **sub-procedure** for the review-comment reconciliation mechanics (thread fetch/reply/resolve recipes), not a competing source of overall lifecycle authority.
+
+**CodeRabbit trigger semantics — evidence-based, not a ritual (confirmed on PR #537):** `@coderabbitai review` requests an **incremental** review of changes CodeRabbit hasn't seen yet; it explicitly does **not** re-review commits it has already reviewed. A push normally **auto-triggers** that incremental review on its own — post the manual comment only when automatic review is paused/disabled, or when CodeRabbit's own reply says the manual trigger is what applies right now. Do **not** post `@coderabbitai review` reflexively after every fix push as a "get a fresh 0-comment review" ritual — once CodeRabbit has already consumed the current head, doing so either does nothing or gets a reply that no new incremental diff exists, and treating that as "must wait for a review that will happen eventually" produces an unresolvable stall. `@coderabbitai full review` requests a **complete from-scratch** re-review and is **exceptional**, not routine — reserve it for a genuinely large invalidating rewrite, a cross-cutting final delta that plausibly invalidates earlier review coverage, or an explicit maintainer ask; never spend it chasing a mechanical "freshness" feeling.
+
+**`.coderabbit.yaml` — now explicit after a real predictability gap:** the repository previously
+relied on CodeRabbit defaults. PR #778 demonstrated a concrete policy-misread: CodeRabbit treated
+the QNBS-v3 rule as a blanket requirement for substantive new tests even though `AGENTS.md` exempts
+obvious tests and the checker validates marker form rather than marker presence. The tracked adapter
+now makes the high-signal profile, incremental review controls, generated-output filters, test and
+persistence path instructions, and branch-mutating finishing-touch defaults explicit. Its canonical
+semantics and vendor-role boundaries live in [`REVIEWER-GOVERNANCE.md`](REVIEWER-GOVERNANCE.md);
+the adapter is not a competing copy of `AGENTS.md`.
+
+**Reviewer states — track these explicitly, never collapse them:** `REVIEWED_CLEAN` (a review ran and found nothing), `AUTO_INCREMENTAL_REVIEWED` (automatic incremental review consumed the current diff), `NO_NEW_INCREMENTAL_DIFF` (CodeRabbit says there's nothing new to review — a legitimate terminal state, not a failure), `AUTO_REVIEW_PAUSED` (automatic review is off — a manual trigger applies here), `RATE_LIMITED`, `QUOTA_EXHAUSTED`, `BILLING_BLOCKED`, `REVIEWER_UNAVAILABLE` (all four mean "no signal," never "clean" — check the bot's actual review history via its API before trusting a live status badge), `FULL_REVIEW_EXPLICIT` (a deliberately-requested full review, logged with its justification). Never report `RATE_LIMITED`/`QUOTA_EXHAUSTED`/`BILLING_BLOCKED`/`REVIEWER_UNAVAILABLE` as `REVIEWED_CLEAN`.
+
+**Review-wave convergence:** After a push, allow the exact-head checks and configured review wave to materialize, then inspect paginated inline threads, top-level issue comments, and full review bodies together. Do not push once per comment. Maintain a small ledger of `finding | severity | current? | root cause | boundary family | source mutation? | owner | disposition`, cluster sibling findings, and bundle one correction per root-cause cluster. Before pushing that correction, inspect second-order effects in sibling paths and tests (including request ordering, transaction completion, error classification, and loading/toast cleanup). Resolve actionable findings only after a source fix or explicit durable owner; classify stale, duplicate, P3, provider, quota, and transient findings without source mutation. Never remove meaningful correctness/security/data-integrity coverage to reclaim budget; use a split or successor when proof cannot fit.
+
+**Merge-readiness classification — the final delta decides how much re-review is required, not a blanket "0 new comments":** classify the PR's **current final delta** (the last commits pushed since the most recent substantive review, not the whole PR) as HIGH-RISK or LOW-RISK. **HIGH-RISK** — touches security/auth/sandbox/IPC/FFI, commit/tag signing, packaging/release, persistence/encryption, dependency/security policy, git hooks/config/worktrees, CI/branch-protection/release gating, or any destructive filesystem/git operation, or introduces new executable/tooling behavior — requires real, substantive independent review coverage of that exact current delta before merge; CI-green alone never suffices, and a same-bot re-review that can't happen because the delta was already incrementally consumed does not excuse skipping independent coverage. **LOW-RISK** (e.g. a small, narrow final delta that only reconciles already-identified findings, with no new executable/security/tooling behavior) may merge without a fresh same-bot pass on the exact final commits, but **only when ALL** of the following hold: the bulk of the PR already received substantive review; the final delta specifically reconciles known findings (or is similarly narrow); `UNRESOLVED_REVIEW_THREADS = 0` and `NO_ACTIONABLE_TOP_LEVEL_ISSUE_COMMENTS = YES` and `NO_ACTIONABLE_REVIEW_BODY_FINDINGS = YES` (see the three-channel definitions below — all three checked independently, not inferred from one another); there are no new actionable findings; the exact current head's required *and* advisory CI are green; the exact current head's security/static gates are green; the final diff has been independently inspected (by the agent, at minimum); the final delta itself introduces no new executable/security/tooling behavior. If any of those don't hold, treat the delta as HIGH-RISK by default.
+
+**Merge mechanics — protected squash auto-merge, correctly ordered:** once the merge-readiness classification above is satisfied, capture the exact current head SHA (`gh pr view <PR> --json headRefOid`) and validate everything against *that* SHA — required + advisory CI, all three review channels, 0 unresolved threads, security/static gates, final-delta review coverage. Re-read the head immediately before arming the merge; if it changed (a new push landed), restart validation against the new SHA rather than trusting stale evidence. Then enable `gh pr merge <PR> --auto --squash --match-head-commit <VALIDATED_SHA>` (no `--delete-branch`, see the branch-retention rule below) — the `--match-head-commit` flag makes GitHub refuse the merge outright if the head moves again between arming and execution, so a newly-pushed unreviewed commit can never silently inherit an already-authorized auto-merge. **Ordering matters:** do not enable auto-merge merely because GitHub's branch-protection floor is satisfied (a required check green, no pending checks) — that floor is weaker than this repo's own policy above, and enabling auto-merge early would let GitHub complete the merge the moment the floor clears even if an advisory job or a review-channel check this policy requires hasn't finished yet. Satisfy this repo's own full criteria first, *then* enable auto-merge. If the `gh pr merge --auto` command itself times out, query the PR's live state before doing anything else — never blindly retry, the merge may have already gone through. If auto-merge can't activate because a real policy gate is still blocking, fix the gate or wait for it; never `--admin`, never weaken branch protection, never substitute a bypass merge — the only exceptional stop is a genuine platform/configuration blocker that can't be resolved through the normal protected path, and that always needs fresh, incident-specific maintainer authorization, never a standing fallback.
+
+**Branch retention: a merge never deletes the head branch, and dependents are checked first.** Before arming the merge, check whether any other open PR uses this PR's head branch as its base — do this with a genuinely paginated query, not `gh pr list`'s default 30-item page (`gh pr list --help` documents `--limit`'s default as 30, so an unpaginated/unlimited-unaware check can silently miss an older stacked PR on a repo with enough open PRs):
+
+```bash
+gh api --paginate -X GET "repos/qnbs/WorldScript-Studio/pulls" \
+  -f state=open -f base="<head_branch>" -f per_page=100 \
+  --jq '.[].number'
+```
+
+(`-X GET`/`--method GET` is required — `gh api` switches a request to `POST` automatically the moment
+any `-f`/`-F` parameter is present, and a `POST` to `.../pulls` calls the create-PR endpoint instead
+of listing anything, silently defeating the whole check.)
+
+Capture the output and require the whole `gh api --paginate` call to exit 0 before an empty result is read as zero: a non-zero exit status, an authentication or network error, or a partial page leaves the dependency state UNKNOWN — never `DEPENDENT_OPEN_PRS = 0` — and blocks the merge.
+
+This repository has **`delete_branch_on_merge = false`** (maintainer decision of 2026-10-13; earlier revisions of this document assumed `true`). A merge therefore leaves the head branch in place, and the merge command above deliberately omits `--delete-branch`: passing the flag would delete a branch that a stacked PR, an evidence record or a local worktree may still depend on. Re-read the setting live immediately before arming the merge (`gh api repos/qnbs/WorldScript-Studio --jq .delete_branch_on_merge`); if it does not read `false`, stop — with `true`, GitHub deletes the head branch whether or not the flag is passed. The rule is fail-closed:
+
+- **`DEPENDENT_OPEN_PRS = 0`** (the query above returns nothing) → normal protected squash auto-merge may proceed. The count is a snapshot: run the query again in the same step that arms the merge, and if a dependent PR appears while auto-merge is armed, disarm it (`gh pr merge <PR> --disable-auto`) before it can fire.
+- **`DEPENDENT_OPEN_PRS > 0`** → **do not merge the base PR yet.** A stacked PR (base ≠ `main`) cannot be proven ready on its stack: `ci.yml` runs only for PRs whose base is `main`, so a stacked PR has no hosted CI, and bots that skip non-default-base PRs (CodeRabbit) give it no review either. Squash-merging the base also rewrites ancestry — the dependent still carries the base's un-squashed commits, so its diff and any later rebase must be re-derived. Retarget every dependent PR to a safe surviving base first (typically `main`, once its composite diff against `main` has been inspected and stays inside the review and PR-size limits — if it does not, the stack is a maintainer decision, for example a replacement PR, not something to merge on a guess); GitHub's own automatic retarget of stacked PRs is a side effect of deleting the merged head branch, which this repository no longer does at merge, so a dependent stays based on the retained branch until it is retargeted by hand. Retargeting alone starts no CI: `ci.yml` subscribes to `pull_request` with the default activity types (`opened`, `synchronize`, `reopened`) and deliberately excludes `edited`, which is what a base change emits. Give the retargeted dependent a CI run on its exact head through an event the workflow does subscribe to (a head update, or closing and reopening the PR), confirm that a run exists for that head SHA before relying on it, and do not assume the review bots reviewed it either — check the review channels for that head. Verify each dependent PR is still open with the intended base/diff. Re-run the exhaustive dependency query. Only merge the base PR once it returns `DEPENDENT_OPEN_PRS = 0`. The squash leaves the base's original commits out of `main`'s history, so after the base lands the retargeted dependent stays cumulative until it is brought onto the resulting `main` (merge `main` into it, or `git rebase --onto origin/main <old-base-tip> <dependent>` as in the stacked-PR quirk below); `main` requires an up-to-date branch, so the CI run and review wave that count are the ones on that new head, not the run from before the base merged. A stack that cannot be retargeted this way is not merged on a guess — the merge order is a maintainer decision.
+
+**Deleting a merged branch is a separate, manual step that comes after the merge, never part of it.** Delete a merged PR's head branch (remote or local) only after a census of everything that could still point at it: (1) open PRs based on it (the paginated query above), (2) durable evidence that names its tip — docs, issue/PR comments, Linear records, retention receipts, (3) local worktrees checked out on it (`git worktree list`), (4) the branch's current tip, local and remote: it must still equal the head commit that was merged (`gh pr view <PR> --json headRefOid`) or be otherwise proven contained in the merged result — a branch that was reused or received commits after its PR merged is kept (the current-tip verification in [`GIT-WORKTREE-HOUSEKEEPING.md`](GIT-WORKTREE-HOUSEKEEPING.md) applies to local and remote deletion alike). A branch that any of the four still needs is kept. The branch tip is also what the recovery path in the stacked-PR quirk below restores from, so do not delete it early.
+
+Do not toggle the repository's `delete_branch_on_merge` setting — as part of a merge or otherwise — without fresh, explicit maintainer authorization, and don't deliberately trigger the stacked-PR auto-close/recovery path documented below and treat its recovery procedure as if that were the normal path.
+
+**Dependabot PRs follow their own, more specific policy — this general auto-merge instruction does not apply to them.** [`DEPENDABOT-TRIAGE.md`](DEPENDABOT-TRIAGE.md) removed this repo's auto-merge workflow outright (multiple independent version bumps in one upstream release made patch-level auto-merge unsafe) and requires manual, one-at-a-time review and merge instead. When `<PR>` is a Dependabot update, follow that doc's triage procedure, not `gh pr merge --auto` — a more specific policy overrides this general lifecycle rule wherever the two would otherwise conflict.
+
+**Current review-bot roster (verify still installed before relying on any of these — bots get added/removed over time):** CodeRabbit (automatic incremental review on push is the normal path; `@coderabbitai review` applies only when automatic review is paused/inapplicable or CodeRabbit's own reply indicates it — see the trigger-semantics paragraph above; posts both inline threads for actionable comments AND a separate review-body-only "🧹 Nitpick comments" section — the latter is invisible to a `reviewThreads` check). CodeAnt AI (may expose 5 CI status checks — Quality Gates/SAST/SCA/SCR/Test Coverage — and may also post genuine inline review threads, confirmed 2026-08-28; its actual current outputs must be inspected on each PR, not assumed from this roster entry — if it creates a resolvable thread, reconcile it exactly like any other reviewer's thread). qodo-code-review (posts real findings as **plain top-level PR comments**, `gh api repos/<owner>/<repo>/issues/<PR>/comments`, not as `reviewThreads` at all — a clean `reviewThreads` result does not mean qodo has nothing to say). Amazon Q Developer (manual trigger is `/q review` posted as a **brand-new top-level comment**, not inside an existing thread; also auto-reviews new/reopened PRs after install — **quota-conscious usage**: call it once CodeRabbit/CodeAnt's own loop has already reached quiescence, not after every fix commit; only re-invoke a second time if that fix was substantial). Graphite AI Reviews (automatic on every PR once installed — no confirmed manual re-trigger command). chatgpt-codex-connector (availability is intermittent/quota-limited on its own weekly budget — confirm it's currently active before relying on its silence as a clean pass, and don't spam re-triggers while it's known-suspended).
+
+**Review-comment completeness requires checking three independent channels, every PR, before declaring "review-clean" or merging** — a bot can and does use more than one channel on the very same PR. The three channels are **not interchangeable and do not share a resolution mechanism** — track each with its own explicit state:
+
+**Fail-closed pagination — a fundamental rule across all of the below:** an exhaustive fetch that
+partially succeeds (an early page fetched, a later page's request failing) must never be treated as
+a complete, clean result. `PARTIAL PAGINATION = FAILURE/UNKNOWN, NEVER CLEAN`. `set -o pipefail` (or
+checking `PIPESTATUS[0]`) is required wherever a paginated `gh api` call is piped into anything —
+an ordinary shell without it reports only the final pipeline stage's exit status, so `jq` happily
+aggregating whatever partial pages arrived before an upstream failure would otherwise look like
+success. If any stage of any channel's fetch fails, that channel's state is `UNKNOWN`/`FAILED`, never
+`= YES` or `= 0`.
+
+- **`UNRESOLVED_REVIEW_THREADS = 0`** — two separate exhaustive queries, not one: (1) **thread resolution state**, GraphQL `reviewThreads`, paginated exhaustively (a single `first:50`/`first:100` page can silently miss an unresolved thread on a PR with a long review history — this PR's own review wave has already exceeded 50); (2) **thread content**, including any later reply saying a fix is incomplete — genuinely paginating the nested `comments` connection per-thread is needlessly complex, so content comes from the flat, already-paginated REST endpoint instead (below). `comments(first: 1)` in query (1) is retained, but **only** as a join key — it is explicitly *not* a completeness mechanism, and must never be "fixed" back into a full-content fetch:
+
+```bash
+# (1) Thread resolution state + ROOT_REVIEW_COMMENT_ID (join key only, not content inspection) —
+# walk every page via pageInfo.hasNextPage/endCursor (gh api graphql --paginate does this automatically).
+# Fails closed: a non-zero exit here means UNRESOLVED_REVIEW_THREADS is UNKNOWN, not 0.
+gh api graphql --paginate \
+  -f owner="qnbs" -f name="WorldScript-Studio" -F number=<PR_NUMBER> \
+  -f query='
+    query($owner: String!, $name: String!, $number: Int!, $endCursor: String) {
+      repository(owner: $owner, name: $name) {
+        pullRequest(number: $number) {
+          reviewThreads(first: 100, after: $endCursor) {
+            nodes { id isResolved isOutdated path line
+              comments(first: 1) { nodes { databaseId } } }
+            pageInfo { hasNextPage endCursor }
+          }
+        }
+      }
+    }' --jq '.data.repository.pullRequest.reviewThreads.nodes[] | select(.isResolved==false)'
+```
+
+```bash
+# (2) Full inline comment/reply content, fail-closed — this REST endpoint is already flat and
+# paginated (no nested per-thread pagination needed), joined to (1) via ROOT_REVIEW_COMMENT_ID.
+set -o pipefail
+tmp="$(mktemp)"; trap 'rm -f "$tmp"' EXIT
+if ! gh api --paginate -X GET "repos/<owner>/<repo>/pulls/<PR>/comments" -f per_page=100 >"$tmp"; then
+  echo "REVIEW_CHANNEL_FETCH_FAILED"; exit 1
+fi
+jq -s 'add' "$tmp"
+```
+
+**Join:** for each GraphQL thread, `ROOT_REVIEW_COMMENT_ID = comments.nodes[0].databaseId`. From
+query (2)'s exhaustive result, that thread's full content is the REST comment whose `id ==
+ROOT_REVIEW_COMMENT_ID` **plus** every comment whose `in_reply_to_id == ROOT_REVIEW_COMMENT_ID` — never
+correlate by `path`/`line` alone, which cannot disambiguate multiple threads on the same location. A
+thread reported `isResolved: false` whose latest joined reply says the fix is incomplete is **not**
+actionable-clean just because the thread exists — read the complete joined content before treating a
+thread as reconciled.
+
+- **`NO_ACTIONABLE_TOP_LEVEL_ISSUE_COMMENTS = YES`** — plain top-level comments (qodo's real findings live here). These have no GraphQL-resolve mechanism; inspect each, fix/dispose of it, reply where appropriate, and confirm none remain actionable — do not call `resolveReviewThread` on them, there is no thread to resolve. **Paginate exhaustively and fail closed** — a bare call inspects only the first REST page, and an unchecked pipe can silently accept a partial result:
+  ```bash
+  set -o pipefail
+  tmp="$(mktemp)"; trap 'rm -f "$tmp"' EXIT
+  if ! gh api --paginate -X GET "repos/<owner>/<repo>/issues/<PR>/comments" -f per_page=100 >"$tmp"; then
+    echo "REVIEW_CHANNEL_FETCH_FAILED"; exit 1
+  fi
+  jq -s 'add' "$tmp"
+  ```
+- **`NO_ACTIONABLE_REVIEW_BODY_FINDINGS = YES`** — reading each review's `.body` field in full (CodeRabbit's nitpick/outside-diff-range sections live here, collapsed, invisible to both of the above). Same treatment as top-level comments: inspect, dispose, reply where useful, confirm nothing actionable remains — no resolve mutation applies here either. **Paginate exhaustively and fail closed** here too:
+  ```bash
+  set -o pipefail
+  tmp="$(mktemp)"; trap 'rm -f "$tmp"' EXIT
+  if ! gh api --paginate -X GET "repos/<owner>/<repo>/pulls/<PR>/reviews" -f per_page=100 >"$tmp"; then
+    echo "REVIEW_CHANNEL_FETCH_FAILED"; exit 1
+  fi
+  jq -s 'add' "$tmp"
+  ```
+  (`gh api --paginate` applies any `--jq` filter to *each page separately*, and `--slurp` cannot combine with `--jq` in the same invocation — that's why aggregation always happens in a separate `jq -s` process reading a completed, verified-successful file, never in a single piped `gh api ... | jq -s` one-liner that a shell without `pipefail` would report as successful even on a mid-stream failure.)
+
+None of the three implies the others are clean; all three must independently reach their state above — via **exhaustive, fail-closed pagination in all three**, not a first-page sample — before the PR is review-complete. **Reviewer capability/channels are observed live on each PR, never assumed from a static bot roster** — the roster above is a hint of what's been seen before, not an API contract (e.g. CodeAnt's roster entry lists status checks, but it has also posted a genuine inline review thread, confirmed on PR #538); check all three channels every time regardless of what a given bot has "usually" done, and don't skip re-triggering or reconciling a bot just because the roster doesn't mention that channel for it.
+
+**A review bot's silence is not the same as a clean pass.** Rate-limited, quota-exhausted, or never-triggered is a different state than "reviewed and found nothing" — verify at least one bot produced *substantive* output (its actual review body/comment text, not just a green check-run) before merging, especially for security/sandbox/IPC/FFI/packaging-adjacent changes. If every independent reviewer is simultaneously silent on such a PR, that's a gap worth surfacing, not something to proceed past as if the loop were satisfied.
+
+**PR-size limit — keep every PR under ~100 changed files so CodeAnt actually reviews it.** CodeAnt does **not** post inline review comments on PRs that exceed ~100 changed files (the >100-file check hangs/skips). Since any i18n-touching change fans out across 19 locale source files + 19 rebuilt `bundle.json` per module, a multi-feature branch crosses 100 fast. **Before pushing, run `git diff --name-only <base>...HEAD | wc -l`.** If it is over ~100, split the work into the **fewest** stacked PRs that each stay clearly under the limit — group by which locale module-files they touch so the per-PR fan-out stays small (e.g. P0 batch touching `writer.json`; P1/P2 batch touching `common.json`/`dashboard.json`). Stack them (PR2 base = PR1's branch) so each PR's incremental diff — what CodeAnt sees — is small; keep PR2 based on PR1's branch while it is reviewed, and at merge time follow the dependent-PR rule in the merge-mechanics section (GitHub retargets a stacked PR automatically only when the merged head branch is deleted, which this repository no longer does). **Do not** make more PRs than needed: if everything fits under ~100 in one (or two) PRs, use that. Keep commits atomic per concern regardless of how they are bundled into PRs.
+
+**Branching & merge discipline (every change, no exceptions):** Never commit directly to `main` — always create a feature branch, push, and open a PR, even for a single-file doc/config/chore edit. Before merging, wait for the **full CI suite to go green, including non-required/advisory jobs** (`E2E Tests`, `E2E Deep Coverage`, `Storybook`, `Lighthouse`, `Visual Regression`) — not just the branch-protection-required checks (Security Audit, Build, Quality Gate ×2). When doing a structured multi-step sprint (an audit, a migration broken into workstreams), group related small workstreams into the fewest PRs that stay reviewable — by natural/documented boundaries, not one PR per tiny item — while keeping one commit per logical concern inside each PR.
+
+**Protected merge policy (current):** The normal path is protected squash **auto-merge**
+(`gh pr merge <PR> --auto --squash --match-head-commit <SHA>`, never with `--delete-branch`), enabled
+only once the merge-readiness classification above is satisfied for the exact current head — see the
+merge-mechanics paragraph above for the full ordering rule, the branch-retention and dependent-PR
+rule, and the Dependabot exception. No admin/protection bypass is a standing fallback; it requires
+fresh, explicit maintainer authorization for the specific incident. Re-read live protection, checks,
+reviews, rulesets, and check suites before deciding that a merge-state display is a platform quirk.
+
+**Known merge-gate quirks (GitHub, this repo):**
+- **Mergeable-state cache lag vs. this repo's own wait-for-everything policy — two different things:** (1) GitHub itself blocks the merge button while *any* check is still `pending`, required or not (a real, observed technical constraint — it clears on its own once every check concludes, pass or fail); separately, once all checks have actually concluded, GitHub's branch protection only re-blocks on a *failing required* check. (2) This repo's own policy above is stricter than that floor: wait for the advisory jobs to *pass*, not just stop being `pending`, before merging. If `gh pr merge` still fails with "base branch policy prohibits the merge" after every job (required and advisory) shows a concluded `success`, and `mergeable: MERGEABLE`, and 0 review threads are unresolved, that's the mergeable-state *cache* lagging behind reality, not either policy above. Re-poll a few times at ~60s spacing. Never use `--admin` to route around any of this without a maintainer's fresh, explicit authorization for that specific merge.
+- **Stacked-PR auto-close when the base branch is deleted:** deleting the head branch of a squash-merged PR — through `--delete-branch`, a `delete_branch_on_merge = true` repository setting (the state this repo was in before 2026-10-13), or a manual deletion — can cause GitHub to **auto-close (not retarget)** a downstream PR whose base was the just-deleted branch, instead of the usual automatic retarget-to-`main`. With the current branch-retention rule (merge without `--delete-branch`, retarget dependents first, delete only after the census) this path should not be reached; it stays documented for a branch that was deleted early. Recovery: `git push origin <last-known-head-sha>:refs/heads/<deleted-branch-name>` to temporarily restore the ref, `gh pr reopen <n>`, `gh pr edit <n> --base main`, then delete the temp branch once the paginated dependency check above shows nothing still depends on it. **After that recovery, a naive `git rebase origin/main` on the reopened branch re-conflicts** even though the PR's own diff is clean — its history still contains the original un-squashed commits from the now-merged base PR, and a plain rebase tries to replay each individually against main's one squashed commit. Fix: find the merged base branch's last commit SHA (`git log --oneline <stacked-branch>`) and rebase only what's after it — `git rebase --onto origin/main <old-base-tip-sha> <stacked-branch>` — then `git push --force-with-lease`.
+- **Zombie `QUEUED` check-suites block `mergeStateStatus`.** Several installed GitHub Apps (Renovate, Cursor, the Claude GitHub App, Greptile, CodeAnt AI, Cloudflare Pages, coderabbitai, Codecov, Amazon Q Developer) can leave their check-suite object stuck at `status: QUEUED` (never `COMPLETED`) on a PR that never triggers their actual logic (e.g. a docs-only PR never fires Renovate). This is **invisible via `gh pr checks`** (named checks all show correctly) — it only shows via GraphQL: `commits(last:1){nodes{commit{checkSuites(first:20){nodes{app{name} status}}}}}`. It can make `gh pr merge` display "the base branch policy prohibits the merge" even when the required check is green. Before assuming this pattern (vs. a real blocker), confirm the required check genuinely concluded `success` and `UNRESOLVED_REVIEW_THREADS = 0` with no actionable findings remaining in the other two channels (see the three-channel definitions above), then re-read the exact head and protection and use a normal policy-enforced merge endpoint. This observed quirk is not authorization for an admin bypass; any bypass requires fresh, incident-specific maintainer authorization.
+- **Any `FAILURE` status — required or advisory — is zero-tolerance; never rationalize it as "probably fine."** `main`'s HEAD commit must never show a red check. In particular, `codecov/patch` evaluates the **entire accumulated diff** against the target branch, not just your latest commit — "my part was docs-only" does not exempt the rest of the PR's diff from needing real coverage. Pull the actual failure detail (coverage report, job log) and understand the root cause before deciding whether to fix it now; never merge (via normal merge, `--auto`, or `--admin`) while any check shows `FAILURE`.
+- **After re-triggering a specific advisory/non-required job, verify that exact job by name before merging** — advisory workflows don't gate `mergeable`/`mergeStateStatus` at all, so a clean `gh pr view --json mergeable` gives zero signal about them, and a large batch of "pass" results from other checks does not imply the specific re-run finished. Grep `gh pr checks <N>`'s output for the exact job name and confirm it individually shows `pass`.

@@ -31,7 +31,7 @@ const defaultMockSettings = () => ({
 
 vi.mock('../../../contexts/SettingsViewContext', () => ({
   useSettingsViewContext: () => ({
-    t: (k: string) => (k === 'settings.about.productName' ? 'WorldScript Studio' : k),
+    t: (k: string) => (k === 'settings.about.productName' ? 'Andersen' : k),
     language: 'en',
     handleLanguageChange: mockHandleLanguageChange,
     settings: { ...defaultMockSettings(), ...settingsRef.current },
@@ -363,11 +363,9 @@ describe('AboutSection', () => {
 
   it('renders app version information', async () => {
     render(<AboutSection />);
-    // QNBS-v3: assert the exact product display name so a regression (e.g. dropping "Studio"
-    // or rendering a different label that still contains "WorldScript") fails the test.
-    expect(screen.getByText('WorldScript Studio')).toBeInTheDocument();
-    // QNBS-v3 (CodeAnt): also assert the app version actually renders, so a version regression
-    // (e.g. packageJson.version no longer shown) fails this test as its name implies.
+    // QNBS-v3: assert the exact product display name so a rebrand regression (e.g. dropping "Andersen") fails the test.
+    expect(screen.getByText('Andersen')).toBeInTheDocument();
+    // QNBS-v3 (CodeAnt): also assert the app version renders, so a version regression fails this test as its name implies.
     expect(screen.getByText(packageJson.version, { exact: false })).toBeInTheDocument();
   });
 

@@ -24,6 +24,7 @@ import {
 } from './ai/discovery/localModelDiscovery';
 import { applyHeuristicFallback } from './ai/heuristicFallback';
 import { resolveProviderFallbackChain } from './ai/hybridFallback';
+import { resolveLocalBackendApiKey } from './ai/localBackendAuth';
 import { throwIfRequestAborted, withMergedAbortSignal } from './ai/lifecycle/cancellation';
 import { withDeduplicatedRequest } from './ai/lifecycle/requestDedup';
 import { attemptOpenRouterFallback, isOpenRouterTransientFailure } from './ai/openRouterFallback';
@@ -118,6 +119,13 @@ function createAttemptEmittedTracker(callbacks: AIStreamCallbacks): {
 
 // ─── OpenAI Provider ─────────────────────────────────────────────────────────
 
+// QNBS-v3: key-protected local presets (Unsloth) resolve their stored key at request time; keyless presets return options untouched.
+async function withLocalBackendAuth(opts: AIRequestOptions): Promise<AIRequestOptions> {
+  if (!isOpenAiCompatibleLocalPreset(opts.localBackendPreset)) return opts;
+  const apiKey = await resolveLocalBackendApiKey(opts.localBackendPreset);
+  return apiKey ? { ...opts, localApiKey: apiKey } : opts;
+}
+
 async function streamProvider(
   prompt: string,
   creativity: AiCreativity,
@@ -145,9 +153,10 @@ async function streamProvider(
       return streamOpenRouter(prompt, oWithLora, callbacks, apiKey);
     }
     case 'ollama':
-      return isOpenAiCompatibleLocalPreset(oWithLora.localBackendPreset)
-        ? streamOpenAiCompatibleLocal(prompt, oWithLora, callbacks)
-        : streamOllama(prompt, oWithLora, callbacks);
+      if (!isOpenAiCompatibleLocalPreset(oWithLora.localBackendPreset)) {
+        return streamOllama(prompt, oWithLora, callbacks);
+      }
+      return streamOpenAiCompatibleLocal(prompt, await withLocalBackendAuth(oWithLora), callbacks);
     case 'anthropic':
       return streamAnthropic(prompt, oWithLora, callbacks);
     case 'grok':
@@ -212,10 +221,9 @@ async function generateTextSingleProvider(
     }
     case 'ollama': {
       let result = '';
-      const stream = isOpenAiCompatibleLocalPreset(o.localBackendPreset)
-        ? streamOpenAiCompatibleLocal
-        : streamOllama;
-      await stream(prompt, o, {
+      const useOpenAiCompat = isOpenAiCompatibleLocalPreset(o.localBackendPreset);
+      const localOpts = useOpenAiCompat ? await withLocalBackendAuth(o) : o;
+      await (useOpenAiCompat ? streamOpenAiCompatibleLocal : streamOllama)(prompt, localOpts, {
         onChunk: (text) => {
           result += text;
         },

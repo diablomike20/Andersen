@@ -3,6 +3,7 @@ import { LocalServerError, localServerFetch } from '../../localServerHttp';
 import { CspConnectPolicyError } from '../../network/cspOriginPolicy';
 import { listOllamaModels as listOllamaModelsFromService } from '../../ollamaService';
 import { isTauriRuntime } from '../../tauriRuntime';
+import { resolveLocalBackendApiKey } from '../localBackendAuth';
 import { normalizeOpenAiCompatibleBaseUrl } from '../modelNormalization';
 import { isOpenAiCompatibleLocalPreset } from '../providers/localOpenAiCompatibleProvider';
 import type { TestConnectionResult } from './connectionTests';
@@ -54,17 +55,23 @@ export function localServerFailure(
 }
 
 /**
- * Tests the standard OpenAI-compatible endpoint used by LM Studio and vLLM. The request is
- * user-triggered by the Settings card; opening Settings remains side-effect free.
+ * Tests the standard OpenAI-compatible endpoint used by LM Studio, vLLM and Unsloth. The request
+ * is user-triggered by the Settings card; opening Settings remains side-effect free. Key-protected
+ * presets (Unsloth) read their stored key here so discovery and generation share one credential.
  */
 export async function testOpenAiCompatibleLocalConnection(
   baseUrl: string | undefined,
+  preset?: LocalBackendPreset,
 ): Promise<TestConnectionResult> {
   const normalizedEndpoint = normalizeOpenAiCompatibleBaseUrl(
     baseUrl?.trim() || 'http://localhost:1234',
   );
   try {
-    const response = await localServerFetch(`${normalizedEndpoint}/models`, { timeoutMs: 5000 });
+    const apiKey = await resolveLocalBackendApiKey(preset);
+    const response = await localServerFetch(`${normalizedEndpoint}/models`, {
+      timeoutMs: 5000,
+      ...(apiKey ? { headers: { Authorization: `Bearer ${apiKey}` } } : {}),
+    });
     if (!response.ok) {
       return {
         ok: false,
@@ -111,7 +118,7 @@ export async function listLocalBackendModels(
   preset: LocalBackendPreset,
 ): Promise<string[]> {
   if (!isOpenAiCompatibleLocalPreset(preset)) return listOllamaModels(baseUrl);
-  const result = await testOpenAiCompatibleLocalConnection(baseUrl);
+  const result = await testOpenAiCompatibleLocalConnection(baseUrl, preset);
   return result.ok ? (result.localServer?.modelNames ?? []) : [];
 }
 
@@ -140,6 +147,7 @@ export async function scanLocalOpenAiCompatibleEndpoints(): Promise<LocalEndpoin
     { labelKey: 'settings.ai.scanLabelOllama', baseUrl: 'http://localhost:11434', ollama: true },
     { labelKey: 'settings.ai.scanLabelLmStudio', baseUrl: 'http://localhost:1234', ollama: false },
     { labelKey: 'settings.ai.scanLabelVllm', baseUrl: 'http://localhost:8000', ollama: false },
+    { labelKey: 'settings.ai.scanLabelUnsloth', baseUrl: 'http://localhost:8888', ollama: false },
   ];
   return Promise.all(
     candidates.map(async ({ labelKey, baseUrl, ollama }): Promise<LocalEndpointScanResult> => {

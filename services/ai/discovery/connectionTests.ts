@@ -113,7 +113,7 @@ export async function testAIConnection(
           };
         }
         const result = isOpenAiCompatibleLocalPreset(opts.localBackendPreset)
-          ? await testOpenAiCompatibleLocalConnection(opts.ollamaBaseUrl)
+          ? await testOpenAiCompatibleLocalConnection(opts.ollamaBaseUrl, opts.localBackendPreset)
           : await testOllamaConnection(opts.ollamaBaseUrl);
         // QNBS-v3 (ADR-0017): the Fetch API gives an identical generic failure for "CORS rejected" and "server genuinely down" — this can only be a heuristic hint when running the opt-in browser path, never a certain diagnosis. Desktop keeps the plain 'unreachable' kind.
         if (!isDesktop && !result.ok && result.kind === 'unreachable') {

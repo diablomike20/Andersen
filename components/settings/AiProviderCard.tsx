@@ -220,6 +220,9 @@ export const AiProviderCard: FC<AiProviderCardProps> = ({
   const [isSavingGrokKey, setIsSavingGrokKey] = useState(false);
   const [anthropicKey, setAnthropicKey] = useState('');
   const [isSavingAnthropicKey, setIsSavingAnthropicKey] = useState(false);
+  // QNBS-v3: Unsloth Studio's local server requires its own bearer key.
+  const [unslothKey, setUnslothKey] = useState('');
+  const [isSavingUnslothKey, setIsSavingUnslothKey] = useState(false);
   const [ollamaModels, setOllamaModels] = useState<string[]>([]);
   const [testStatus, setTestStatus] = useState<ConnectionTestStatus>('idle');
   const [testError, setTestError] = useState('');
@@ -311,6 +314,10 @@ export const AiProviderCard: FC<AiProviderCardProps> = ({
       .getApiKey('anthropic')
       .then((k) => setAnthropicKey(k ?? ''))
       .catch(() => {});
+    storageService
+      .getApiKey('unsloth')
+      .then((k) => setUnslothKey(k ?? ''))
+      .catch(() => {});
   }, []);
 
   // QNBS-v3: save/clear via storageService, matching every other provider's key persistence.
@@ -339,6 +346,19 @@ export const AiProviderCard: FC<AiProviderCardProps> = ({
       setIsSavingAnthropicKey(false);
     }
   }, [anthropicKey]);
+
+  const handleSaveUnslothKey = useCallback(async () => {
+    setIsSavingUnslothKey(true);
+    try {
+      if (unslothKey.trim()) {
+        await storageService.saveApiKey('unsloth', unslothKey.trim());
+      } else {
+        await storageService.clearApiKey('unsloth');
+      }
+    } finally {
+      setIsSavingUnslothKey(false);
+    }
+  }, [unslothKey]);
 
   const handleSaveOpenAiKey = useCallback(async () => {
     setIsSavingKey(true);
@@ -461,6 +481,7 @@ export const AiProviderCard: FC<AiProviderCardProps> = ({
     { id: 'ollama_default', labelKey: 'settings.ai.preset.ollamaDefault' },
     { id: 'lm_studio', labelKey: 'settings.ai.preset.lmStudio' },
     { id: 'vllm', labelKey: 'settings.ai.preset.vllm' },
+    { id: 'unsloth', labelKey: 'settings.ai.preset.unsloth' },
     { id: 'custom', labelKey: 'settings.ai.preset.custom' },
   ];
 
@@ -702,6 +723,36 @@ export const AiProviderCard: FC<AiProviderCardProps> = ({
                 {isLoadingModels ? <Spinner className="w-4 h-4" /> : t('settings.ai.loadModels')}
               </Button>
             </div>
+            {advancedAi.localBackendPreset === 'unsloth' && (
+              <div className="space-y-2">
+                <label
+                  htmlFor="unsloth-api-key"
+                  className="text-sm font-medium text-[var(--sc-text-secondary)] block"
+                >
+                  {t('settings.ai.unslothKey')}
+                </label>
+                <div className="flex gap-2">
+                  <Input
+                    id="unsloth-api-key"
+                    type="password"
+                    placeholder="sk-unsloth-…"
+                    value={unslothKey}
+                    onChange={(e) => setUnslothKey(e.target.value)}
+                    className="flex-1 font-mono text-sm"
+                  />
+                  <Button
+                    onClick={handleSaveUnslothKey}
+                    disabled={isSavingUnslothKey}
+                    variant="secondary"
+                  >
+                    {isSavingUnslothKey ? <Spinner className="w-4 h-4" /> : t('settings.ai.save')}
+                  </Button>
+                </div>
+                <p className="text-xs text-[var(--sc-text-muted)]">
+                  {t('settings.ai.unslothKeyHint')}
+                </p>
+              </div>
+            )}
             {isDesktop && (
               <div className="space-y-2">
                 <Button
