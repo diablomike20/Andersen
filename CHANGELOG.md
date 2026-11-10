@@ -4,6 +4,10 @@ All notable changes to Andersen are documented in this file.
 
 ## [Unreleased]
 
+### Fixed
+
+- Converted the Tauri bundle icons to RGBA so the Linux Rust compile gate can generate the app context.
+
 ## [1.29.3] - 2026-11-10
 <!-- release-candidate: v1.29.3 -->
 
